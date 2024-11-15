@@ -1,0 +1,12 @@
+.actor-card {
+    background-color: #303030;
+    border-radius: 20px;
+}
+
+.actor-title {
+    color: white;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.800);
+}
