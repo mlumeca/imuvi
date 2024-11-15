@@ -1,7 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { SeriesListComponent } from './components/series-list/series-list.component';
+import { SeriesDetailComponent } from './components/series-detail/series-detail.component';
+import { ActorDetailComponent } from './components/actor-detail/actor-detail.component';
+import { ActorListComponent } from './components/actor-list/actor-list.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'movie-list', component: MovieListComponent},
+  {path: 'movie-detail', component: MovieDetailComponent},
+  {path: 'series-list', component: SeriesListComponent},
+  {path: 'series-detail', component: SeriesDetailComponent},
+  {path: 'actor-list', component: ActorListComponent},
+  {path: 'actor-detail', component: ActorDetailComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '**', component: PageNotFoundComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

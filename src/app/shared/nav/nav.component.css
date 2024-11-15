@@ -1,0 +1,24 @@
+nav {
+    background-color: #101010;
+    height: 80px;
+}
+
+h2 {
+    color: white;
+    margin-top: 15px;
+}
+
+* {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+i {
+    font-size: 25pt;
+    color: white;
+    margin-top: 15px;
+}
+
+.seleccionado:active,
+.seleccionado:focus {
+    color: red;
+}
