@@ -1,0 +1,145 @@
+header {
+    background-color: #101010;
+    height: 80px;
+}
+
+.option {
+    color: white;
+    margin-top: 15px;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+i {
+    font-size: 25pt;
+    color: white;
+    margin-top: 15px;
+}
+
+
+body {
+    background-color: #262626 !important;
+}
+
+.tamayoInfo {
+    background-color: #383838 !important;
+    width: 95% !important;
+    margin-top: 20px !important;
+    border-radius: 20px !important;
+}
+
+img {
+    border-radius: 20px !important;
+}
+
+.tamayoIcono{
+    font-size: 20pt;
+}
+
+.colorFilm{
+    color: #101010 ;
+}
+
+body {
+    margin-top: 20px;
+}
+
+.timeline_area {
+    position: relative;
+    z-index: 1;
+}
+
+.single-timeline-area {
+    position: relative;
+    z-index: 1;
+    padding-left: 180px;
+}
+
+.single-timeline-area .timeline-date {
+    position: absolute;
+    width: 180px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding-right: 60px;
+}
+
+.single-timeline-area .timeline-date::after {
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    content: "";
+    background-color: #ebebeb;
+    top: 0;
+    right: 30px;
+    z-index: 1;
+}
+.single-timeline-area .timeline-date::before {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: #f10f0f;
+    content: "";
+    top: 5%;
+    right: 26px;
+    z-index: 5;
+
+}
+
+.single-timeline-area .single-timeline-content {
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    border-radius: 6px;
+    padding-top: 35px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    background-color: #383838;
+    height: 120px;
+}
+
+.single-timeline-area .single-timeline-content .timeline-text p {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+
+div.scrollCardPeli{
+    background-color: #262626;
+    overflow: auto;
+    white-space: nowrap;
+    height: 340px;
+    
+  }
+  
+div.scrollCardPeli .scrollCard {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  width: 10%;
+  height: 300px;
+  padding: 14px;
+  border-radius: 20px;
+  background-color: #383838;
+  justify-items: center;
+}
+
+.tamayoImagen{
+    width: 150px;
+}
+
+.conocidoPor{
+    margin-left: 50px;
+}
+
+
