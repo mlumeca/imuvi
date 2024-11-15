@@ -1,0 +1,81 @@
+body {
+    background-color: #181818;
+    color: white;
+}
+
+.title {
+    font: 70px verdana;
+}
+
+.filter-section {
+    background-color: #303030;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.movie-card {
+    background-color: #303030;
+    border-radius: 20px;
+    overflow: visible;
+    width: 300px;
+   
+}
+
+.movie-card img {
+    width: 85%;
+    margin: 20px;
+    align-items: center;
+    border-radius: 20px;
+    
+}
+
+.movie-title {
+    color: white;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.800);
+}
+
+.rating {
+    position: absolute;
+    top: 97%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #181818;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #303030 ;
+}
+
+input[type="checkbox"]:checked {
+    background-color: red;
+    border: none;
+    box-shadow: 0 0 0 1px red;
+}
+
+header {
+    background-color: #101010;
+    height: 80px;
+}
+
+.nav-title{
+    color: white;
+    margin-top: 15px;
+}
+
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+i{
+    font-size: 25pt;
+    color: white;
+    margin-top: 15px;
+}
+
