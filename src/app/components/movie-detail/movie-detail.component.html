@@ -26,13 +26,11 @@
                             regrese para desatar su propio caos.</p>
                     </div>
 
-                    <div>
-                        <p>Chris Sanders <br>
+                    <div class="row mt-5">
+                        <p class="col-3">Chris Sanders <br>
                             Director, Screenplay
                         </p>
-                    </div>
 
-                    <div class="row">
                         <p class="col-3">Título Original<br>
                             The Wild Robot
                         </p>
@@ -49,9 +47,9 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid mb-4">
+    <div class="container-fluid">
         <div>
-            <h2>Plataformas</h2>
+            <h2 class="mt-5">Plataformas</h2>
         </div>
 
         <div class="row">
@@ -68,11 +66,11 @@
 
     <div class="container-fluid">
         <div>
-            <h2>Reparto Principal</h2>
+            <h2 class="mt-5">Reparto Principal</h2>
         </div>
         <div class="row">
-            <div class="card col-2 m-4">
-                <img class="card-sprite justify-content-around m-2"
+            <div class="card col a">
+                <img class="card-sprite a"
                     src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
                     alt="Kit Connor image">
                 <div class="text-center">
@@ -82,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="card col-2 m-4">
+            <div class="card col m-4">
                 <img class="card-sprite m-2"
                     src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
                     alt="Kit Connor image">
@@ -93,34 +91,62 @@
                 </div>
             </div>
 
-            <div class="card col-2 m-4">
-                <img class="card-sprite m-2"
-                    src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                    alt="Kit Connor image">
-                <div class="text-center">
-                    <p> <b>Kit Connor</b> <br>
-                        Brightbill (voice)
-                    </p>
+            <!-- carousel horizontal img -->
+            <div class="mt-5 conocidoPor">
+                <h2 class="text-light">Conocido por</h2>
+                <div class="scrollCardPeli">
+                    <div class="card scrollCard me-3">
+                        <div class="tamayoImagen">
+                            <img src="../img/a.webp" class="card-img-top " alt="a">
+
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                        </div>
+                    </div>
+
+                    <div class="tamayoImagen">
+                        <img src="../img/a.webp" class="card-img-top " alt="a">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+                <div class="card scrollCard">
+                    <div class="tamayoImagen">
+                        <img src="../img/a.webp" class="card-img-top " alt="a">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+                <div class="card scrollCard">
+                    <div class="tamayoImagen">
+                        <img src="../img/a.webp" class="card-img-top " alt="a">
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
+                </div>
+                <div class="card scrollCard">
+                    <div class="tamayoImagen">
+                        <img src="../img/a.webp" class="card-img-top " alt="a">
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                    </div>
                 </div>
             </div>
 
-            <div class="card col-2 m-4">
-                <img class="card-sprite m-2"
-                    src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                    alt="Kit Connor image">
-                <div class="text-center">
-                    <p> <b>Kit Connor</b> <br>
-                        Brightbill (voice)
-                    </p>
-                </div>
-            </div>
+            
         </div>
     </div>
 
     <div class="container-fluid">
-        <h2>Media</h2>
+        <h2 class="mt-5">Media</h2>
         <div class="a">
-            @if (images) {
             <ngb-carousel [showNavigationArrows]="showNavigationArrows"
                 [showNavigationIndicators]="showNavigationIndicators">
                 @for (image of images; track image) {
@@ -131,7 +157,6 @@
                 </ng-template>
                 }
             </ngb-carousel>
-            }
         </div>
     </div>
 </main>

@@ -24,3 +24,32 @@ img {
 .a{
     justify-items: center;
 }
+
+/* Scroll horizontal img */
+div.scrollCardPeli{
+    background-color: #262626;
+    overflow: auto;
+    white-space: nowrap;
+    height: 340px;
+    
+  }
+  
+div.scrollCardPeli .scrollCard {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  width: 10%;
+  height: 300px;
+  padding: 14px;
+  border-radius: 20px;
+  background-color: #383838;
+  justify-items: center;
+}
+
+.tamayoImagen{
+    width: 150px;
+}
+
+.conocidoPor{
+    margin-left: 50px;
+}
