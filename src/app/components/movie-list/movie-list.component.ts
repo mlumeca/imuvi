@@ -7,6 +7,7 @@ import { MovieService } from '../../services/movie.service';
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css'
 })
+
 export class MovieListComponent implements OnInit {
   movieList: MovieList[] = [];
 
@@ -19,7 +20,12 @@ export class MovieListComponent implements OnInit {
     })
   }
 
-
-  
+  getImage(path: string) {
+    const base_url = 'https://image.tmdb.org/t/p/w500';
+    return base_url + path;
+  }
 
 }
+
+
+

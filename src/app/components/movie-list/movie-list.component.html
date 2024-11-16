@@ -2,24 +2,22 @@
     <div class="row">
         <div class="col mx-5">
             <div class="d-flex justify-content-between">
-                <h1 class="title mb-4">Populares</h1>
+                <h2 class="title mb-4">Populares</h2>
                 <div class="form-outline " data-mdb-input-init>
                     <input type="search" id="form1" class="form-control me-5" placeholder="Buscar" aria-label="Search" />
                 </div>
             </div>
 
         </div>
-       
     </div>
-   
     
     <div class="row">
         <div class="col-2">
             <div class="filter-section ms-5">
-                <h2>Filtros</h2>
+                <h5>Filtros</h5>
                 <hr class="hr" />
                 <div class="mb-3">
-                    <h4>Géneros</h4>
+                    <h6>Géneros</h6>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="accion">
                         <label class="form-check-label" for="accion">Acción</label>
@@ -35,12 +33,12 @@
 
                 </div>
                 <div class="mb-3">
-                    <h4>Puntuación</h4>
+                    <h6>Puntuación</h6>
                     <!--aqui va una doble con angular-->
                     <input type="range" class="form-range" min="0" max="10">
                 </div>
                 <div class="mb-3">
-                    <h4>Fecha de estreno</h4>
+                    <h6>Fecha de estreno</h6>
                     <label for="desde" class="form-label">Desde</label>
                     <input type="date" class="form-control" id="desde">
                     <label for="hasta" class="form-label">Hasta</label>
@@ -56,9 +54,9 @@
                 @for(movie of movieList; track movie.id) {
                     <div class="col-3 mb-4">
                         <div class="card movie-card">
-                            <img [src]="" alt="{{movie.title}}">
+                            <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
                             <div class="card-body pt-0">
-                                <h5 class="movie-title">{{movie.title}}</h5>
+                                <h6 class="movie-title">{{movie.title}}</h6>
                                 <p class="card-text">{{movie.release_date}}</p>
                             </div>
                             <div class="rating">{{movie.vote_average}}</div>
