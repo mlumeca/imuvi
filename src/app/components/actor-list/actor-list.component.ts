@@ -22,6 +22,12 @@ export class ActorListComponent implements OnInit {
 
   }
 
+  getImage(path: string) {
+    const base_url = 'https://image.tmdb.org/t/p/w500';
+    return base_url + path;
+  }
+  
+
 
 
 }
