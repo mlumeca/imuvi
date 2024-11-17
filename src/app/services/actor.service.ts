@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import {ActorDetailResponse} from '../models/actor-detail.interface';
+import { ActorDetailResponse } from '../models/actor-detail.interface';
 
 const API_KEY = '6ea0f745f14c15097ec90310753616a0';
 
@@ -10,9 +10,9 @@ const API_KEY = '6ea0f745f14c15097ec90310753616a0';
 })
 export class ActorService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getOneActor(id: number): Observable<ActorDetailResponse>{
+  getOneActor(id: string): Observable<ActorDetailResponse> {
     return this.http.get<ActorDetailResponse>(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
   }
 }
