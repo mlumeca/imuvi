@@ -8,11 +8,12 @@
                         alt="movie poster">
                 </div>
                 <div class="col-9 ms-5 mt-1">
-                    <div class="row mt-3">
-                        <h3 class="col-4">Robot Salvaje (2024)</h3>
-                        <img class="col-2 pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
-                        <p>Animación, Ciencia ficción, Familia · 1h 42m</p>
+                    <div class="mt-3">
+                        <h3 class="leftItem">Robot Salvaje (2024)</h3>
+                        <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
                     </div>
+
+                    <p>Animación, Ciencia ficción, Familia · 1h 42m</p>
 
                     <div>
                         <h2>Vista General</h2>
@@ -65,138 +66,23 @@
     </div>
 
     <div class="container-fluid">
-
-            <div class="list">
-                <h2 class="mt-5">Reparto Principal</h2>
-                <div class="cardGroup row">
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                    <div class="card a col-2" ng-repeat="">
-                        <img class="card-sprite a"
-                            src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
-                            alt="Img actor">
-                        <div class="text-center">
-                            <p> <b>Kit Connor</b> </p>
-                            <p>Brightbill (voice)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-        <!-- carousel horizontal img -->
         <div class="mt-5 reparto">
             <h2 class="text-light">Reparto</h2>
             <div class="scrollCardReparto">
+                @for (item of cast; track item.id) {
                 <div class="card scrollCard me-3">
                     <div class="tamayoImagen">
-                        <img src="../img/a.webp" class="card-img-top " alt="a">
-
+                        <img src="https://media.themoviedb.org/t/p/w300_and_h450_bestv2/gCIdbnV9D3lzTaOB0YtuKDz6Nt0.jpg"
+                            class="card-img-top " alt="img actor">
+                        <div class="text-center">
+                            <p> <b>Kit Connor</b> </p>
+                            <p>Brightbill (voice)</p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
                 </div>
-
-                <div class="tamayoImagen">
-                    <img src="../img/a.webp" class="card-img-top " alt="a">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                </div>
-            </div>
-            <div class="card scrollCard">
-                <div class="tamayoImagen">
-                    <img src="../img/a.webp" class="card-img-top " alt="a">
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                </div>
-            </div>
-            <div class="card scrollCard">
-                <div class="tamayoImagen">
-                    <img src="../img/a.webp" class="card-img-top " alt="a">
-
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                </div>
-            </div>
-            <div class="card scrollCard">
-                <div class="tamayoImagen">
-                    <img src="../img/a.webp" class="card-img-top " alt="a">
-
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                </div>
+                }
             </div>
         </div>
-
-
-
     </div>
 
     <div class="container-fluid">
