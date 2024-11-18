@@ -19,7 +19,6 @@ i {
 }
 
 
-body,
 main {
     background-color: #262626 !important;
 }
@@ -35,8 +34,8 @@ img {
     border-radius: 20px !important;
 }
 
-.tamayoIcono {
-    font-size: 20pt;
+.colorFilm {
+    color: #101010;
 }
 
 .colorFilm {
@@ -47,6 +46,7 @@ img {
 .timeline_area {
     position: relative;
     z-index: 1;
+    padding-bottom: 20px
 }
 
 .single-timeline-area {
@@ -62,7 +62,6 @@ img {
     top: 0;
     left: 0;
     z-index: 1;
-    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
@@ -95,12 +94,30 @@ img {
 
 }
 
+.single-timeline-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.timeline-text {
+    text-align: center;
+    padding: 10px;
+    max-width: 100%;
+}
+
+.timeline-text p {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
 .single-timeline-area .single-timeline-content {
     position: relative;
     z-index: 1;
     justify-content: center;
     border-radius: 6px;
-    padding-top: 35px;
     margin-bottom: 15px;
     margin-top: 15px;
     background-color: #383838;
@@ -112,30 +129,75 @@ img {
     margin-bottom: 0;
 }
 
-
-div.scrollCardPeli {
-    background-color: #262626;
-    overflow: auto;
-    white-space: nowrap;
-    margin-right: 50px;
+.single-timeline-area .single-timeline-content .timeline-text .tamayoTimeLineText {
+    font-size: 16px;
 }
 
+.scrollCardPeli {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 50px;
+    padding-bottom: 10px;
 
+}
 
-div.scrollCardPeli .scrollCard {
+.scrollCard {
     display: inline-block;
     color: white;
-    width: 10%;
+    width: 180px;
     height: 350px;
     padding: 14px;
     border-radius: 20px;
     background-color: #383838;
-
+    vertical-align: top;
 }
 
-.tamayoImagen {
+.scrollCard .tamayoImagen {
     width: 150px;
     height: 230px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    height: 3em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: block;
+    max-height: 3em;
+    line-height: 1.5em;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .conocidoPor {
