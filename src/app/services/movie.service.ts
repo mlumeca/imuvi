@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieListResponse } from '../models/movie-list.interface';
+import { MovieDetailResponse } from '../models/movie-detail.interface';
 
 const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
 
