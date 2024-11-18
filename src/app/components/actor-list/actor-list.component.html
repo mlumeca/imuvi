@@ -1,41 +1,34 @@
 <div class="container-fluid mt-3 px-5">
     <div class="d-flex justify-content-between">
         <h1 class="title mb-4 text-white">Actores</h1>
-        <div class="filtro-buscar form-outline mt-4 me-5 " data-mdb-input-init>
-            <input type="search" id="form1" class="form-control" placeholder="Buscar" aria-label="Search">
+        <div class="filtro-buscar form-outline mt-4 " data-mdb-input-init>
+            <input type="search" 
+            id="form1" 
+            class="form-control" 
+            placeholder="Buscar" 
+            aria-label="Search">
         </div>
     </div>
 
 
     <div class="row">
-        
         @for (actor of actorList; track actor.id) {
-            <div class="col-3 mb-5">
+        <div class="col-2 mb-5">
+            <a class="text-decoration-none" [routerLink]="['/actor-detail', actor.id]">
+
                 <div class="card actor-card">
-                    <img class="img-actor px-3 pt-3" [src]="getImage(actor.profile_path)" alt="Sydney Sweeney">
+                    <img class="img-actor px-3 pt-3" [src]="getImage(actor.profile_path)" [alt]="actor.name">
                     <div class="card-body">
-                        <h2 class="actor-title text-white">{{actor.name}}</h2>
+                        <h3 class="actor-title text-white">{{actor.name}}</h3>
                         <p class="card-text">
                             {{ actor.known_for[0].title ? actor.known_for[0].title : actor.known_for[0].name }},
                             {{ actor.known_for[1].title ? actor.known_for[1].title : actor.known_for[1].name }},
                             {{ actor.known_for[2].title ? actor.known_for[2].title : actor.known_for[2].name }}
                         </p>
-                        
-                        <!--
-                        <p class="card-text">
-                            {{ actor.known_for[0].title ? actor.known_for[0].title : actor.known_for[0].name }}
-                        </p>
-                        <p class="card-text">
-                            {{ actor.known_for[1].title ? actor.known_for[1].title : actor.known_for[1].name }}
-                        </p>
-                        <p class="card-text">
-                            {{ actor.known_for[2].title ? actor.known_for[2].title : actor.known_for[2].name }}
-                        </p>
-                        -->
-
                     </div>
                 </div>
-            </div>
+            </a>
+        </div>
         }
     </div>
 </div>

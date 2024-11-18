@@ -17,7 +17,6 @@ import { ActorListComponent } from './components/actor-list/actor-list.component
 import { ActorDetailComponent } from './components/actor-detail/actor-detail.component';
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
-import { ImagenPipe } from './pipes/imagen-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { ImagenPipe } from './pipes/imagen-pipe.pipe';
     SeriesDetailComponent,
     ActorListComponent,
     ActorDetailComponent,
-    HomeComponent,
-    ImagenPipe
+    HomeComponent
   ],
   imports: [
     BrowserModule,

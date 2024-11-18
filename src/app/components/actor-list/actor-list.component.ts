@@ -17,7 +17,6 @@ export class ActorListComponent implements OnInit {
 
     this.actorService.getPopular().subscribe((resp) => {
       this.actorList = resp.results;
-      console.log(this.actorList)
     })
 
   }
@@ -26,8 +25,5 @@ export class ActorListComponent implements OnInit {
     const base_url = 'https://image.tmdb.org/t/p/w500';
     return base_url + path;
   }
-  
-
-
 
 }
