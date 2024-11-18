@@ -1,18 +1,32 @@
 <div class="container-fluid mt-3 px-5">
     <div class="d-flex justify-content-between">
         <h1 class="title mb-4 text-white">Actores</h1>
+
         <div class="filtro-buscar form-outline mt-4 " data-mdb-input-init>
-            <input type="search" 
-            id="form1" 
-            class="form-control" 
-            placeholder="Buscar" 
-            aria-label="Search">
+            <mat-form-field class="w-100">
+                <input matInput 
+                       [matAutocomplete]="auto" 
+                       id="search" 
+                       placeholder="Buscar por nombre" 
+                       [(ngModel)]="terminoBusqueda" 
+                       (input)="buscarNombre()">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor.name" (onSelectionChange)="seleccionarNombre(actor)">
+                    {{ actor.name }}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <button mat-button (click)="resetBuscarNombre()">Reiniciar</button>
         </div>
     </div>
 
-
     <div class="row">
-        @for (actor of actorList; track actor.id) {
+        @if (noResultsMessage){
+            <div class="alert alert-warning text-center mt-4">
+                {{ noResultsMessage }}
+              </div>
+            }
+        @for (actor of listaActoresFiltrada; track actor.id) {
         <div class="col-2 mb-5">
             <a class="text-decoration-none" [routerLink]="['/actor-detail', actor.id]">
 
