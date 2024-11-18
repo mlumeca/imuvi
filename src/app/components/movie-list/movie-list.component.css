@@ -1,8 +1,12 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
 body {
     background-color: #181818;
     color: white;
 }
-
 
 
 .filter-section {
@@ -15,13 +19,14 @@ body {
     background-color: #303030;
     border-radius: 20px;
     overflow: visible;
-    height: 650px;
+    
+    
 
 }
 
 .movie-card img {
     width: 85%;
-    margin: 20px;
+    margin: 15px;
     align-items: center;
     border-radius: 20px;
     
@@ -29,6 +34,7 @@ body {
 
 .movie-title {
     color: white;
+    font-weight: bold;
 }
 
 .card-text {
@@ -67,9 +73,6 @@ header {
     margin-top: 15px;
 }
 
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
 
 i{
     font-size: 25pt;

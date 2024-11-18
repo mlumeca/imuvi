@@ -25,6 +25,10 @@ export class MovieListComponent implements OnInit {
     return base_url + path;
   }
 
+  getRatingPercentaje(number: number) {
+    return number * 10;
+  }
+
 }
 
 
