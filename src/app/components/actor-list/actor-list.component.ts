@@ -14,8 +14,6 @@ export class ActorListComponent implements OnInit {
   nombreOriginal: ActorList[] = [];
   nombreFiltrado: ActorList[] = [];
   terminoBusqueda: string = '';
-  noResultsMessage: string = '';
-
 
   constructor(private actorService: ActorService) {}
 
@@ -53,12 +51,6 @@ export class ActorListComponent implements OnInit {
 
       return nombreActor === this.terminoBusqueda;
     });
-
-    if (this.listaActoresFiltrada.length === 0) {
-      this.noResultsMessage = 'No existe ningun actor con ese nombre.';
-    } else {
-      this.noResultsMessage = '';
-    }
   }
 
   resetBuscarNombre(): void {
@@ -67,8 +59,6 @@ export class ActorListComponent implements OnInit {
     this.listaActoresFiltrada = this.actorList;
 
     this.nombreFiltrado = this.nombreOriginal;
-
-    this.noResultsMessage = '';
   }
 
 }

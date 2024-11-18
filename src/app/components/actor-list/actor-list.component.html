@@ -21,11 +21,6 @@
     </div>
 
     <div class="row">
-        @if (noResultsMessage){
-            <div class="alert alert-warning text-center mt-4">
-                {{ noResultsMessage }}
-              </div>
-            }
         @for (actor of listaActoresFiltrada; track actor.id) {
         <div class="col-2 mb-5">
             <a class="text-decoration-none" [routerLink]="['/actor-detail', actor.id]">
