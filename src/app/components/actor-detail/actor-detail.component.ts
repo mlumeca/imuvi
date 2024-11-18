@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActorDetailResponse } from '../../models/actor-detail.interface';
+import { ActorDetailResponse, Cast, CreditsResponse } from '../../models/actor-detail.interface';
 import { ActorService } from '../../services/actor.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,8 @@ export class ActorDetailComponent implements OnInit {
   actorId: string | null = '';
   actorDetail: ActorDetailResponse | undefined;
 
+  cast: Cast[] = [];
+
   constructor(private actorService: ActorService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -20,6 +22,10 @@ export class ActorDetailComponent implements OnInit {
 
     this.actorService.getOneActor(this.actorId!).subscribe((response) => {
       this.actorDetail = response;
+    })
+
+    this.actorService.getCast(this.actorId!).subscribe((response) => {
+      this.cast = response.cast;
     })
   }
 
