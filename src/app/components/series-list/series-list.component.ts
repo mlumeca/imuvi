@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SerieList } from '../../models/series-list.interface';
+import { SerieGenre, SerieList } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { SerieService } from '../../services/serie.service';
 })
 export class SeriesListComponent {
   serieList: SerieList[] = [];
+  serieGenre:  SerieGenre[] = [];
 
   constructor(private serieService: SerieService) {}
 
@@ -16,6 +17,10 @@ export class SeriesListComponent {
   ngOnInit(): void {
     this.serieService.getSerieList().subscribe (response => {
       this.serieList = response.results;
+    })
+
+    this.serieService.getSerieGenre().subscribe (response => {
+      this.serieGenre = response.genres;
     })
   }
 

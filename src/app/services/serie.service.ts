@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SerieListResponse } from '../models/series-list.interface';
+import { SerieGenreResponse, SerieListResponse } from '../models/series-list.interface';
 
 const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
 
@@ -15,4 +15,10 @@ export class SerieService {
   getSerieList(): Observable<SerieListResponse>{
     return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
   }
+
+  getSerieGenre(): Observable<SerieGenreResponse>{
+    return this.http.get<SerieGenreResponse>(`https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}`);
+  }
+
+
 }

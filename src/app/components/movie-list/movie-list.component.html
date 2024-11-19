@@ -18,19 +18,13 @@
                 <hr class="hr" />
                 <div class="mb-3">
                     <h6>Géneros</h6>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="accion">
-                        <label class="form-check-label" for="accion">Acción</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="animacion">
-                        <label class="form-check-label" for="animacion">Animación</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="animacion">
-                        <label class="form-check-label" for="...">...</label>
-                    </div>
+                    @for(genre of movieGenre; track genre.id) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="{{genre.name}}">
+                            <label class="form-check-label" for="accion">{{genre.name}}</label>
+                        </div>
 
+                    }
                 </div>
                 <div class="mb-3">
                     <h6>Puntuación</h6>
@@ -56,7 +50,11 @@
                 @for(movie of movieList; track movie.id) {
                     <div class="col-2 mb-4 d-flex">
                         <div class="card movie-card">
-                            <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                            @if(movie.poster_path) {
+                                <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                            }@else {
+                                <img src="http://placehold.co/194x291" alt="sin imagen">
+                            }
                             <div class="card-body pt-0">
                                 <p class="movie-title">{{movie.title}}</p>
                                 <p class="card-text">{{movie.release_date | date:"mediumDate"}}</p>
@@ -65,7 +63,6 @@
                         </div>
                     </div>
                 }
-                
             </div>
         </div>
     </div>

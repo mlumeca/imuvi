@@ -21,4 +21,14 @@ export interface SerieList {
     vote_average: number
     vote_count: number
 }
+
+export interface SerieGenreResponse {
+    genres: SerieGenre[]
+  }
+  
+  export interface SerieGenre {
+    id: number
+    name: string
+  }
+  
   

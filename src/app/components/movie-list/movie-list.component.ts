@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieList } from '../../models/movie-list.interface';
+import { MovieGenre, MovieList } from '../../models/movie-list.interface';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { MovieService } from '../../services/movie.service';
 
 export class MovieListComponent implements OnInit {
   movieList: MovieList[] = [];
+  movieGenre:  MovieGenre[] = [];
 
   constructor(private movieService: MovieService) {}
 
@@ -17,6 +18,12 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.getMovieList().subscribe (response => {
       this.movieList = response.results;
+    })
+
+    this.movieService.getMovieGenre().subscribe (response => {
+      this.movieGenre = response.genres;
+
+      console.log(this.movieGenre)
     })
   }
 
