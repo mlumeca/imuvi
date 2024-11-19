@@ -30,6 +30,6 @@ export class MovieService {
   }
 
   getPlatforms(id: string): Observable<MoviePlatformResponse>{
-    return this.http.get<MoviePlatformResponse>(`https://api.themoviedb.org/3/movie/{movie_id}/watch/providers?api_key=${API_KEY}`)
+    return this.http.get<MoviePlatformResponse>(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}`)
   }
 }

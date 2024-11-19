@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Cast, Crew, Es, MovieCreditResponse, MovieDetailResponse, MoviePlatformResponse, Results } from '../../models/movie-detail.interface';
+import { Buy27, Cast, Crew, Es, MovieCreditResponse, MovieDetailResponse, MoviePlatformResponse, Results } from '../../models/movie-detail.interface';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class MovieDetailComponent implements OnInit{
   movieCredits: MovieCreditResponse | undefined;
   cast: Cast[] = [];
   crew: Crew[] = [];
-  platforms: MoviePlatformResponse | undefined;
+  buyPlatform: Buy27[] = [];
 
   constructor(private movieService: MovieService, private route: ActivatedRoute) {}
 
@@ -34,7 +34,7 @@ export class MovieDetailComponent implements OnInit{
     })
 
     this.movieService.getPlatforms(this.movieId!).subscribe (response => {
-      this.platforms = response;
+      this.buyPlatform = response.results.ES.buy;
     })
   }
 
@@ -44,7 +44,7 @@ export class MovieDetailComponent implements OnInit{
   }
 
   getPlatformLogo(url: string): string {
-    return 'https://image.tmdb.org/t/p/original/' + url;
+    return 'https://image.tmdb.org/t/p/original' + url;
   }
 
 	showNavigationArrows = true;

@@ -13,14 +13,15 @@
                         </div>
                         <div class="col-9 ms-5 mt-1">
                             <div>
-                                <h1>{{oneMovie?.title}}</h1>
-                                <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
-                                <p *ngFor="let genres of oneMovie!.genres" class="">{{genres.name}}</p>
-                                <P> · 1h 42m</P>
-                            </div>
+                                <h1>{{oneMovie?.title}}
+                                    <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
+                                </h1>
+                                <p *ngFor="let genres of oneMovie!.genres" class="leftItem">{{genres.name}}, </p>
+                                <p class="leftItem">{{oneMovie!.runtime}}m</p>
+                            </div> <br> <br>
 
                             <div>
-                                <h3>Vista General</h3>
+                                <h3 class="text-start">Vista General</h3>
                                 <p><i>{{oneMovie!.tagline}}</i><br>
                                     {{oneMovie!.overview}}</p>
                             </div>
@@ -29,7 +30,7 @@
                                     {{oneMovie!.original_title}}
                                 </p>
                                 <p class="col-3">Idioma Original<br>
-                                    {{oneMovie!.original_language}}
+                                    {{oneMovie!.spoken_languages[0].name}}
                                 </p>
                             </div>
                         </div>
@@ -40,6 +41,12 @@
 
         <div class="mt-5 divMargin">
             <h4>Plataformas</h4>
+            <div>
+                @for (item of buyPlatform; track item.provider_id) {
+                    <img [src]="getPlatformLogo(item.logo_path)" class="tamayoImagen" alt="{{item.provider_name}}">
+                }
+            </div>
+
         </div>
 
         <div class="mt-5 divMargin">
