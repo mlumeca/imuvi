@@ -6,7 +6,11 @@ main {
     float: left;
 }
 
-p,h1,h2,h3,h4 {
+p,
+h1,
+h2,
+h3,
+h4 {
     color: white;
 }
 
@@ -132,4 +136,15 @@ img {
     overflow: hidden;
     font-size: 14px;
     text-align: center;
+}
+
+.temporadaCard {
+    background-color: #383838;
+    width: 100%;
+    border-radius: 20px;
+
+}
+
+.temporadaCard .tamayoImagen {
+    margin-bottom: 10px;
 }

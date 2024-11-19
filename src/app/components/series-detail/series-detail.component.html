@@ -15,11 +15,11 @@
                             <div>
                                 <h1>{{oneSeries!.name}}</h1>
                                 <p *ngFor="let genres of oneSeries!.genres" class="leftItem">{{genres.name}}, </p>
-                                <p class="leftItem">{{oneSeries!.number_of_seasons}} Temporadas.</p>
+                                <p class="leftItem ms-3">{{oneSeries!.number_of_seasons}} Temporadas.</p>
                             </div> <br> <br>
 
                             <div>
-                                <h3 class="text-start">Vista General</h3>
+                                <h4 class="text-start">Vista General</h4>
                                 <p><i>{{oneSeries!.tagline}}</i><br>
                                     {{oneSeries!.overview}}</p>
                             </div>
@@ -76,15 +76,38 @@
 
         <div class="mt-5 divMargin">
             <h4>Temporadas</h4>
-            <!-- @for (item of seasons!.season_number; track $index) { -->
-                <div class="card me-3 mb-2">
-                    
-                    @for (item of episodes; track item.id) {
-                        <div>Capítulo {{item.episode_number}}, {{item.season_number}}, <img [src]="getImgChapter(item.still_path!)" alt="">
+            <div>
+                @for (item of seasons; track item.id) {
+                <div class="card temporadaCard me-3 mb-2">
+                    <div class="d-flex">
+                        <div>
+                            @if(item.poster_path){
+                            <img [src]="getImgChapter(item.poster_path)" class="tamayoImagen" alt="{{item.name}}">
+                            }@else {
+                            <img src="http://placehold.co/130x195" alt="sin imagen">
+                            }
                         </div>
-                    }
+
+                        <div class="flex-column ms-4">
+                            <div>
+                                <h5 class="text-light mt-2">Temporada {{item.season_number}}</h5>
+                            </div>
+                            <div>
+                                <p>{{item.air_date}} • {{item.episode_count}} episodios</p>
+                            </div>
+
+                            <div>
+                                <p>The {{item.season_number}} season of {{oneSeries?.name}}, was released on {{item.air_date |
+                                    date:
+                                    "longDate"}}.</p>
+                                <p>{{item.overview}}</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            <!-- } -->
+                }
+            </div>
         </div>
 
         <div class="mt-5 divMargin">
