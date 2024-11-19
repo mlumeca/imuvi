@@ -10,8 +10,8 @@
                        placeholder="Buscar por nombre" 
                        [(ngModel)]="terminoBusqueda" 
                        (input)="buscarNombre()">
-                <mat-autocomplete #auto="matAutocomplete">
-                  <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor.name" (onSelectionChange)="seleccionarNombre(actor)">
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionarNombre($event.option.value)">
+                  <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor">
                     {{ actor.name }}
                   </mat-option>
                 </mat-autocomplete>
