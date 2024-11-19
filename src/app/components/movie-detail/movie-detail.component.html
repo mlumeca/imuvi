@@ -6,16 +6,31 @@
                     <div class="card-body d-flex">
                         <div class="col-2">
                             @if(oneMovie?.poster_path){
-                            <img [src]="getImagen(oneMovie!.poster_path)"
-                                alt="{{oneMovie?.title}}" class="img-fluid">
+                            <img [src]="getImagen(oneMovie!.poster_path)" alt="{{oneMovie?.title}}" class="img-fluid">
                             }@else {
                             <img src="http://placehold.co/250x450" alt="sin imagen">
                             }
-
                         </div>
                         <div class="col-9 ms-5 mt-1">
                             <div>
-                                <h1 class="text-light">{{oneMovie?.title}}</h1>
+                                <h1>{{oneMovie?.title}}</h1>
+                                <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
+                                <p *ngFor="let genres of oneMovie!.genres" class="">{{genres.name}}</p>
+                                <P> · 1h 42m</P>
+                            </div>
+
+                            <div>
+                                <h3>Vista General</h3>
+                                <p><i>{{oneMovie!.tagline}}</i><br>
+                                    {{oneMovie!.overview}}</p>
+                            </div>
+                            <div class="row mt-5">
+                                <p class="col-3">Título Original<br>
+                                    {{oneMovie!.original_title}}
+                                </p>
+                                <p class="col-3">Idioma Original<br>
+                                    {{oneMovie!.original_language}}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -23,8 +38,12 @@
             </div>
         </div>
 
-        <div class="mt-5 conocidoPor">
-            <h4 class="text-light">Conocido por</h4>
+        <div class="mt-5 divMargin">
+            <h4>Plataformas</h4>
+        </div>
+
+        <div class="mt-5 divMargin">
+            <h4>Reparto</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
                 <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
@@ -44,7 +63,8 @@
                 }
             </div>
         </div>
-        <div>
+        <div class="mt-5 divMargin">
+            <h4>Media</h4>
 
         </div>
     </div>

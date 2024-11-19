@@ -1,23 +1,14 @@
-header {
-    background-color: #101010;
-    height: 80px;
+main {
+    background-color: #262626;
 }
 
-.option {
+p,h1,h2,h3,h4 {
     color: white;
-    margin-top: 15px;
 }
 
 * {
     font-family: sans-serif;
 }
-
-i {
-    font-size: 25pt;
-    color: white;
-    margin-top: 15px;
-}
-
 
 .tamayoInfo {
     background-color: #383838 !important;
@@ -32,6 +23,10 @@ img {
 
 .colorFilm {
     color: #101010;
+}
+
+.divMargin {
+    margin-left: 50px;
 }
 
 .scrollCardPeli {
@@ -99,8 +94,4 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-.conocidoPor {
-    margin-left: 50px;
 }
