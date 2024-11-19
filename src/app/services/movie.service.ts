@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieListResponse } from '../models/movie-list.interface';
-import { MovieCreditResponse, MovieDetailResponse, MoviePlatformResponse } from '../models/movie-detail.interface';
+import { MovieCreditResponse, MovieDetailResponse, MovieMediaResponse, MoviePlatformResponse } from '../models/movie-detail.interface';
 
 const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
 
@@ -31,5 +31,9 @@ export class MovieService {
 
   getPlatforms(id: string): Observable<MoviePlatformResponse>{
     return this.http.get<MoviePlatformResponse>(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}`)
+  }
+
+  getMedia(id: string): Observable<MovieMediaResponse>{
+    return this.http.get<MovieMediaResponse>(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`)
   }
 }
