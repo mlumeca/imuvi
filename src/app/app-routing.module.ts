@@ -12,9 +12,9 @@ import { ActorListComponent } from './components/actor-list/actor-list.component
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'movie-list', component: MovieListComponent },
-  { path: 'movie-detail', component: MovieDetailComponent },
+  { path: 'movie-detail/:id', component: MovieDetailComponent },
   { path: 'series-list', component: SeriesListComponent },
-  { path: 'series-detail', component: SeriesDetailComponent },
+  { path: 'series-detail/:id', component: SeriesDetailComponent },
   { path: 'actor-list', component: ActorListComponent },
   { path: 'actor-detail/:id', component: ActorDetailComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },

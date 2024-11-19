@@ -1,0 +1,150 @@
+main {
+    background-color: #262626;
+}
+
+.leftItem {
+    float: left;
+}
+
+p,
+h1,
+h2,
+h3,
+h4 {
+    color: white;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+.tamayoInfo {
+    background-color: #383838 !important;
+    width: 95% !important;
+    margin-top: 20px !important;
+    border-radius: 20px !important;
+}
+
+img {
+    border-radius: 20px !important;
+}
+
+.colorFilm {
+    color: #101010;
+}
+
+.divMargin {
+    margin-left: 50px;
+}
+
+.scrollCardPeli {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 50px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCard {
+    display: inline-block;
+    color: white;
+    width: 180px;
+    height: 350px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+}
+
+.scrollCard .tamayoImagen {
+    width: 150px;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    height: 3em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: block;
+    max-height: 3em;
+    line-height: 1.5em;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.scrollCardMedia {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 50px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCardMediaBack {
+    display: inline-block;
+    color: white;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+}
+
+.scrollCardMediaBack .tamayoImagen {
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCardMediaBack p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+}
+
+.temporadaCard {
+    background-color: #383838;
+    width: 100%;
+    border-radius: 20px;
+
+}
+
+.temporadaCard .tamayoImagen {
+    margin-bottom: 10px;
+}

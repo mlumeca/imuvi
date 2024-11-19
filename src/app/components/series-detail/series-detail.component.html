@@ -1,1 +1,130 @@
-<p>series-detail works!</p>
+<main>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="card tamayoInfo">
+                    <div class="card-body d-flex">
+                        <div class="col-2">
+                            @if(oneSeries!.poster_path){
+                            <img [src]="getImagen(oneSeries!.poster_path)" alt="{{oneSeries!.name}}" class="img-fluid">
+                            }@else {
+                            <img src="http://placehold.co/250x450" alt="sin imagen">
+                            }
+                        </div>
+                        <div class="col-9 ms-5 mt-1">
+                            <div>
+                                <h1>{{oneSeries!.name}}</h1>
+                                <p *ngFor="let genres of oneSeries!.genres" class="leftItem">{{genres.name}}, </p>
+                                <p class="leftItem ms-3">{{oneSeries!.number_of_seasons}} Temporadas.</p>
+                            </div> <br> <br>
+
+                            <div>
+                                <h4 class="text-start">Vista General</h4>
+                                <p><i>{{oneSeries!.tagline}}</i><br>
+                                    {{oneSeries!.overview}}</p>
+                            </div>
+                            <div class="row mt-5">
+                                <p class="col-3">Título Original<br>
+                                    {{oneSeries!.original_name}}
+                                </p>
+
+                                <p class="col-3">Idioma Original<br>
+                                    {{oneSeries!.original_language}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5 divMargin">
+            <h4>Plataformas</h4>
+            <div>
+                @if(buyPlatform) {
+                @for(item of buyPlatform; track item.provider_id) {
+                <img [src]="getPlatformLogo(item.logo_path)" class="tamayoImagen m-2" alt="{{item.provider_name}}">
+                }
+                }
+                @else {
+                <p>No disponible en ninguna plataforma.</p>
+                }
+            </div>
+        </div>
+
+        <div class="mt-5 divMargin">
+            <h4>Reparto</h4>
+            <div class="scrollCardPeli">
+                @for (item of cast; track item.id) {
+                <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
+                    <div class="card scrollCard me-3 mb-2">
+                        <div>
+                            @if(item.profile_path){
+                            <img [src]="getImagen(item.profile_path!)" class="tamayoImagen" alt="{{item.name}}">
+                            }@else {
+                            <img src="http://placehold.co/150x230" alt="sin imagen">
+                            }
+                        </div>
+                        <div class="mt-3">
+                            {{item.name}}
+                        </div>
+                    </div>
+                </a>
+                }
+            </div>
+        </div>
+
+        <div class="mt-5 divMargin">
+            <h4>Temporadas</h4>
+            <div>
+                @for (item of seasons; track item.id) {
+                <div class="card temporadaCard me-3 mb-2">
+                    <div class="d-flex">
+                        <div>
+                            @if(item.poster_path){
+                            <img [src]="getImgChapter(item.poster_path)" class="tamayoImagen" alt="{{item.name}}">
+                            }@else {
+                            <img src="http://placehold.co/130x195" alt="sin imagen">
+                            }
+                        </div>
+
+                        <div class="flex-column ms-4">
+                            <div>
+                                <h5 class="text-light mt-2">Temporada {{item.season_number}}</h5>
+                            </div>
+                            <div>
+                                <p>{{item.air_date}} • {{item.episode_count}} episodios</p>
+                            </div>
+
+                            <div>
+                                <p>The {{item.season_number}} season of {{oneSeries?.name}}, was released on {{item.air_date |
+                                    date:
+                                    "longDate"}}.</p>
+                                <p>{{item.overview}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                }
+            </div>
+        </div>
+
+        <div class="mt-5 divMargin">
+            <h4>Media</h4>
+            <div class="scrollCardMedia">
+                @for (item of imgMedia?.backdrops; track $index) {
+                <div class="card scrollCardMediaBack me-3 mb-2">
+                    <div>
+                        @if(item.file_path){
+                        <img [src]="getImgMedia(item.file_path!)" class="tamayoImagen" alt="{{item}}">
+                        }@else {
+                        <img src="http://placehold.co/150x230" alt="sin imagen">
+                        }
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>
