@@ -49,6 +49,7 @@
             <div class="row">
                 @for(movie of movieList; track movie.id) {
                     <div class="col-2 mb-4 d-flex">
+                        <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
                         <div class="card movie-card">
                             @if(movie.poster_path) {
                                 <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
@@ -61,6 +62,7 @@
                             </div>
                             <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
                         </div>
+                        </a>
                     </div>
                 }
             </div>

@@ -49,6 +49,7 @@
             <div class="row">
                 @for(serie of serieList; track serie.id) {
                     <div class="col-2 mb-4 d-flex">
+                        <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
                         <div class="card movie-card">
                             @if(serie.poster_path) {
                                 <img [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
@@ -61,6 +62,7 @@
                             </div>
                             <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
                         </div>
+                        </a>
                     </div>
                 }
             </div>
