@@ -4,21 +4,20 @@
             <div class="row">
                 <div class="col-2">
                     @if(oneMovie?.poster_path){
-                    <img [src]="getImagen(oneMovie!.poster_path)" alt="movie poster">
+                    <img [src]="getImagen(oneMovie!.poster_path)" alt="{{oneMovie?.title}}">
                     }@else {
                     <img class="m-3" src="http://placehold.co/300x450" alt="sin imagen">
                     }
                 </div>
                 <div class="col-9 ms-5 mt-1">
                     <div class="mt-3">
-                        <h3 class="leftItem">{{oneMovie!.original_title}}</h3>
+                        <h2 class="leftItem">{{oneMovie!.original_title}}</h2>
                         <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
                     </div>
-
                     <p *ngFor="let genres of oneMovie!.genres">{{genres.name}} · 1h 42m</p>
 
                     <div>
-                        <h2>Vista General</h2>
+                        <h3>Vista General</h3>
                         <p><i>{{oneMovie!.tagline}}</i><br>
                             {{oneMovie!.overview}}</p>
                     </div>
