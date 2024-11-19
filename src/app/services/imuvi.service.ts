@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TrendingResponse } from '../models/home.interface';
 
 const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
 
@@ -10,10 +12,9 @@ export class ImuviService {
 
   constructor(private http: HttpClient) { }
 
-  getPopular() {
-    return this.http.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-    );
+
+  getTrending(): Observable<TrendingResponse> {
+    return this.http.get<TrendingResponse>(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`)
   }
 
 }

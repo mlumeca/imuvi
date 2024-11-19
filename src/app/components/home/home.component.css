@@ -1,0 +1,48 @@
+.scrollCardPeli {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 50px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCard {
+    display: inline-block;
+    color: white;
+    width: 180px;
+    height: 350px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+}
+
+.scrollCard .tamayoImagen {
+    width: 150px;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    height: 3em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: block;
+    max-height: 3em;
+    line-height: 1.5em;
+}

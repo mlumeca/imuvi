@@ -1,1 +1,49 @@
-<p>home works!</p>
+<div class="container-fluid">
+    <h5>Tendencias</h5>
+    <div class="scrollCardPeli">
+        @for (item of trending; track item.id) {
+            @if(item.name) {
+                <a class="text-decoration-none" [routerLink]="['/series-detail', item.id]">
+                    <div class="card scrollCard me-3 mb-2">
+                        <div>
+                            @if(item.poster_path){
+                            <img [src]="getImagen(item.poster_path!)" class="tamayoImagen" alt="{{item.name}}">
+                            }@else {
+                            <img src="http://placehold.co/150x230" alt="sin imagen">
+                            }
+                        </div>
+                        <div class="mt-3">
+                            @if(item.title){
+                            <p>{{item.original_title}}</p>
+                            }@else {
+                            <p>{{item.name}}</p>
+                            }
+                        </div>
+                    </div>
+                </a>
+            }@else {
+                <a class="text-decoration-none" [routerLink]="['/movie-detail', item.id]">
+                    <div class="card scrollCard me-3 mb-2">
+                        <div>
+                            @if(item.poster_path){
+                            <img [src]="getImagen(item.poster_path!)" class="tamayoImagen" alt="{{item.title}}">
+                            }@else {
+                            <img src="http://placehold.co/150x230" alt="sin imagen">
+                            }
+                        </div>
+                        <div class="mt-3">
+                            @if(item.title){
+                            <p>{{item.original_title}}</p>
+                            }@else {
+                            <p>{{item.name}}</p>
+                            }
+                        </div>
+                    </div>
+                </a>
+
+
+            }
+        
+        }
+    </div>
+</div>
