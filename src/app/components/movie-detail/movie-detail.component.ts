@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
-import { Cast, MovieCastResponse } from '../../models/movie-detail.interface';
+import { Cast, Crew, Es, MovieCreditResponse, MovieDetailResponse, MoviePlatformResponse, Results } from '../../models/movie-detail.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-detail',
@@ -8,15 +9,38 @@ import { Cast, MovieCastResponse } from '../../models/movie-detail.interface';
   styleUrl: './movie-detail.component.css'
 })
 export class MovieDetailComponent implements OnInit{
-  movieCast: MovieCastResponse | undefined;
+  movieId: string | null = '';
+  oneMovie: MovieDetailResponse | undefined;
+  movieCredits: MovieCreditResponse | undefined;
   cast: Cast[] = [];
+  crew: Crew[] = [];
+  platforms: MoviePlatformResponse | undefined;
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.movieService.getMovieCast(this.movieCast!.id).subscribe (response => {
+    this.movieId = this.route.snapshot.paramMap.get('id');
+    this.movieService.getOneMovie(this.movieId!).subscribe (response => {
+      this.oneMovie = response;
+    })
+
+    this.movieService.getMovieCredits(this.movieId!).subscribe (response => {
       this.cast = response.cast;
     })
+
+    this.movieService.getMovieCredits(this.movieId!).subscribe (response => {
+      this.crew = response.crew;
+    })
+
+    this.movieService.getPlatforms(this.movieId!).subscribe (response => {
+      this.platforms = response;
+    })
+  }
+  getImagen(url: string): string {
+    return 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' + url;
+  }
+  getPlatformLogo(url: string): string {
+    return 'https://image.tmdb.org/t/p/original/' + url;
   }
 
 	showNavigationArrows = true;
