@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActorListResponse } from '../models/actor-list.interface';
 import { Observable } from 'rxjs';
+import { ActorDetailResponse, Cast, CreditsResponse } from '../models/actor-detail.interface';
+import { ActorListResponse } from '../models/actor-list.interface';
 
-const API_KEY = '02eee06c0d0ce5d4dd85d40bd993efe4';
+const API_KEY = '6ea0f745f14c15097ec90310753616a0';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,14 @@ export class ActorService {
     return this.http.get<ActorListResponse>(
       `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}`
     );
+  }
+
+  getOneActor(id: string): Observable<ActorDetailResponse> {
+    return this.http.get<ActorDetailResponse>(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
+  }
+
+  getCast(id: string): Observable<CreditsResponse>{
+    return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}`)
   }
 
 }
