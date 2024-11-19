@@ -20,6 +20,7 @@ export class MovieDetailComponent implements OnInit{
 
   ngOnInit(): void {
     this.movieId = this.route.snapshot.paramMap.get('id');
+
     this.movieService.getOneMovie(this.movieId!).subscribe (response => {
       this.oneMovie = response;
     })
@@ -36,9 +37,12 @@ export class MovieDetailComponent implements OnInit{
       this.platforms = response;
     })
   }
+
+  
   getImagen(url: string): string {
-    return 'https://media.themoviedb.org/t/p/w300_and_h450_bestv2/' + url;
+    return 'https://image.tmdb.org/t/p/w500' + url;
   }
+
   getPlatformLogo(url: string): string {
     return 'https://image.tmdb.org/t/p/original/' + url;
   }
