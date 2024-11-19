@@ -1,28 +1,37 @@
-p, h3, h2 {
-    color: white;
+header {
+    background-color: #101010;
+    height: 80px;
 }
 
-.card {
-    background-color: #383838;
-    border-radius: 20px;
+.option {
+    color: white;
+    margin-top: 15px;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+i {
+    font-size: 25pt;
+    color: white;
+    margin-top: 15px;
+}
+
+
+.tamayoInfo {
+    background-color: #383838 !important;
+    width: 95% !important;
+    margin-top: 20px !important;
+    border-radius: 20px !important;
 }
 
 img {
-    border-radius: 20px;
+    border-radius: 20px !important;
 }
 
-.card-sprite {
-    width: 150px;
-    height: 225px;
-}
-
-.pegi-img {
-    width: 5rem;
-    height: 1.5rem;
-}
-
-.a{
-    justify-items: center;
+.colorFilm {
+    color: #101010;
 }
 
 .scrollCardPeli {
@@ -73,19 +82,7 @@ img {
     max-height: 3em;
     line-height: 1.5em;
 }
-.tamayoImagen{
-    width: 150px;
-}
 
-.reparto{
-    margin-left: 50px;
-}
-
-.leftItem {
-    float: left;
-}
-
-/* scroll bar */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -102,4 +99,8 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.conocidoPor {
+    margin-left: 50px;
 }
