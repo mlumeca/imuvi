@@ -1,1 +1,71 @@
-<p>series-list works!</p>
+<div class="container-fluid mt-5 px-5">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-between">
+                <h1 class="title mb-4">Series</h1>
+                <div class="form-outline " data-mdb-input-init>
+                    <input type="search" id="form1" class="form-control me-5" placeholder="Buscar" aria-label="Search" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-2">
+            <div class="filter-section">
+                <h6>Filtros</h6>
+                <hr class="hr" />
+                <div class="mb-3">
+                    <h6>Géneros</h6>
+                    @for(genre of serieGenre; track genre.id) {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="{{genre.name}}">
+                            <label class="form-check-label" for="accion">{{genre.name}}</label>
+                        </div>
+
+                    }
+                </div>
+                <div class="mb-3">
+                    <h6>Puntuación</h6>
+                    <mat-slider min="200" max="500">
+                        <input value="300" matSliderStartThumb>
+                        <input value="400" matSliderEndThumb>
+                      </mat-slider>
+                </div>
+                <div class="mb-3">
+                    <h6>Fecha de estreno</h6>
+                    <label for="desde" class="form-label">Desde</label>
+                    <input type="date" class="form-control" id="desde">
+                    <label for="hasta" class="form-label">Hasta</label>
+                    <input type="date" class="form-control" id="hasta">
+                </div>
+                <button class="btn btn-dark w-100">Aplicar</button>
+            </div>
+        </div>
+
+
+        <div class="col-10">
+            <div class="row">
+                @for(serie of serieList; track serie.id) {
+                    <div class="col-2 mb-4 d-flex">
+                        <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
+                        <div class="card movie-card">
+                            @if(serie.poster_path) {
+                                <img [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
+                            }@else {
+                                <img src="http://placehold.co/194x291" alt="sin imagen">
+                            }
+                            <div class="card-body pt-0">
+                                <p class="movie-title">{{serie.name}}</p>
+                                <p class="card-text">{{serie.first_air_date | date:"mediumDate"}}</p>
+                            </div>
+                            <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
+                        </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
