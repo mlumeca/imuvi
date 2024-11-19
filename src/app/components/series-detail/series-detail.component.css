@@ -99,3 +99,37 @@ img {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.scrollCardMedia {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 50px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCardMediaBack {
+    display: inline-block;
+    color: white;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+}
+
+.scrollCardMediaBack .tamayoImagen {
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCardMediaBack p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+}

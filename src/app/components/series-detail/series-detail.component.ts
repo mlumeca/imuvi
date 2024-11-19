@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Cast, Crew, Flatrate25, SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse } from '../../models/series-detail.interface';
+import { Cast, Crew, Episode, Flatrate25, SeasonsResponse, SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse } from '../../models/series-detail.interface';
 import { SerieService } from '../../services/serie.service';
 
 @Component({
@@ -10,17 +10,21 @@ import { SerieService } from '../../services/serie.service';
 })
 export class SeriesDetailComponent implements OnInit{
   seriesId: string | null = '';
+  seasonNumber: string | null = '';
   oneSeries: SeriesDetailResponse | undefined;
   seriesCredits: SeriesCreditResponse | undefined;
   cast: Cast[] = [];
   crew: Crew[] = [];
   buyPlatform: Flatrate25[] = [];
   imgMedia: SeriesMediaResponse | undefined; 
+  seasons: SeasonsResponse | undefined; 
+  episodes: Episode[] = [];
 
   constructor(private seriesService: SerieService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.seriesId = this.route.snapshot.paramMap.get('id');
+    this.seasonNumber = this.route.snapshot.paramMap.get('season_number');
 
     this.seriesService.getOneSeries(this.seriesId!).subscribe (response => {
       this.oneSeries = response;
@@ -41,9 +45,13 @@ export class SeriesDetailComponent implements OnInit{
     this.seriesService.getMedia(this.seriesId!).subscribe (response => {
       this.imgMedia = response;
     })
+
+    this.seriesService.getSeasons(this.seriesId!, this.seasonNumber!).subscribe (response => {
+      this.episodes = response.episodes;
+    })
+
   }
 
-  
   getImagen(url: string): string {
     return 'https://image.tmdb.org/t/p/w500' + url;
   }
@@ -56,7 +64,7 @@ export class SeriesDetailComponent implements OnInit{
     return 'https://media.themoviedb.org/t/p/w533_and_h300_bestv2' + url;
   }
 
-	showNavigationArrows = true;
-	showNavigationIndicators = true;
-	images = [1055, 194, 368].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  getImgChapter(url: string): string {
+    return 'https://media.themoviedb.org/t/p/w227_and_h127_bestv2' + url;
+  }
 }

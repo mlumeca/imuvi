@@ -36,4 +36,7 @@ export class MovieService {
   getMedia(id: string): Observable<MovieMediaResponse>{
     return this.http.get<MovieMediaResponse>(`https://api.themoviedb.org/3/movie/${id}/images?api_key=${API_KEY}`)
   }
+
+  // getCertification (): Observable<MovieMediaResponse>{
+  //   return this.http.get<MovieMediaResponse>(`https://api.themoviedb.org/3/certification/movie/list?api_key=${API_KEY}`)
 }

@@ -13,9 +13,7 @@
                         </div>
                         <div class="col-9 ms-5 mt-1">
                             <div>
-                                <h1>{{oneMovie?.title}}
-                                    <img class="pegi-img mt-1" src="./assets/TP.png" alt="PEGI logo">
-                                </h1>
+                                <h1>{{oneMovie?.title}}</h1>
                                 <p *ngFor="let genres of oneMovie!.genres" class="leftItem">{{genres.name}}, </p>
                                 <p class="leftItem">{{oneMovie!.runtime}}m</p>
                             </div> <br> <br>

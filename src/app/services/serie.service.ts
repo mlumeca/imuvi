@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SerieGenreResponse, SerieListResponse } from '../models/series-list.interface';
-import { SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse, SeriesPlatformResponse } from '../models/series-detail.interface';
+import { SeasonsResponse, SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse, SeriesPlatformResponse } from '../models/series-detail.interface';
 
 const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
 
@@ -22,7 +22,7 @@ export class SerieService {
   }
 
   getOneSeries(id: string): Observable<SeriesDetailResponse>{
-    return this.http.get<SeriesDetailResponse>(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
+    return this.http.get<SeriesDetailResponse>(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`)
   }
   
   getCredits(id: string): Observable<SeriesCreditResponse>{
@@ -41,5 +41,7 @@ export class SerieService {
     return this.http.get<SeriesMediaResponse>(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${API_KEY}`)
   }
 
-
+  getSeasons(id: string, season_number: string): Observable<SeasonsResponse>{
+    return this.http.get<SeasonsResponse>(`https://api.themoviedb.org/3/tv/${id}/season/${season_number}?api_key=${API_KEY}`)
+  }
 }
