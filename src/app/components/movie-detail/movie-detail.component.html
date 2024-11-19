@@ -76,37 +76,19 @@
         </div>
         <div class="mt-5 divMargin">
             <h4>Media</h4>
-
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img [src]="getImgMedia( imgMedia!.backdrops[0].file_path)" class="d-block" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img [src]="getImgMedia( imgMedia!.backdrops[1].file_path)" class="d-block" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img [src]="getImgMedia( imgMedia!.backdrops[2].file_path)" class="d-block" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img [src]="getImgMedia( imgMedia!.backdrops[3].file_path)" class="d-block" alt="...">
+            <div class="scrollCardMedia">
+                @for (item of imgMedia?.backdrops; track $index) {
+                <div class="card scrollCardMediaBack me-3 mb-2">
+                    <div>
+                        @if(item.file_path){
+                        <img [src]="getImgMedia(item.file_path!)" class="tamayoImagen" alt="{{item}}">
+                        }@else {
+                        <img src="http://placehold.co/150x230" alt="sin imagen">
+                        }
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+                }
+            </div>
         </div>
     </div>
 </main>
