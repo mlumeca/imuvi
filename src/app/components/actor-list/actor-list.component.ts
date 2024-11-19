@@ -41,6 +41,8 @@ export class ActorListComponent implements OnInit {
     } else {
       this.nombreFiltrado = this.nombreOriginal;
     }
+    console.log(this.terminoBusqueda);
+
   }
 
   seleccionarNombre(actor: ActorList): void {
@@ -51,6 +53,7 @@ export class ActorListComponent implements OnInit {
 
       return nombreActor === this.terminoBusqueda;
     });
+  
   }
 
   resetBuscarNombre(): void {
@@ -59,6 +62,8 @@ export class ActorListComponent implements OnInit {
     this.listaActoresFiltrada = this.actorList;
 
     this.nombreFiltrado = this.nombreOriginal;
+
+    console.log(this.terminoBusqueda);
   }
 
 }

@@ -39,7 +39,7 @@ import {MatIconModule} from '@angular/material/icon';
     AppRoutingModule,
     NgbModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
     MatIconModule
   ],
   providers: [
