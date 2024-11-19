@@ -18,6 +18,24 @@
     border-radius: 20px;
 }
 
+.scrollCardVideo {
+    background-color: #262626;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollVideo {
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+    
+
+}
 
 .scrollCard {
     display: inline-block;
@@ -149,3 +167,4 @@
     background-color: white;
     border: none;
 }
+
