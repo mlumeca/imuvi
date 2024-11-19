@@ -17,6 +17,8 @@ import { ActorListComponent } from './components/actor-list/actor-list.component
 import { ActorDetailComponent } from './components/actor-detail/actor-detail.component';
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
+import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { MaterialModule } from './modules/material.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [
     provideAnimationsAsync(),
