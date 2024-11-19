@@ -1,23 +1,6 @@
-header {
-    background-color: #101010;
-    height: 80px;
-}
-
-.option {
-    color: white;
-    margin-top: 15px;
-}
-
 * {
     font-family: sans-serif;
 }
-
-i {
-    font-size: 25pt;
-    color: white;
-    margin-top: 15px;
-}
-
 
 .tamayoInfo {
     background-color: #383838 !important;
