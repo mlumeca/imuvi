@@ -21,3 +21,13 @@ export interface MovieList {
     vote_average: number
     vote_count: number
 }
+
+export interface MovieGenreResponse {
+    genres: MovieGenre[]
+}
+  
+export interface MovieGenre {
+    id: number
+    name: string
+}
+  

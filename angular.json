@@ -40,6 +40,7 @@
             "styles": [
               "@angular/material/prebuilt-themes/rose-red.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -109,6 +110,6 @@
     }
   },
   "cli": {
-    "analytics": "f97e97c5-35dd-4ebb-90ff-f8e81bcedf04"
+    "analytics": "e236ad92-7046-4fcd-8aa9-46832abeae42"
   }
 }

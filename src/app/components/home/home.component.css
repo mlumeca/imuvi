@@ -1,0 +1,174 @@
+.scrollCardPeli {
+    background-color: #191919;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCardActores {
+    background-color: #191919;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollCardActores img, .scrollCardPeli img {
+    border-radius: 20px;
+}
+
+.scrollCardVideo {
+    background-color: #191919;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-right: 25px;
+    margin-left: 25px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+.scrollVideo {
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+
+
+}
+
+.scrollCard {
+    display: inline-block;
+    color: white;
+    width: 180px;
+    height: 350px;
+    padding: 14px;
+    border-radius: 20px;
+    background-color: #383838;
+    vertical-align: top;
+}
+
+.scrollCard .tamayoImagen {
+    width: 150px;
+    height: 230px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 14px;
+    height: 3em;
+    line-height: 1.5em;
+    text-align: center;
+}
+
+.scrollCard p {
+    white-space: normal;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    display: block;
+    max-height: 3em;
+    line-height: 1.5em;
+}
+
+.img-placehold {
+    margin-top: 25px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #383838;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5c5c5;
+}
+
+.imgHome-container {
+    padding: 0 35px;
+    margin-top: 50px;
+}
+
+.imgHome {
+    position: relative;
+    height: 200px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.imgHome::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://media.themoviedb.org/t/p/w533_and_h300_bestv2/q8eejQcg1bAqImEV8jh8RtBD4uH.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+.tamyoConteHome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
+}
+
+.search {
+    width: 70%;
+    position: relative;
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.searchTerm {
+    width: 100%;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+}
+
+.searchButton {
+    width: 40px;
+    height: 36px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: white;
+    border: none;
+}
+

@@ -1,0 +1,96 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+body {
+    background-color: #181818;
+    color: white;
+}
+
+
+.filter-section {
+    background-color: #303030;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.movie-card {
+    background-color: #303030;
+    border-radius: 20px;
+    overflow: visible;
+    height: 450px;
+    
+    
+
+}
+
+.movie-card img {
+    width: 85%;
+    margin: 15px;
+    align-items: center;
+    border-radius: 20px;
+    
+}
+
+.movie-title {
+    color: white;
+    font-weight: bold;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.800);
+}
+
+.rating {
+    position: absolute;
+    top: 97%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #181818;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #303030 ;
+    font-size: medium;
+}
+
+input[type="checkbox"]:checked {
+    background-color: red;
+    border: none;
+    box-shadow: 0 0 0 1px red;
+}
+
+header {
+    background-color: #101010;
+    height: 80px;
+}
+
+.nav-title{
+    color: white;
+    margin-top: 15px;
+}
+
+
+i{
+    font-size: 25pt;
+    color: white;
+    margin-top: 15px;
+}
+
+.mat-accent .mat-slider-track-fill {
+    background-color: red !important;
+}
+
+.mat-slider-thumb-label {
+    background-color: red !important;
+
+}
+
+.mat-slider-thumb {
+    background-color: red !important;
+}

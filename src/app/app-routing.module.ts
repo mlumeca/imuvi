@@ -17,8 +17,7 @@ const routes: Routes = [
   { path: 'series-detail/:id', component: SeriesDetailComponent },
   { path: 'actor-list', component: ActorListComponent },
   { path: 'actor-detail/:id', component: ActorDetailComponent },
-  { path: '', redirectTo: '/series-detail/157336', pathMatch: 'full' },
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
