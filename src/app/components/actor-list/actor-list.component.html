@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between">
         <h1 class="title mb-4 text-white">Actores</h1>
 
-        <div class="filtro-buscar form-outline mt-4 " data-mdb-input-init>
+        <div class="filtro-buscar mt-4 d-f " data-mdb-input-init>
             <mat-form-field class="w-100">
                 <input matInput 
                        [matAutocomplete]="auto" 
@@ -16,7 +16,8 @@
                   </mat-option>
                 </mat-autocomplete>
               </mat-form-field>
-              <button mat-button (click)="resetBuscarNombre()">Reiniciar</button>
+              <button class="boton-reset mb-3 text-white" mat-stroked-button (click)="resetBuscarNombre()">Reiniciar</button>
+              
         </div>
     </div>
 
