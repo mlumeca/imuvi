@@ -6,7 +6,7 @@
             <mat-form-field class="w-100">
                 <input matInput 
                        [matAutocomplete]="auto" 
-                       id="search" 
+                       id="buscarActor" 
                        placeholder="Buscar por nombre" 
                        [(ngModel)]="terminoBusqueda" 
                        (input)="buscarNombre()">
@@ -25,9 +25,12 @@
         @for (actor of listaActoresFiltrada; track actor.id) {
         <div class="col-2 mb-5">
             <a class="text-decoration-none" [routerLink]="['/actor-detail', actor.id]">
-
                 <div class="card actor-card">
+                    @if (actor.profile_path){
                     <img class="img-actor px-3 pt-3" [src]="getImage(actor.profile_path)" [alt]="actor.name">
+                    }@else{
+                        <img src="http://placehold.co/278x323.69" alt="sin imagen">
+                    }
                     <div class="card-body">
                         <h3 class="actor-title text-white">{{actor.name}}</h3>
                         <p class="card-text">
