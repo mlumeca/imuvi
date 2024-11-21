@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MovieVideoResponse, TrendingResponse, UpcomingMoviesResponse } from '../models/home.interface';
 import { TrendingActorsResponse } from '../models/homeActors.interface';
 
-const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
+const API_KEY = '6167e502c63acdce5db7c32294a559d3';
 
 @Injectable({
   providedIn: 'root'

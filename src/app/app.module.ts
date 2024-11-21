@@ -19,6 +19,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { ApprovedComponent } from './components/approved/approved.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatIconModule} from '@angular/material/icon';
     ActorListComponent,
     ActorDetailComponent,
     HomeComponent,
+    ApprovedComponent,
   ],
   imports: [
     BrowserModule,

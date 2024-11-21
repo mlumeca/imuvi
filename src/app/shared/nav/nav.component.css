@@ -22,3 +22,11 @@ i {
 .seleccionado:focus {
     color: red;
 }
+
+.avatar {
+    border-radius: 100%;
+}
+
+.btnLogin {
+    border-radius: 100%;
+}

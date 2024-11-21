@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ActorDetailResponse, Cast, CreditsResponse } from '../models/actor-detail.interface';
 import { ActorListResponse } from '../models/actor-list.interface';
 
-const API_KEY = '6ea0f745f14c15097ec90310753616a0';
+const API_KEY = '6167e502c63acdce5db7c32294a559d3';
 
 @Injectable({
   providedIn: 'root'

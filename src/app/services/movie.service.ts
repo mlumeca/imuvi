@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { MovieCreditResponse, MovieDetailResponse, MovieMediaResponse, MoviePlatformResponse } from '../models/movie-detail.interface';
 import { MovieGenreResponse, MovieListResponse } from '../models/movie-list.interface';
 
-const API_KEY = 'd3faeb037eb779bc62a224025b2f279e';
+const API_KEY = '6167e502c63acdce5db7c32294a559d3';
 
 @Injectable({
   providedIn: 'root'
