@@ -34,7 +34,7 @@ img {
 }
 
 .scrollCardPeli {
-    background-color: #262626;
+    background-color: #191919;
     overflow-x: auto;
     white-space: nowrap;
     margin-right: 50px;
@@ -87,21 +87,21 @@ img {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #383838;
     border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #f1f1f1;
     border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #c5c5c5;
 }
 
 .scrollCardMedia {
-    background-color: #262626;
+    background-color: #191919;
     overflow-x: auto;
     white-space: nowrap;
     margin-right: 50px;
