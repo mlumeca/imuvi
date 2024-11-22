@@ -37,7 +37,6 @@ img {
     background-color: #191919;
     overflow-x: auto;
     white-space: nowrap;
-    margin-right: 50px;
     padding-bottom: 10px;
     border-radius: 20px;
 }
@@ -57,7 +56,6 @@ img {
     width: 150px;
     height: 230px;
     object-fit: cover;
-    margin-bottom: 10px;
 }
 
 .scrollCard p {
@@ -66,21 +64,30 @@ img {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     font-size: 14px;
-    height: 3em;
     line-height: 1.5em;
     text-align: center;
 }
 
-.scrollCard p {
-    white-space: normal;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
-    display: block;
-    max-height: 3em;
-    line-height: 1.5em;
+
+::-webkit-scrollbar {
+    width: 10px;
 }
+
+::-webkit-scrollbar-track {
+    background: #383838;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f1f1f1;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c5c5c5;
+}
+
 
 ::-webkit-scrollbar {
     width: 10px;
@@ -141,6 +148,8 @@ img {
 
 }
 
-.temporadaCard .tamayoImagen {
-    margin-bottom: 10px;
+.positionImg{
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

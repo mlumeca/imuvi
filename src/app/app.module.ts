@@ -20,6 +20,7 @@ import { MaterialModule } from './modules/material.module';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ApprovedComponent } from './components/approved/approved.component';
     MaterialModule,
     FormsModule,
     MatIconModule,
+    NgbDropdownModule
   ],
   providers: [
     provideAnimationsAsync(),
