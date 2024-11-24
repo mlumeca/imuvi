@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActorService } from '../../services/actor.service';
-import { ActorList } from '../../models/actor-list.interface';
+import { Actor, ActorListResponse } from '../../models/actor-list.interface';
+import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-actor-list',
@@ -9,22 +10,17 @@ import { ActorList } from '../../models/actor-list.interface';
 })
 export class ActorListComponent implements OnInit {
 
-  actorList: ActorList[] = [];
-  listaActoresFiltrada: ActorList[] = [];
-  nombreOriginal: ActorList[] = [];
-  nombreFiltrado: ActorList[] = [];
+  actorList: Actor[] = [];
+  listaActoresFiltrada: Actor[] = [];
+  nombreOriginal: Actor[] = [];
+  nombreFiltrado: Actor[] = [];
   terminoBusqueda: string = '';
-
-  constructor(private actorService: ActorService) {}
+  page = 1;
+  totalPages = 1;
+  constructor(private actorService: ActorService) { }
 
   ngOnInit(): void {
-
-    this.actorService.getPopular().subscribe((resp) => {
-      this.actorList = resp.results;
-      this.nombreOriginal = resp.results;
-      this.listaActoresFiltrada = resp.results;
-    })
-
+    this.newPage();
   }
 
   getImage(path: string) {
@@ -37,7 +33,7 @@ export class ActorListComponent implements OnInit {
 
       this.nombreFiltrado = this.nombreOriginal.filter((actor) =>
         actor.name.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
-    );
+      );
     } else {
       this.nombreFiltrado = this.nombreOriginal;
     }
@@ -45,25 +41,32 @@ export class ActorListComponent implements OnInit {
 
   }
 
-  seleccionarNombre(actor: ActorList): void {
+  seleccionarNombre(actor: Actor): void {
     this.terminoBusqueda = actor.name;
 
     this.listaActoresFiltrada = this.actorList.filter((actor) => {
       const nombreActor = actor.name;
-
       return nombreActor === this.terminoBusqueda;
     });
-  
+
   }
 
   resetBuscarNombre(): void {
     this.terminoBusqueda = '';
-
     this.listaActoresFiltrada = this.actorList;
-
     this.nombreFiltrado = this.nombreOriginal;
-
-    console.log(this.terminoBusqueda);
   }
 
+  newPage(): void {
+    this.actorService.getPeoplePage(this.page).subscribe(resp => {
+      this.listaActoresFiltrada = resp.results;
+      this.actorList = resp.results;
+      this.totalPages = resp.total_pages;
+    });
+  }
+
+  onPage(newPage: number): void {
+    this.page = newPage;
+    this.newPage();
+  }
 }

@@ -13,7 +13,7 @@ export class ActorService {
 
   constructor(private http: HttpClient) { }
 
-  getPopular(): Observable <ActorListResponse> {
+  getPopular(): Observable<ActorListResponse> {
     return this.http.get<ActorListResponse>(
       `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}`
     );
@@ -23,9 +23,14 @@ export class ActorService {
     return this.http.get<ActorDetailResponse>(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
   }
 
-  getCast(id: string): Observable<CreditsResponse>{
+  getCast(id: string): Observable<CreditsResponse> {
     return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}`)
   }
 
+  getPeoplePage(page: number): Observable<ActorListResponse> {
+    return this.http.get<ActorListResponse>(
+      `https://api.themoviedb.org/3/person/popular?page=${page}&api_key=${API_KEY}`
+    );
+  }
 }
 
