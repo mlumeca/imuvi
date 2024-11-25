@@ -1,0 +1,25 @@
+<div class="container-fluid mt-3 px-5">
+    <div class="d-flex justify-content-between">
+        <h1 class="title mb-4 text-white">Peliculas</h1>
+    </div>
+
+    <div class="row">
+        @for (movie of movieList; track movie.id) {
+        <div class="col-2 mb-5">
+            <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
+                <div class="card actor-card">
+                    @if(movie.poster_path) {
+                        <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                    }@else {
+                        <img src="http://placehold.co/194x291" alt="sin imagen">
+                    }
+                    <div class="card-body">
+                        
+                    </div>
+                </div>
+            </a>
+        </div>
+        }
+    </div>
+
+</div>
