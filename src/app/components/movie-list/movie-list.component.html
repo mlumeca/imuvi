@@ -3,8 +3,15 @@
         <div class="col">
             <div class="d-flex justify-content-between">
                 <h1 class="title mb-4">Películas</h1>
-                <div class="form-outline " data-mdb-input-init>
-                    <input type="search" id="form1" class="form-control me-5" placeholder="Buscar" aria-label="Search" />
+                <div class="search">
+                    <input type="text" class="searchTerm ms-2" placeholder="Buscar..." [(ngModel)] = "texto" (input)="getName()">
+                    <button type="submit" class="searchButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search text-dark" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
                 </div>
             </div>
 
@@ -19,11 +26,11 @@
                 <div class="mb-3">
                     <h6>Géneros</h6>
                     @for(genre of movieGenre; track genre.id) {
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="{{genre.name}}">
-                            <label class="form-check-label" for="accion">{{genre.name}}</label>
+                        <div class="d-colum">
+                            <mat-checkbox
+                            [checked]="" > {{ genre.name }}
+                            </mat-checkbox>
                         </div>
-
                     }
                 </div>
                 <div class="mb-3">
@@ -31,7 +38,7 @@
                     <mat-slider min="200" max="500">
                         <input value="300" matSliderStartThumb>
                         <input value="400" matSliderEndThumb>
-                      </mat-slider>
+                    </mat-slider>
                 </div>
                 <div class="mb-3">
                     <h6>Fecha de estreno</h6>
@@ -47,7 +54,7 @@
 
         <div class="col-10">
             <div class="row">
-                @for(movie of movieList; track movie.id) {
+                @for(movie of movieListFilt; track movie.id) {
                     <div class="col-2 mb-4 d-flex">
                         <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
                         <div class="card movie-card">
@@ -75,5 +82,5 @@
     [(page)]="page"
     [maxSize]="10"
     [boundaryLinks]="true">
-</ngb-pagination>
+    </ngb-pagination>
 </div>

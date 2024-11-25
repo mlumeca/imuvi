@@ -1,22 +1,19 @@
-<div class="container-fluid mt-3 px-5">
-    <div class="d-flex justify-content-between">
-        <h1 class="title mb-4 text-white">Actores</h1>
-
-        <div class="filtro-buscar mt-4 d-f d-flex" data-mdb-input-init>
-            <mat-form-field class="w-100 me-3">
-                <input matInput
-                    [matAutocomplete]="auto"
-                    id="buscarActor"
-                    placeholder="Buscar por nombre"
-                    [(ngModel)]="terminoBusqueda"
-                    (input)="buscarNombre()">
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionarNombre($event.option.value)">
-                    <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor">
-                        {{ actor.name }}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <button class="boton-reset mb-3 text-white mt-2" mat-stroked-button (click)="resetBuscarNombre()">Reiniciar</button>
+<div class="container-fluid mt-5 px-5">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-between">
+                <h1 class="title mb-4">Actores</h1>
+                <div class="search">
+                    <input type="text" class="searchTerm ms-2" placeholder="Buscar...">
+                    <button type="submit" class="searchButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-search text-dark" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
         </div>
     </div>
@@ -37,8 +34,8 @@
                     </div>
                     }
                     <div class="card-body">
-                        <h5 class="actor-title text-white">{{actor.name}}</h5>
-                        <p>
+                        <h6 class="actor-title text-white">{{actor.name}}</h6>
+                        <p class="text-light">
                             {{ actor.known_for[0].title ? actor.known_for[0].title : actor.known_for[0].name }},
                             {{ actor.known_for[1].title ? actor.known_for[1].title : actor.known_for[1].name }},
                             {{ actor.known_for[2].title ? actor.known_for[2].title : actor.known_for[2].name }}

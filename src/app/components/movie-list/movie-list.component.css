@@ -56,26 +56,33 @@ body {
     border: 2px solid #303030 ;
 }
 
-input[type="checkbox"]:checked {
-    background-color: red;
+
+.search {
+    width: 20%;
+    position: relative;
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    height: 36px;
+}
+
+.searchTerm {
+    width: 100%;
+    border-right: none;
+    padding: 5px;
+    border-radius: 20px;
+    outline: none;
     border: none;
-    box-shadow: 0 0 0 1px red;
 }
 
-header {
-    background-color: #101010;
-    height: 80px;
+.searchButton {
+    width: 40px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
 }
-
-.nav-title{
-    color: white;
-    margin-top: 15px;
-}
-
-
-i{
-    font-size: 25pt;
-    color: white;
-    margin-top: 15px;
-}
-
