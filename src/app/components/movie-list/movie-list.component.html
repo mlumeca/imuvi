@@ -68,4 +68,12 @@
             </div>
         </div>
     </div>
+
+    <ngb-pagination class="d-flex justify-content-center"
+    [collectionSize]="totalPages"
+    (pageChange)="onPage($event)"
+    [(page)]="page"
+    [maxSize]="10"
+    [boundaryLinks]="true">
+</ngb-pagination>
 </div>

@@ -40,4 +40,9 @@ export class SerieService {
   getMedia(id: string): Observable<SeriesMediaResponse> {
     return this.http.get<SeriesMediaResponse>(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${API_KEY}`)
   }
+
+  getSeriePage(page: number): Observable<SerieListResponse> {
+    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/tv/popular?page=${page}&api_key=${API_KEY}`)
+  }
+
 }
