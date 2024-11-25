@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActorService } from '../../services/actor.service';
-import { Actor, ActorListResponse } from '../../models/actor-list.interface';
-import { NgbPaginationConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Actor} from '../../models/actor-list.interface';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-actor-list',

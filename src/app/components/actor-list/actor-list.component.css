@@ -23,3 +23,7 @@ div .img-actor {
 .input-buscar {
     background-color: #303030;
 }
+
+ngb-pagination > ul.pagination{
+    background-color: #303030;
+}

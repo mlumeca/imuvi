@@ -50,7 +50,7 @@
         }
     </div>
     <ngb-pagination class="d-flex justify-content-center"
-        [collectionSize]="5000"
+        [collectionSize]="totalPages"
         (pageChange)="onPage($event)"
         [(page)]="page"
         [maxSize]="10"
