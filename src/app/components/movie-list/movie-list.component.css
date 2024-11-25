@@ -102,10 +102,10 @@ i{
 }
 
 .diseyoBtn{
-  background-color: #383838;  
-  border-radius: 20px;
-  color: white;
-  border: none;
+    background-color: #383838;  
+    border-radius: 20px;
+    color: white;
+    border: none;
 }
 
 .btn{
@@ -129,3 +129,16 @@ i{
 .dropdown-toggle::after {
     display:none;
 }
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: 0;
+}
+
+

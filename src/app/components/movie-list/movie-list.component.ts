@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MovieGenre} from '../../models/movie-list.interface';
 import { MovieService } from '../../services/movie.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,7 +15,10 @@ export class MovieListComponent implements OnInit {
   movieGenre:  MovieGenre[] = [];
   page = 1;
   totalPages = 1;
-  constructor(private movieService: MovieService) {}
+  listName: string = '';
+  listDesc: string = '';
+
+  constructor(private movieService: MovieService, private modalService: NgbModal) {}
 
 
   ngOnInit(): void {
@@ -46,6 +51,14 @@ export class MovieListComponent implements OnInit {
     this.newPage();
   }
 
+
+  openModal() {
+    const modalRef = this.modalService.open(ModalListComponent, { size: 'lg' });
+    modalRef.componentInstance.listName = this.listName;
+    modalRef.componentInstance.listDesc = this.listDesc;
+    
+  }
+  
 }
 
 

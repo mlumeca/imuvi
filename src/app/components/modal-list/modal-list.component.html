@@ -1,0 +1,24 @@
+<ng-template #content let-modal>
+    <div class="modal-dialog custom-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear nueva lista</h5>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="createList()">
+                    <div class="mb-3">
+                        <label for="listName" class="form-label">Nombre de la lista</label>
+                        <input type="text" id="listName" [(ngModel)]="listName" class="form-control" name="name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="listDesc" class="form-label">Descripción</label>
+                        <textarea id="listDesc" [(ngModel)]="listDesc" class="form-control" name="description"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Crear Lista</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
