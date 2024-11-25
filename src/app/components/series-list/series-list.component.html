@@ -4,7 +4,8 @@
             <div class="d-flex justify-content-between">
                 <h1 class="title mb-4">Series</h1>
                 <div class="search">
-                    <input type="text" class="searchTerm ms-2" placeholder="Buscar...">
+                    <input type="text" class="searchTerm ms-2" placeholder="Buscar..." [(ngModel)]="texto"
+                        (input)="searchingSerie(texto)">
                     <button type="submit" class="searchButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-search text-dark" viewBox="0 0 16 16">
@@ -17,7 +18,7 @@
 
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-2">
             <div class="filter-section">
@@ -26,10 +27,10 @@
                 <div class="mb-3">
                     <h6>Géneros</h6>
                     @for(genre of serieGenre; track genre.id) {
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="{{genre.name}}">
-                            <label class="form-check-label" for="accion">{{genre.name}}</label>
-                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="{{genre.name}}">
+                        <label class="form-check-label" for="accion">{{genre.name}}</label>
+                    </div>
 
                     }
                 </div>
@@ -38,7 +39,7 @@
                     <mat-slider min="200" max="500">
                         <input value="300" matSliderStartThumb>
                         <input value="400" matSliderEndThumb>
-                      </mat-slider>
+                    </mat-slider>
                 </div>
                 <div class="mb-3">
                     <h6>Fecha de estreno</h6>
@@ -51,17 +52,16 @@
             </div>
         </div>
 
-
         <div class="col-10">
             <div class="row">
                 @for(serie of serieList; track serie.id) {
-                    <div class="col-2 mb-4 d-flex">
-                        <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
+                <div class="col-2 mb-4 d-flex">
+                    <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
                         <div class="card movie-card">
                             @if(serie.poster_path) {
-                                <img [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
+                            <img [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
                             }@else {
-                                <img src="http://placehold.co/194x291" alt="sin imagen">
+                            <img src="http://placehold.co/194x291" alt="sin imagen">
                             }
                             <div class="card-body pt-0">
                                 <p class="movie-title">{{serie.name}}</p>
@@ -69,18 +69,18 @@
                             </div>
                             <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
                         </div>
-                        </a>
-                    </div>
+                    </a>
+                </div>
                 }
             </div>
         </div>
-        
+
         <ngb-pagination class="d-flex justify-content-center"
-        [collectionSize]="totalPages"
-        (pageChange)="onPage($event)"
-        [(page)]="page"
-        [maxSize]="10"
-        [boundaryLinks]="true">
+            [collectionSize]="totalPages"
+            (pageChange)="onPage($event)"
+            [(page)]="page"
+            [maxSize]="10"
+            [boundaryLinks]="true">
         </ngb-pagination>
     </div>
 </div>

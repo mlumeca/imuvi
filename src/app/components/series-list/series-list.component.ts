@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Serie, SerieGenre} from '../../models/series-list.interface';
+import { Component, Input } from '@angular/core';
+import { Serie, SerieGenre } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 
 @Component({
@@ -9,15 +9,18 @@ import { SerieService } from '../../services/serie.service';
 })
 export class SeriesListComponent {
   serieList: Serie[] = [];
-  serieGenre:  SerieGenre[] = [];
+  originalSerieList: Serie[] = [];
+  serieGenre: SerieGenre[] = [];
   page = 1;
   totalPages = 1;
-  constructor(private serieService: SerieService) {}
+
+  @Input() texto = '';
+  constructor(private serieService: SerieService) { }
 
 
   ngOnInit(): void {
     this.newPage();
-    this.serieService.getSerieGenre().subscribe (response => {
+    this.serieService.getSerieGenre().subscribe(response => {
       this.serieGenre = response.genres;
     })
   }
@@ -34,6 +37,7 @@ export class SeriesListComponent {
   newPage(): void {
     this.serieService.getSeriePage(this.page).subscribe(resp => {
       this.serieList = resp.results;
+      this.originalSerieList = [...this.serieList]; // Almacenar la lista original aquí
       this.totalPages = resp.total_pages;
     });
   }
@@ -43,6 +47,14 @@ export class SeriesListComponent {
     this.newPage();
   }
 
-
+  searchingSerie(name: string): void {
+    if (name.trim() !== '') {
+      this.serieService.getSerieByName(name).subscribe(resp => {
+        this.serieList = resp.results;
+      });
+    } else {
+      this.serieList = [...this.originalSerieList];
+    }
+  }
 
 }

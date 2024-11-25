@@ -4,7 +4,8 @@
             <div class="d-flex justify-content-between">
                 <h1 class="title mb-4">Películas</h1>
                 <div class="search">
-                    <input type="text" class="searchTerm ms-2" placeholder="Buscar..." [(ngModel)] = "texto" (input)="getName()">
+                    <input type="text" class="searchTerm ms-2" placeholder="Buscar..." [(ngModel)]="texto"
+                        (input)="searchingMovie(texto)">
                     <button type="submit" class="searchButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-search text-dark" viewBox="0 0 16 16">
@@ -17,7 +18,7 @@
 
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-2">
             <div class="filter-section">
@@ -26,42 +27,54 @@
                 <div class="mb-3">
                     <h6>Géneros</h6>
                     @for(genre of movieGenre; track genre.id) {
-                        <div class="d-colum">
-                            <mat-checkbox
-                            [checked]="" > {{ genre.name }}
-                            </mat-checkbox>
-                        </div>
+                    <div class="d-colum">
+                        <mat-checkbox
+                            [checked]="selectedGenres.includes(genre.id)"
+                            (change)="onGenreChange(genre.id, $event.checked)">
+                            <span class="colorGen">{{ genre.name }}</span>
+                        </mat-checkbox>
+                    </div>
                     }
                 </div>
                 <div class="mb-3">
                     <h6>Puntuación</h6>
-                    <mat-slider min="200" max="500">
-                        <input value="300" matSliderStartThumb>
-                        <input value="400" matSliderEndThumb>
+                    <mat-slider min="0" max="10" step="0.1">
+                        <input value="{{minRating}}" [(ngModel)]="minRating" matSliderStartThumb
+                            (input)="applyFilters()" class="mb-1">{{minRating * 10}}%
+                        <input value="{{maxRating}}" [(ngModel)]="maxRating" matSliderEndThumb
+                            (input)="applyFilters()"> <span class="position-absolute top-0 end-0">{{maxRating * 10}}%</span>
                     </mat-slider>
                 </div>
                 <div class="mb-3">
                     <h6>Fecha de estreno</h6>
                     <label for="desde" class="form-label">Desde</label>
-                    <input type="date" class="form-control" id="desde">
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="desde"
+                        [(ngModel)]="releaseDateFrom">
+
                     <label for="hasta" class="form-label">Hasta</label>
-                    <input type="date" class="form-control" id="hasta">
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="hasta"
+                        [(ngModel)]="releaseDateTo">
                 </div>
-                <button class="btn btn-dark w-100">Aplicar</button>
+                <button class="btn btn-dark w-100" (click)="applyFilters()">Aplicar</button>
             </div>
         </div>
-
 
         <div class="col-10">
             <div class="row">
                 @for(movie of movieListFilt; track movie.id) {
-                    <div class="col-2 mb-4 d-flex">
-                        <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
+                <div class="col-2 mb-4 d-flex">
+                    <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
                         <div class="card movie-card">
                             @if(movie.poster_path) {
-                                <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                            <img [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
                             }@else {
-                                <img src="http://placehold.co/194x291" alt="sin imagen">
+                            <img src="http://placehold.co/194x291" alt="sin imagen">
                             }
                             <div class="card-body pt-0">
                                 <p class="movie-title">{{movie.title}}</p>
@@ -69,18 +82,18 @@
                             </div>
                             <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
                         </div>
-                        </a>
-                    </div>
+                    </a>
+                </div>
                 }
             </div>
         </div>
     </div>
 
     <ngb-pagination class="d-flex justify-content-center"
-    [collectionSize]="totalPages"
-    (pageChange)="onPage($event)"
-    [(page)]="page"
-    [maxSize]="10"
-    [boundaryLinks]="true">
+        [collectionSize]="totalPages"
+        (pageChange)="onPage($event)"
+        [(page)]="page"
+        [maxSize]="10"
+        [boundaryLinks]="true">
     </ngb-pagination>
 </div>

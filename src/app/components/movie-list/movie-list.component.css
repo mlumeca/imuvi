@@ -3,12 +3,6 @@
 }
 
 
-body {
-    background-color: #181818;
-    color: white;
-}
-
-
 .filter-section {
     background-color: #303030;
     padding: 20px;
@@ -28,7 +22,16 @@ body {
     margin: 15px;
     align-items: center;
     border-radius: 20px;
-    
+
+}
+
+mat-slider {
+    width: 90%;
+}
+
+.colorGen {
+    color: white;
+    font-size: 12pt;
 }
 
 .movie-title {
@@ -53,7 +56,7 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030 ;
+    border: 2px solid #303030;
 }
 
 

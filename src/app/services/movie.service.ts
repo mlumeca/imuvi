@@ -44,4 +44,8 @@ export class MovieService {
   getMoviesPage(page: number): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${API_KEY}`)
   }
+
+  getMovieByName(name: string): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/search/movie?query=${name}&api_key=${API_KEY}`);
+  }
 }
