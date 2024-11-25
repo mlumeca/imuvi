@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieGenre, MovieList } from '../../models/movie-list.interface';
+import { Movie, MovieGenre} from '../../models/movie-list.interface';
 import { MovieService } from '../../services/movie.service';
 
 @Component({
@@ -9,21 +9,18 @@ import { MovieService } from '../../services/movie.service';
 })
 
 export class MovieListComponent implements OnInit {
-  movieList: MovieList[] = [];
+  movieList: Movie[] = [];
   movieGenre:  MovieGenre[] = [];
-
+  page = 1;
+  totalPages = 1;
   constructor(private movieService: MovieService) {}
 
 
   ngOnInit(): void {
-    this.movieService.getMovieList().subscribe (response => {
-      this.movieList = response.results;
-    })
+    this.newPage();
 
     this.movieService.getMovieGenre().subscribe (response => {
       this.movieGenre = response.genres;
-
-      console.log(this.movieGenre)
     })
   }
 
@@ -34,6 +31,19 @@ export class MovieListComponent implements OnInit {
 
   getRatingPercentaje(number: number) {
     return number * 10;
+  }
+
+  
+  newPage(): void {
+    this.movieService.getMoviesPage(this.page).subscribe(resp => {
+      this.movieList = resp.results;
+      this.totalPages = resp.total_pages;
+    });
+  }
+
+  onPage(newPage: number): void {
+    this.page = newPage;
+    this.newPage();
   }
 
 }

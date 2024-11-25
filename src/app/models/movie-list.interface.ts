@@ -1,11 +1,11 @@
 export interface MovieListResponse {
     page: number
-    results: MovieList[]
+    results: Movie[]
     total_pages: number
     total_results: number
 }
   
-export interface MovieList {
+export interface Movie {
     adult: boolean
     backdrop_path: string
     genre_ids: number[]

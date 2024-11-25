@@ -1,11 +1,11 @@
 export interface SerieListResponse {
     page: number
-    results: SerieList[]
+    results: Serie[]
     total_pages: number
     total_results: number
 }
   
-export interface SerieList {
+export interface Serie {
     adult: boolean
     backdrop_path?: string
     genre_ids: number[]

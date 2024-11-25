@@ -40,4 +40,8 @@ export class MovieService {
   getMovieGenre(): Observable<MovieGenreResponse> {
     return this.http.get<MovieGenreResponse>(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
   }
+
+  getMoviesPage(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?page=${page}&api_key=${API_KEY}`)
+  }
 }
