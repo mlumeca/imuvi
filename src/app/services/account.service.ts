@@ -21,13 +21,17 @@ export class AccountService {
     );
   }
 
-  getFavouriteMovies(account_id: string): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse> (`https://api.themoviedb.org/3/account/${account_id}/favorite/movies`)
-
+  getRatedMovies(account_id: string): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${API_BASE_URL}/account/${account_id}/rated/movies?api_key=${API_KEY}&session_id=${sessionId}`
+    );
   }
 
-  getFavouriteSeries(account_id: string): Observable<SerieListResponse> {
-    return this.http.get<SerieListResponse> (`https://api.themoviedb.org/3/account/${account_id}/favorite/tv`)
-
+  getRatedSeries(account_id: string): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${API_BASE_URL}/account/${account_id}/rated/tv?api_key=${API_KEY}&session_id=${sessionId}`
+    );
   }
 }

@@ -22,9 +22,9 @@ export class NavComponent {
           'user_photo'
         )}`
       : '';
-      this.accountService.getAccountDetails().subscribe(response => {
-        localStorage.setItem('account_id', response.id);
-      });
+    this.accountService.getAccountDetails().subscribe(response => {
+        localStorage.setItem('account_id', response.id.toString());
+    });
   }
 
   createRequestToken() {
