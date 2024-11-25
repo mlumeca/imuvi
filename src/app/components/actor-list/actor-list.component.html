@@ -4,20 +4,20 @@
 
         <div class="filtro-buscar mt-4 d-f d-flex" data-mdb-input-init>
             <mat-form-field class="w-100 me-3">
-                <input matInput 
-                       [matAutocomplete]="auto" 
-                       id="buscarActor" 
-                       placeholder="Buscar por nombre" 
-                       [(ngModel)]="terminoBusqueda" 
-                       (input)="buscarNombre()">
+                <input matInput
+                    [matAutocomplete]="auto"
+                    id="buscarActor"
+                    placeholder="Buscar por nombre"
+                    [(ngModel)]="terminoBusqueda"
+                    (input)="buscarNombre()">
                 <mat-autocomplete #auto="matAutocomplete" (optionSelected)="seleccionarNombre($event.option.value)">
-                  <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor">
-                    {{ actor.name }}
-                  </mat-option>
+                    <mat-option *ngFor="let actor of nombreFiltrado" [value]="actor">
+                        {{ actor.name }}
+                    </mat-option>
                 </mat-autocomplete>
-              </mat-form-field>
-              <button class="boton-reset mb-3 text-white mt-2" mat-stroked-button (click)="resetBuscarNombre()">Reiniciar</button>
-              
+            </mat-form-field>
+            <button class="boton-reset mb-3 text-white mt-2" mat-stroked-button (click)="resetBuscarNombre()">Reiniciar</button>
+
         </div>
     </div>
 
@@ -27,13 +27,18 @@
             <a class="text-decoration-none" [routerLink]="['/actor-detail', actor.id]">
                 <div class="card actor-card">
                     @if (actor.profile_path){
-                    <img class="img-actor px-3 pt-3" [src]="getImage(actor.profile_path)" [alt]="actor.name">
+                    <div>
+                        <img class="img-actor" [src]="getImage(actor.profile_path)" [alt]="actor.name">
+
+                    </div>
                     }@else{
-                        <img src="http://placehold.co/278x323.69" alt="sin imagen">
+                    <div>
+                        <img class="img-actor" src="http://placehold.co/278x323" alt="sin imagen">
+                    </div>
                     }
                     <div class="card-body">
-                        <h3 class="actor-title text-white">{{actor.name}}</h3>
-                        <p class="card-text">
+                        <h5 class="actor-title text-white">{{actor.name}}</h5>
+                        <p>
                             {{ actor.known_for[0].title ? actor.known_for[0].title : actor.known_for[0].name }},
                             {{ actor.known_for[1].title ? actor.known_for[1].title : actor.known_for[1].name }},
                             {{ actor.known_for[2].title ? actor.known_for[2].title : actor.known_for[2].name }}
@@ -44,4 +49,11 @@
         </div>
         }
     </div>
+    <ngb-pagination class="d-flex justify-content-center"
+        [collectionSize]="totalPages"
+        (pageChange)="onPage($event)"
+        [(page)]="page"
+        [maxSize]="10"
+        [boundaryLinks]="true">
+    </ngb-pagination>
 </div>

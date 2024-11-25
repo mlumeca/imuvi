@@ -35,8 +35,9 @@
 .scrollVideo {
     display: inline-block;
     border-radius: 20px;
-    background-color: #383838;
+    background-color: #191919;
     vertical-align: top;
+    border: none;
 
 
 }

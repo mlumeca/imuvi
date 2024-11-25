@@ -19,6 +19,8 @@ import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { ApprovedComponent } from './components/approved/approved.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {MatIconModule} from '@angular/material/icon';
     ActorListComponent,
     ActorDetailComponent,
     HomeComponent,
+    ApprovedComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import {MatIconModule} from '@angular/material/icon';
     MaterialModule,
     FormsModule,
     MatIconModule,
+    NgbDropdownModule
   ],
   providers: [
     provideAnimationsAsync(),
