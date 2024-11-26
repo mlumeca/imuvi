@@ -12,6 +12,7 @@ export class MovieDetailComponent implements OnInit {
   movieId: string | null = '';
   oneMovie: MovieDetailResponse | undefined;
   movieCredits: MovieCreditResponse | undefined;
+  rating = 0;
 
   cast: Cast[] = [];
   crew: Crew[] = [];
@@ -61,4 +62,6 @@ export class MovieDetailComponent implements OnInit {
   getHours(hours: string){
     return this.oneMovie!.runtime / 60;
   }
+
+  
 }

@@ -36,6 +36,10 @@
                                 <p class="col-3">Idioma Original<br>
                                     {{oneMovie!.spoken_languages[0].name}}
                                 </p>
+                                <div class="col-3">
+                                    <p class="mb-0">Tu Valoración</p>
+                                    <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"/>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,3 +104,9 @@
         </div>
     </div>
 </main>
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">★</span>★
+    </span>
+</ng-template>

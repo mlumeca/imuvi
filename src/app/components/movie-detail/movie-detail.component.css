@@ -130,3 +130,21 @@ img {
 .conocidoPor{
     margin-left: 20px;
 }
+
+.star {
+    position: relative;
+    display: inline-block;
+    color: #d3d3d3;
+    font-size: 2rem;
+  }
+
+.full {
+    color: #ffc107;
+  }
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffc107;
+}
