@@ -91,43 +91,43 @@ mat-slider {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030 ;
+    border: 2px solid #303030;
 }
 
-.btnLogin{
+.btnLogin {
     color: white;
     background-color: #383838;
     border-radius: 20px;
     margin-top: 15px;
 }
 
-.diseyoBtn{
-    background-color: #383838;  
+.diseyoBtn {
+    background-color: #383838;
     border-radius: 20px;
     color: white;
     border: none;
 }
 
-.btn{
+.btn {
     color: white;
     border: none;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     background-color: #383838;
     border-radius: 20px;
     color: white;
 }
 
-.diseyoOpciones:hover{
+.diseyoOpciones:hover {
     background-color: #191919;
     border-radius: 20px;
-    width: 95%;   
+    width: 95%;
 }
 
 
 .dropdown-toggle::after {
-    display:none;
+    display: none;
 }
 
 .dropdown-submenu {
@@ -141,8 +141,6 @@ mat-slider {
     margin-top: 0;
 }
 
-
-=======
 .searchButton {
     width: 40px;
     text-align: center;
