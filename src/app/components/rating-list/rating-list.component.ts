@@ -15,6 +15,8 @@ export class RatingListComponent implements OnInit {
   movieList: Movie [] = [];
   serieList: Serie [] = [];
   account_id: string = '';
+  showMovies: boolean = true;
+  showSeries: boolean = true;
 
 
   ngOnInit(): void {

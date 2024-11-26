@@ -7,8 +7,9 @@
 
 .movie-card, .serie-card {
     height: 260px;
-    width: 380px;
+    width: 400px;
     background-color: #303030;
+    border-radius: 20px;
 }
 
 .card-body {
@@ -44,11 +45,7 @@
     color: #ffc107;
 }
 
-h5 {
-    color: white;
-}
-
-p {
+h5, p {
     color: white;
 }
 
@@ -72,3 +69,8 @@ p {
     border-radius: 50%;
     border: 2px solid #303030 ;
 }
+
+.bi-chevron-up, .bi-chevron-down {
+    font-size: 1rem;
+}
+
