@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountDetailsResponse } from '../models/account-details.interface';
 import { UserListsResponse } from '../models/user-lists.interface';
-const API_KEY = '6167e502c63acdce5db7c32294a559d3';
-const API_BASE_URL = 'https://api.themoviedb.org/3';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
@@ -38,23 +36,23 @@ export class AccountService {
 
   getUserLists(userId: number): Observable<UserListsResponse> {
     const sessionId = localStorage.getItem('session_id');
-    return this.http.get<UserListsResponse>(`https://api.themoviedb.org/3/account/${userId}/lists?api_key=${API_KEY}&session_id=${sessionId}`
-  );
+    return this.http.get<UserListsResponse>(`${environment.apiBaseUrl}/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
-    return this.http.post(`${API_BASE_URL}/list?api_key=${API_KEY}&session_id=${localStorage.getItem('session_id')}`, {
+    return this.http.post(`${environment.apiBaseUrl}/list?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
       name: listName,
       description: listDesc
     });
   }
-  
-  getListDetailById(listId:number): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/list/${listId}?api_key=${API_KEY}`
+
+  getListDetailById(listId: number): Observable<any> {
+    return this.http.get(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}`
     );
   }
-  
-  
+
+  //WATCHLIST
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(
@@ -69,4 +67,43 @@ export class AccountService {
     );
   }
 
+  //FAVORITES
+  getFavMovies(account_id: string): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  getFavSeries(account_id: string): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/tv?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  createFav(
+    account_id: string,
+    mediaId: number,
+    mediaType: 'movie' | 'tv',
+    favorite: boolean
+  ): Observable<any> {
+    const sessionId = localStorage.getItem('session_id');
+    return this.http.post(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${sessionId}`,
+      {
+        media_type: mediaType,
+        media_id: mediaId,
+        favorite: favorite,
+      }
+    );
+  }
+
+  deleteFav(
+    account_id: string,
+    mediaId: number,
+    mediaType: 'movie' | 'tv'
+  ): Observable<any> {
+    return this.createFav(account_id, mediaId, mediaType, false);
+  }
 }
