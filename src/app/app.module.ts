@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingListComponent } from './components/rating-list/rating-list.component';
 import { FavListComponent } from './components/fav-list/fav-list.component';
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FavListComponent } from './components/fav-list/fav-list.component';
     ActorDetailComponent,
     HomeComponent,
     ApprovedComponent,
-    FavListComponent,
+    RatingListComponent,
+    FavListComponent
   ],
   imports: [
     BrowserModule,

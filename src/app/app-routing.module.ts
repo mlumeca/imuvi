@@ -9,6 +9,7 @@ import { SeriesDetailComponent } from './components/series-detail/series-detail.
 import { ActorDetailComponent } from './components/actor-detail/actor-detail.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
 import { ApprovedComponent } from './components/approved/approved.component';
+import { RatingListComponent } from './components/rating-list/rating-list.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'series-detail/:id', component: SeriesDetailComponent },
   { path: 'actor-list', component: ActorListComponent },
   { path: 'actor-detail/:id', component: ActorDetailComponent },
+  { path: 'rating', component: RatingListComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'approved', component: ApprovedComponent },
   { path: '**', component: PageNotFoundComponent }
