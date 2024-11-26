@@ -22,6 +22,7 @@ import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
+import { ListsComponent } from './components/lists/lists.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ListProfileComponent } from './components/list-profile/list-profile.com
     ApprovedComponent,
     RatingListComponent,
     ListProfileComponent,
+    ListsComponent,
   ],
   imports: [
     BrowserModule,

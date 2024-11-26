@@ -11,6 +11,7 @@ import { ActorListComponent } from './components/actor-list/actor-list.component
 import { ApprovedComponent } from './components/approved/approved.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
+import { ListsComponent } from './components/lists/lists.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'actor-detail/:id', component: ActorDetailComponent },
   { path: 'rating', component: RatingListComponent },
   { path: 'listSeguimiento', component: ListProfileComponent },
+  { path: 'lists', component: ListsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'approved', component: ApprovedComponent },
   { path: '**', component: PageNotFoundComponent }

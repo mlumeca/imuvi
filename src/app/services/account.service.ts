@@ -5,6 +5,7 @@ import { AccountDetailsResponse } from '../models/account-details.interface';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
+import { ListsResponse } from '../models/lists.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,13 @@ export class AccountService {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<MovieListResponse>(
       `${environment.apiBaseUrl}/account/${account_id}/watchlist/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  getLists(account_id: string): Observable<ListsResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<ListsResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`
     );
   }
 
