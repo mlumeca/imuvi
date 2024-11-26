@@ -15,6 +15,7 @@ div .img-actor {
     margin: 15px;
 }
 
+
 .card-text {
     font-size: 11pt;
     color: white;
@@ -26,4 +27,34 @@ div .img-actor {
 
 ngb-pagination > ul.pagination{
     background-color: #303030;
+}
+
+.search {
+    width: 20%;
+    position: relative;
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    margin-top: 20px;
+    height: 36px;
+}
+
+.searchTerm {
+    width: 100%;
+    border-right: none;
+    padding: 5px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+}
+
+.searchButton {
+    width: 40px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-bottom: 5px;
+    font-size: 20px;
+    background-color: white;
+    border: none;
 }

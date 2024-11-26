@@ -20,6 +20,8 @@ export interface Serie {
     name: string
     vote_average: number
     vote_count: number
+    rating: number
+
 }
 
 export interface SerieGenreResponse {

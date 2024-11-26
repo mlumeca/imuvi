@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MovieVideoResponse, TrendingResponse, UpcomingMoviesResponse } from '../models/home.interface';
 import { TrendingActorsResponse } from '../models/homeActors.interface';
-
-const API_KEY = '6167e502c63acdce5db7c32294a559d3';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +14,18 @@ export class ImuviService {
 
 
   getTrending(): Observable<TrendingResponse> {
-    return this.http.get<TrendingResponse>(`https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`)
+    return this.http.get<TrendingResponse>(`${environment.apiBaseUrl}/trending/all/week?api_key=${environment.apiKey}`)
   }
 
   getTrendingActor(): Observable<TrendingActorsResponse> {
-    return this.http.get<TrendingActorsResponse>(`https://api.themoviedb.org/3/trending/person/week?api_key=${API_KEY}`)
+    return this.http.get<TrendingActorsResponse>(`${environment.apiBaseUrl}/trending/person/week?api_key=${environment.apiKey}`)
   }
 
   getUpcomingMovies(): Observable<UpcomingMoviesResponse> {
-    return this.http.get<UpcomingMoviesResponse>(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`);
+    return this.http.get<UpcomingMoviesResponse>(`${environment.apiBaseUrl}/movie/upcoming?api_key=${environment.apiKey}`);
   }
   
   getMovieVideoById(movieId: number): Observable<MovieVideoResponse> {
-    return this.http.get<MovieVideoResponse>(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}`);
+    return this.http.get<MovieVideoResponse>(`${environment.apiBaseUrl}/movie/${movieId}/videos?api_key=${environment.apiKey}`);
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Serie, SerieGenre} from '../../models/series-list.interface';
+import { Component, Input } from '@angular/core';
+import { Serie, SerieGenre } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
@@ -11,7 +11,9 @@ import { ModalListComponent } from '../modal-list/modal-list.component';
 })
 export class SeriesListComponent {
   serieList: Serie[] = [];
-  serieGenre:  SerieGenre[] = [];
+  originalSerieList: Serie[] = [];
+  serieGenre: SerieGenre[] = [];
+
   page = 1;
   totalPages = 1;
   listName: string = '';
@@ -21,10 +23,20 @@ export class SeriesListComponent {
 
   constructor(private serieService: SerieService,  private modalService: NgbModal) {}
 
+  selectedGenres: number[] = [];
+
+  minRating: number = 0;
+  maxRating: number = 10;
+
+  @Input() texto = '';
+
+  firstAirDateFrom: string = '';
+  firstAirDateTo: string = '';
+
 
   ngOnInit(): void {
     this.newPage();
-    this.serieService.getSerieGenre().subscribe (response => {
+    this.serieService.getSerieGenre().subscribe(response => {
       this.serieGenre = response.genres;
     })
   }
@@ -41,6 +53,7 @@ export class SeriesListComponent {
   newPage(): void {
     this.serieService.getSeriePage(this.page).subscribe(resp => {
       this.serieList = resp.results;
+      this.originalSerieList = this.serieList;
       this.totalPages = resp.total_pages;
     });
   }
@@ -54,6 +67,60 @@ export class SeriesListComponent {
     this.modalRef = this.modalService.open(ModalListComponent);   
   }
 
+  filterByGenre(): void {
+    if (this.selectedGenres.length === 0) {
+      this.originalSerieList = this.serieList;
+    } else {
+      this.originalSerieList = this.serieList.filter(serie =>
+        serie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
+      );
+    }
+  }
 
+  onGenreChange(genreId: number, isChecked: boolean): void {
+    if (isChecked) {
+      if (!this.selectedGenres.includes(genreId)) {
+        this.selectedGenres.push(genreId);
+      }
+    } else {
+      this.selectedGenres = this.selectedGenres.filter(id => id !== genreId);
+    }
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    this.originalSerieList = this.serieList;
+
+    if (this.selectedGenres.length > 0) {
+      this.originalSerieList = this.originalSerieList.filter(serie =>
+        serie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
+      );
+    }
+
+    this.originalSerieList = this.originalSerieList.filter(serie =>
+      serie.vote_average >= this.minRating && serie.vote_average <= this.maxRating
+    );
+
+    if (this.firstAirDateFrom) {
+      this.originalSerieList = this.originalSerieList.filter(serie =>
+        new Date(serie.first_air_date) >= new Date(this.firstAirDateFrom)
+      );
+    }
+    if (this.firstAirDateTo) {
+      this.originalSerieList = this.originalSerieList.filter(serie =>
+        new Date(serie.first_air_date) <= new Date(this.firstAirDateTo)
+      );
+    }
+  }
+
+  searchingSerie(name: string): void {
+    if (name.trim() !== '') {
+      this.serieService.getSerieByName(name).subscribe(resp => {
+        this.serieList = resp.results;
+      });
+    } else {
+      this.serieList = [...this.originalSerieList];
+    }
+  }
 
 }

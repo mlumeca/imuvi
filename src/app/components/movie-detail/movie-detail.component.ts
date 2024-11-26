@@ -12,9 +12,11 @@ export class MovieDetailComponent implements OnInit {
   movieId: string | null = '';
   oneMovie: MovieDetailResponse | undefined;
   movieCredits: MovieCreditResponse | undefined;
+
   cast: Cast[] = [];
   crew: Crew[] = [];
   buyPlatform: Buy27[] = [];
+
   imgMedia: MovieMediaResponse | undefined;
 
   constructor(private movieService: MovieService, private route: ActivatedRoute) { }
@@ -54,5 +56,9 @@ export class MovieDetailComponent implements OnInit {
 
   getImgMedia(url: string): string {
     return 'https://media.themoviedb.org/t/p/w533_and_h300_bestv2' + url;
+  }
+
+  getHours(hours: string){
+    return this.oneMovie!.runtime / 60;
   }
 }
