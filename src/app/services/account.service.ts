@@ -6,6 +6,7 @@ import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
 import { ListsResponse } from '../models/lists.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,12 @@ export class AccountService {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<ListsResponse>(
       `${environment.apiBaseUrl}/account/${account_id}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  getOneList(idList: string): Observable<ListDetailResponse> {
+    return this.http.get<ListDetailResponse>(
+      `${environment.apiBaseUrl}/list/${idList}?api_key=${environment.apiKey}`
     );
   }
 

@@ -1,19 +1,20 @@
 .list-card {
     width: 580px;
     height: 240px;
-    margin-left: 20px;
+    margin-left: 80px;
     background-color: #383838;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px;
 }
 
 .taamyoCard {
     width: 580px;
     height: 240px;
-}
-
-.position {
-    justify-items: center;
-    display: flex;
 }
 
 .bi-plus-circle {
@@ -23,6 +24,9 @@
     margin-top: 25px;
 }
 
-.textoList {
-    margin-left: 34px;
+
+.movie-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
 }
