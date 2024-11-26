@@ -4,20 +4,24 @@
             <h2 class="textoList">Listas</h2>
             <i class="bi bi-plus-circle position-absolute"></i>
         </div>
-
-        @for(list of lists; track list.id) {
-        <div class="col-2 mb-4 d-flex taamyoCard">
-            <div class="card list-card">
-                <div class="card-body">
-                    <h3 class="movie-title">{{list.name}}</h3>
-                    @if(list.description) {
-                    <p class="text-light">{{list.description}}</p>
-                    } @else {
-                    <p class="text-light">No tiene descripción.</p>
-                    }
-                </div>
+        <div class="row g-4 clase">
+            @for(list of lists; track list.id) {
+            <div class="col-2 d-flex taamyoCard mb-3">
+                <a class="text-decoration-none" [routerLink]="['/list-detail', list.id]">
+                    <div class="card list-card">
+                        <div class="card-body">
+                            <h3 class="movie-title">{{list.name}}</h3>
+                            @if(list.description) {
+                            <p class="text-light">{{list.description}}</p>
+                            } @else {
+                            <p class="text-light">No tiene descripción.</p>
+                            }
+                        </div>
+                    </div>
+                </a>
             </div>
+            }
         </div>
-        }
+
     </div>
 </div>
