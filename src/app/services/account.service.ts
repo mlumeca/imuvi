@@ -21,29 +21,22 @@ export class AccountService {
   }
 
   getUserLists(userId: number): Observable<UserListsResponse> {
-    return this.http.get<UserListsResponse>(`${API_BASE_URL}/account/${userId}/lists?api_key=${API_KEY}`)
+    const sessionId = localStorage.getItem('session_id');
+    return this.http.get<UserListsResponse>(`https://api.themoviedb.org/3/account/${userId}/lists?api_key=${API_KEY}&session_id=${sessionId}`
+  );
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
     return this.http.post(`${API_BASE_URL}/list?api_key=${API_KEY}&session_id=${localStorage.getItem('session_id')}`, {
-      listName,
-      listDesc  //PASAR URL+BODY 
+      name: listName,
+      description: listDesc
     });
   }
-
-  addToList(listId: number, mediaId: number, mediaType: string): Observable<any> {
-    return this.http.post(`${API_BASE_URL}/list/${listId}/add_item?api_key=${API_KEY}&session_id=${localStorage.getItem('session_id')}`, {
-      media_id: mediaId,
-      media_type: mediaType,
-    });
-  }
-
-  //PENDIENTE VER COMO ACCEDER A LOS DETALLES DE UNA LISTA PARA PINTAR LOS CARDS, BY ID???
-  getListDetailById(userId:number, model: any): Observable<any> {
-    return this.http.get<UserListsResponse>(`${API_BASE_URL}/account/${userId}/lists?api_key=${API_KEY}`)
+  
+  getListDetailById(listId:number): Observable<any> {
+    return this.http.get(`https://api.themoviedb.org/3/list/${listId}?api_key=${API_KEY}`
+    );
   }
   
-  
-
   
 }
