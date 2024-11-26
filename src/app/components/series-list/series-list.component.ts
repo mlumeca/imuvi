@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Serie, SerieGenre } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-series-list',
@@ -14,6 +16,12 @@ export class SeriesListComponent {
 
   page = 1;
   totalPages = 1;
+  listName: string = '';
+  listDesc: string = '';
+  modalRef: NgbModalRef | undefined;
+
+
+  constructor(private serieService: SerieService,  private modalService: NgbModal) {}
 
   selectedGenres: number[] = [];
 
@@ -24,8 +32,6 @@ export class SeriesListComponent {
 
   firstAirDateFrom: string = '';
   firstAirDateTo: string = '';
-
-  constructor(private serieService: SerieService) { }
 
 
   ngOnInit(): void {
@@ -55,6 +61,10 @@ export class SeriesListComponent {
   onPage(newPage: number): void {
     this.page = newPage;
     this.newPage();
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.open(ModalListComponent);   
   }
 
   filterByGenre(): void {
