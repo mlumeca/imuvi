@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActorDetailResponse, Cast, CreditsResponse } from '../models/actor-detail.interface';
 import { ActorListResponse } from '../models/actor-list.interface';
-
-const API_KEY = '6167e502c63acdce5db7c32294a559d3';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +14,21 @@ export class ActorService {
 
   getPopular(): Observable<ActorListResponse> {
     return this.http.get<ActorListResponse>(
-      `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}`
+      `${environment.apiBaseUrl}/person/popular?api_key=${environment.apiKey}`
     );
   }
 
   getOneActor(id: string): Observable<ActorDetailResponse> {
-    return this.http.get<ActorDetailResponse>(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}`)
+    return this.http.get<ActorDetailResponse>(`${environment.apiBaseUrl}/person/${id}?api_key=${environment.apiKey}`)
   }
 
   getCast(id: string): Observable<CreditsResponse> {
-    return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}`)
+    return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/person/${id}/combined_credits?api_key=${environment.apiKey}`)
   }
 
   getPeoplePage(page: number): Observable<ActorListResponse> {
     return this.http.get<ActorListResponse>(
-      `https://api.themoviedb.org/3/person/popular?page=${page}&api_key=${API_KEY}`
+      `${environment.apiBaseUrl}/person/popular?page=${page}&api_key=${environment.apiKey}`
     );
   }
 }

@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SerieGenreResponse, SerieListResponse } from '../models/series-list.interface';
 import { SeasonsResponse, SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse, SeriesPlatformResponse } from '../models/series-detail.interface';
-
-const API_KEY = '6167e502c63acdce5db7c32294a559d3';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,35 +13,35 @@ export class SerieService {
   constructor(private http: HttpClient) { }
 
   getSerieList(): Observable<SerieListResponse> {
-    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`)
+    return this.http.get<SerieListResponse>(`${environment.apiBaseUrl}/tv/popular?api_key=${environment.apiKey}`)
   }
 
   getSerieGenre(): Observable<SerieGenreResponse> {
-    return this.http.get<SerieGenreResponse>(`https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}`);
+    return this.http.get<SerieGenreResponse>(`${environment.apiBaseUrl}/genre/tv/list?api_key=${environment.apiKey}`);
   }
 
   getOneSeries(id: string): Observable<SeriesDetailResponse> {
-    return this.http.get<SeriesDetailResponse>(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}`)
+    return this.http.get<SeriesDetailResponse>(`${environment.apiBaseUrl}/tv/${id}?api_key=${environment.apiKey}`)
   }
 
   getCredits(id: string): Observable<SeriesCreditResponse> {
-    return this.http.get<SeriesCreditResponse>(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${API_KEY}`)
+    return this.http.get<SeriesCreditResponse>(`${environment.apiBaseUrl}/tv/${id}/credits?api_key=${environment.apiKey}`)
   }
 
   getTranslatedTitle(id: string): Observable<SeriesCreditResponse> {
-    return this.http.get<SeriesCreditResponse>(`https://api.themoviedb.org/3/tv/${id}/alternative_titles?api_key=${API_KEY}`)
+    return this.http.get<SeriesCreditResponse>(`${environment.apiBaseUrl}/tv/${id}/alternative_titles?api_key=${environment.apiKey}`)
   }
 
   getPlatforms(id: string): Observable<SeriesPlatformResponse> {
-    return this.http.get<SeriesPlatformResponse>(`https://api.themoviedb.org/3/tv/${id}/watch/providers?api_key=${API_KEY}`)
+    return this.http.get<SeriesPlatformResponse>(`${environment.apiBaseUrl}/tv/${id}/watch/providers?api_key=${environment.apiKey}`)
   }
 
   getMedia(id: string): Observable<SeriesMediaResponse> {
-    return this.http.get<SeriesMediaResponse>(`https://api.themoviedb.org/3/tv/${id}/images?api_key=${API_KEY}`)
+    return this.http.get<SeriesMediaResponse>(`${environment.apiBaseUrl}/tv/${id}/images?api_key=${environment.apiKey}`)
   }
 
   getSeriePage(page: number): Observable<SerieListResponse> {
-    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/tv/popular?page=${page}&api_key=${API_KEY}`)
+    return this.http.get<SerieListResponse>(`${environment.apiBaseUrl}/tv/popular?page=${page}&api_key=${environment.apiKey}`)
   }
 
 }
