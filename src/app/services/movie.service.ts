@@ -45,6 +45,6 @@ export class MovieService {
   }
 
   getMovieByName(name: string): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/search/movie?query=${name}&api_key=${API_KEY}`);
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/search/movie?query=${name}&api_key=${environment.apiKey}`);
   }
 }

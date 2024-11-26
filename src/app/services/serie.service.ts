@@ -45,7 +45,7 @@ export class SerieService {
   }
 
   getSerieByName(name: string): Observable<SerieListResponse> {
-    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/search/tv?query=${name}&api_key=${API_KEY}`)
+    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/search/tv?query=${name}&api_key=${environment.apiKey}`)
   }
 
 }
