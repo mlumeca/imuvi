@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -21,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { RatingListComponent } from './components/rating-list/rating-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,8 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     ActorDetailComponent,
     HomeComponent,
     ApprovedComponent,
+    RatingListComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

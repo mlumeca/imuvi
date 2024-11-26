@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,7 +11,9 @@ import { AuthService } from '../../services/auth.service';
 export class NavComponent {
   userName = '';
   userPhoto = '';
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('user_name') ?? '';
@@ -19,6 +22,9 @@ export class NavComponent {
           'user_photo'
         )}`
       : '';
+    this.accountService.getAccountDetails().subscribe(response => {
+        localStorage.setItem('account_id', response.id.toString());
+    });
   }
 
   createRequestToken() {
@@ -40,3 +46,4 @@ export class NavComponent {
   }
 
 }
+
