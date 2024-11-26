@@ -27,9 +27,9 @@ export class FavService {
     );
   }
 
-  addFav(): Observable<FavResponse> {
-    return this.http.post<FavResponse>(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}`);
-  }
+  // addFav(): Observable<FavResponse> {
+  //   return this.http.post<FavResponse>(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}`);
+  // }
 
   // createSession(): Observable<CreateSessionResponse> {
   //   return this.http.post<CreateSessionResponse>(

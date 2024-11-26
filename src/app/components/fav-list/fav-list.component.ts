@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Movie } from '../../models/movie-list.interface';
 import { Serie } from '../../models/series-list.interface';
-import { AccountService } from '../../services/account.service';
+import { FavService } from '../../services/fav.service';
 
 @Component({
   selector: 'app-fav-list',
@@ -10,7 +10,7 @@ import { AccountService } from '../../services/account.service';
 })
 export class FavListComponent {
 
-  constructor(private accountService: AccountService) {}
+  constructor(private favService: FavService) {}
 
 movieList: Movie [] = [];
 serieList: Serie [] = [];
@@ -19,11 +19,11 @@ account_id: string = '';
 ngOnInit(): void {
   this.account_id = localStorage.getItem('account_id') ?? '';
         
-    this.accountService.getFavMovies(this.account_id).subscribe(response => {
+    this.favService.getFavMovies(this.account_id).subscribe(response => {
       this.movieList = response.results;
     });
     
-    this.accountService.getFavSeries(this.account_id).subscribe(response => {
+    this.favService.getFavSeries(this.account_id).subscribe(response => {
       this.serieList = response.results;
     });
 }
