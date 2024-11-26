@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { FavListComponent } from './components/fav-list/fav-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     ActorDetailComponent,
     HomeComponent,
     ApprovedComponent,
+    FavListComponent,
   ],
   imports: [
     BrowserModule,
