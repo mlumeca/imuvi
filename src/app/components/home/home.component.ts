@@ -3,6 +3,8 @@ import { ImuviService } from '../../services/imuvi.service';
 import { MovieVideo, Trending, UpcomingMovies } from '../../models/home.interface';
 import { Actor } from '../../models/homeActors.interface';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +16,12 @@ export class HomeComponent {
   upcomingMovies: UpcomingMovies[] = [];
   trendingActor: Actor[] = [];
   movieVideos: MovieVideo[] = [];
+  listName: string = '';
+  listDesc: string = '';
+  modalRef: NgbModalRef | undefined;
 
 
-  constructor(private imuviService: ImuviService, private sanitizer: DomSanitizer) {}
+  constructor(private imuviService: ImuviService, private sanitizer: DomSanitizer, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.imuviService.getTrending().subscribe (response => {
@@ -53,6 +58,10 @@ export class HomeComponent {
     this.imuviService.getMovieVideoById(movieId).subscribe(response => {
         this.movieVideos.push(response.results[0]);  
     });
+  }
+
+  openModal() {
+    this.modalRef = this.modalService.open(ModalListComponent);   
   }
 
 

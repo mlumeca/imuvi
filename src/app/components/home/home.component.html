@@ -45,6 +45,7 @@
                     }@else {
                     <a class="text-decoration-none" [routerLink]="['/movie-detail', item.id]">
                         <div class="card scrollCard me-3 mb-2">
+                            
                             <div>
                                 @if(item.poster_path){
                                 <img [src]="getImagen(item.poster_path!)" class="tamayoImagen" alt="{{item.title}}">
