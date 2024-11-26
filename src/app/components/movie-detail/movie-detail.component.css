@@ -25,12 +25,17 @@ img {
     border-radius: 20px !important;
 }
 
+.title{
+    margin: 0; 
+}
+
 .colorFilm {
     color: #101010;
 }
 
 .divMargin {
     margin-left: 50px;
+    margin-right: 50px;
 }
 
 .scrollCardPeli {

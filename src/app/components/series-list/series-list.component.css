@@ -105,3 +105,14 @@ input[type="checkbox"]:checked {
     background-color: white;
     border: none;
 }
+
+
+.colorGen {
+    color: white;
+    font-size: 12pt;
+}
+
+
+mat-slider {
+    width: 90%;
+}

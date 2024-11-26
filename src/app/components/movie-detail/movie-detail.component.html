@@ -11,15 +11,21 @@
                             <img src="http://placehold.co/250x450" alt="sin imagen">
                             }
                         </div>
+                       
+
                         <div class="col-9 ms-5 mt-1">
                             <div>
-                                <h1>{{oneMovie?.title}}</h1>
-                                <p *ngFor="let genres of oneMovie!.genres" class="leftItem">{{genres.name}}, </p>
-                                <p class="leftItem">{{oneMovie!.runtime}}m</p>
-                            </div> <br> <br>
-
+                                <h1 class="title">{{oneMovie!.title}}</h1>
+                                <div class="d-flex">
+                                    @for (item of oneMovie?.genres; track item.id) {
+                                        <p class="me-2">{{item.name}} • </p>
+                                    }
+                                    <p>{{oneMovie!.runtime}}m.</p>
+                                 </div>      
+                            </div> 
+                           
                             <div>
-                                <h3 class="text-start">Vista General</h3>
+                                <h3 class="text-start title mb-1">Vista General</h3>
                                 <p><i>{{oneMovie!.tagline}}</i><br>
                                     {{oneMovie!.overview}}</p>
                             </div>
@@ -51,7 +57,7 @@
             </div>
         </div>
 
-        <div class="mt-5 conocidoPor">
+        <div class="mt-5 divMargin">
             <h4 class="text-light">Reparto</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {

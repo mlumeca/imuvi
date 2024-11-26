@@ -27,34 +27,47 @@
                 <div class="mb-3">
                     <h6>Géneros</h6>
                     @for(genre of serieGenre; track genre.id) {
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="{{genre.name}}">
-                        <label class="form-check-label" for="accion">{{genre.name}}</label>
+                    <div class="d-colum">
+                        <mat-checkbox
+                            [checked]="selectedGenres.includes(genre.id)"
+                            (change)="onGenreChange(genre.id, $event.checked)">
+                            <span class="colorGen">{{ genre.name }}</span>
+                        </mat-checkbox>
                     </div>
-
                     }
                 </div>
                 <div class="mb-3">
                     <h6>Puntuación</h6>
-                    <mat-slider min="200" max="500">
-                        <input value="300" matSliderStartThumb>
-                        <input value="400" matSliderEndThumb>
+                    <mat-slider min="0" max="10" step="0.1">
+                        <input value="{{minRating}}" [(ngModel)]="minRating" matSliderStartThumb
+                            (input)="applyFilters()" class="mb-1">{{minRating * 10}}%
+                        <input value="{{maxRating}}" [(ngModel)]="maxRating" matSliderEndThumb
+                            (input)="applyFilters()"> <span class="position-absolute top-0 end-0">{{maxRating * 10}}%</span>
                     </mat-slider>
                 </div>
                 <div class="mb-3">
-                    <h6>Fecha de estreno</h6>
-                    <label for="desde" class="form-label">Desde</label>
-                    <input type="date" class="form-control" id="desde">
-                    <label for="hasta" class="form-label">Hasta</label>
-                    <input type="date" class="form-control" id="hasta">
+                    <h6 class="mt-4">Fecha de estreno</h6>
+                    <label for="desde" class="form-label ">Desde</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="desde"
+                        [(ngModel)]="firstAirDateFrom">
+
+                    <label for="hasta" class="form-label mt-2">Hasta</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="hasta"
+                        [(ngModel)]="firstAirDateTo">
                 </div>
-                <button class="btn btn-dark w-100">Aplicar</button>
+                <button class="btn btn-dark w-100" (click)="applyFilters()">Aplicar</button>
             </div>
         </div>
 
         <div class="col-10">
             <div class="row">
-                @for(serie of serieList; track serie.id) {
+                @for(serie of originalSerieList; track serie.id) {
                 <div class="col-2 mb-4 d-flex">
                     <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
                         <div class="card movie-card">
