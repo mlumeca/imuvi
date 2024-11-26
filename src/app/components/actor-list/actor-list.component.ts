@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActorService } from '../../services/actor.service';
-import { Actor} from '../../models/actor-list.interface';
+import { Actor } from '../../models/actor-list.interface';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 
 @Component({
@@ -11,12 +11,11 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 export class ActorListComponent implements OnInit {
 
   actorList: Actor[] = [];
-  listaActoresFiltrada: Actor[] = [];
-  nombreOriginal: Actor[] = [];
-  nombreFiltrado: Actor[] = [];
-  terminoBusqueda: string = '';
+  originalActorList: Actor[] = [];
   page = 1;
   totalPages = 1;
+
+  @Input() texto = '';
   constructor(private actorService: ActorService) { }
 
   ngOnInit(): void {
@@ -28,39 +27,10 @@ export class ActorListComponent implements OnInit {
     return base_url + path;
   }
 
-  buscarNombre(): void {
-    if (this.terminoBusqueda) {
-
-      this.nombreFiltrado = this.nombreOriginal.filter((actor) =>
-        actor.name.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
-      );
-    } else {
-      this.nombreFiltrado = this.nombreOriginal;
-    }
-    console.log(this.terminoBusqueda);
-
-  }
-
-  seleccionarNombre(actor: Actor): void {
-    this.terminoBusqueda = actor.name;
-
-    this.listaActoresFiltrada = this.actorList.filter((actor) => {
-      const nombreActor = actor.name;
-      return nombreActor === this.terminoBusqueda;
-    });
-
-  }
-
-  resetBuscarNombre(): void {
-    this.terminoBusqueda = '';
-    this.listaActoresFiltrada = this.actorList;
-    this.nombreFiltrado = this.nombreOriginal;
-  }
-
   newPage(): void {
     this.actorService.getPeoplePage(this.page).subscribe(resp => {
-      this.listaActoresFiltrada = resp.results;
       this.actorList = resp.results;
+      this.originalActorList = [...this.actorList]; // Almacenar la lista original aquí
       this.totalPages = resp.total_pages;
     });
   }
@@ -69,4 +39,16 @@ export class ActorListComponent implements OnInit {
     this.page = newPage;
     this.newPage();
   }
+
+  searchingActor(name: string): void {
+    if (name.trim() !== '') {
+      this.actorService.getActorByName(name).subscribe(resp => {
+        this.actorList = resp.results;
+      });
+    } else {
+      this.actorList = [...this.originalActorList];
+    }
+  }
+
+
 }

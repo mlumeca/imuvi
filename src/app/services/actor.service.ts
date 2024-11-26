@@ -31,5 +31,11 @@ export class ActorService {
       `${environment.apiBaseUrl}/person/popular?page=${page}&api_key=${environment.apiKey}`
     );
   }
+
+  getActorByName(name: string): Observable<ActorListResponse> {
+    return this.http.get<ActorListResponse>(
+      `https://api.themoviedb.org/3/search/person?query=${name}&api_key=${API_KEY}`
+    );
+  }
 }
 

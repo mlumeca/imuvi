@@ -44,4 +44,8 @@ export class SerieService {
     return this.http.get<SerieListResponse>(`${environment.apiBaseUrl}/tv/popular?page=${page}&api_key=${environment.apiKey}`)
   }
 
+  getSerieByName(name: string): Observable<SerieListResponse> {
+    return this.http.get<SerieListResponse>(`https://api.themoviedb.org/3/search/tv?query=${name}&api_key=${API_KEY}`)
+  }
+
 }
