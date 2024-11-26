@@ -1,19 +1,7 @@
-.modal-content {
-    display: block; /* Asegura que se muestre */
-    max-width: 90%; /* Ajusta el ancho */
-    width: auto; /* Permite ajuste dinámico */
-    padding: 1rem; /* Agrega espacio interno */
-}
+.modal-content{
+    background-color: #191919;
+    color: white;
+    border: none;
+    
 
-.modal-body {
-    min-height: 100px; /* Evita colapsar el modal */
-}
-
-.modal {
-    z-index: 1050 !important;
-    display: block !important;
-}
-
-.modal-backdrop {
-    z-index: 1040 !important;
 }

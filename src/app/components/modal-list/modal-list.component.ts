@@ -1,31 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-list',
   templateUrl: './modal-list.component.html',
   styleUrl: './modal-list.component.css'
 })
-export class ModalListComponent implements OnInit{
+export class ModalListComponent{
   @Input() listName: string = '';
   @Input() listDesc: string = '';
 
-  constructor(private accountService: AccountService, private modalService: NgbModal) {}
+  constructor(private accountService: AccountService, private modalService: NgbModal, public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {
-    
-    this.openCreateListModal;
-  }
-
-
-  openCreateListModal(content: any): void {
-    this.modalService.open(content, { centered: true });
-  }
-
+ 
   createList() {
+    console.log(this.listName);
     if (this.listName) {
-      alert(`Lista "${this.listName}" creada exitosamente.`);
+      this.accountService.createList(this.listName, this.listDesc)
+
+      alert(`Lista "${this.listName}" creada.`);
     }
   }
   

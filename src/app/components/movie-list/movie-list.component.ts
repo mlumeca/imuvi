@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie, MovieGenre} from '../../models/movie-list.interface';
 import { MovieService } from '../../services/movie.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
@@ -17,6 +17,8 @@ export class MovieListComponent implements OnInit {
   totalPages = 1;
   listName: string = '';
   listDesc: string = '';
+  modalRef: NgbModalRef | undefined;
+  
 
   constructor(private movieService: MovieService, private modalService: NgbModal) {}
 
@@ -53,10 +55,7 @@ export class MovieListComponent implements OnInit {
 
 
   openModal() {
-    const modalRef = this.modalService.open(ModalListComponent, { size: 'lg' });
-    modalRef.componentInstance.listName = this.listName;
-    modalRef.componentInstance.listDesc = this.listDesc;
-    
+    this.modalRef = this.modalService.open(ModalListComponent);   
   }
   
 }
