@@ -10,7 +10,7 @@ import { ActorDetailComponent } from './components/actor-detail/actor-detail.com
 import { ActorListComponent } from './components/actor-list/actor-list.component';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ListProfileComponent } from './components/list-profile/list-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'actor-list', component: ActorListComponent },
   { path: 'actor-detail/:id', component: ActorDetailComponent },
   { path: 'rating', component: RatingListComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'listSeguimiento', component: ListProfileComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'approved', component: ApprovedComponent },
   { path: '**', component: PageNotFoundComponent }

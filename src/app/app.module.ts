@@ -17,11 +17,11 @@ import { ActorDetailComponent } from './components/actor-detail/actor-detail.com
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { ListProfileComponent } from './components/list-profile/list-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     HomeComponent,
     ApprovedComponent,
     RatingListComponent,
-    ProfileComponent,
+    ListProfileComponent,
   ],
   imports: [
     BrowserModule,
