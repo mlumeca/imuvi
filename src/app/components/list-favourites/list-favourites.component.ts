@@ -32,7 +32,9 @@ export class ListFavouritesComponent {
     const base_url = 'https://image.tmdb.org/t/p/w500';
     return base_url + path;
   }
-}
 
-// + getAverageRating(): number
+  getRatingPercentaje(number: number) {
+    return number * 10;
+  }
+}
 // + getTotalDuration(): string
