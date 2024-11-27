@@ -23,6 +23,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from './components/modal-list/modal-list.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ListProfileComponent } from './components/list-profile/list-profile.com
     ModalListComponent,
     RatingListComponent,
     ListProfileComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

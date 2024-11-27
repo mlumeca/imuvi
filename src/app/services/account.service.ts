@@ -38,23 +38,31 @@ export class AccountService {
 
   getUserLists(userId: number): Observable<UserListsResponse> {
     const sessionId = localStorage.getItem('session_id');
-    return this.http.get<UserListsResponse>(`https://api.themoviedb.org/3/account/${userId}/lists?api_key=${API_KEY}&session_id=${sessionId}`
-  );
+    return this.http.get<UserListsResponse>(`${environment.apiBaseUrl}/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`);
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
-    return this.http.post(`${API_BASE_URL}/list?api_key=${API_KEY}&session_id=${localStorage.getItem('session_id')}`, {
+    return this.http.post(`${environment.apiBaseUrl}/list?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
       name: listName,
       description: listDesc
     });
   }
   
   getListDetailById(listId:number): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/list/${listId}?api_key=${API_KEY}`
-    );
+    return this.http.get(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
+  }
+
+  deleteUserList(listId: string): Observable<any> {
+    return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
   
-  
+  updateUserList(listId: string, listName: string, listDesc: string): Observable<any> {
+    return this.http.put(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      name: listName,
+      description: listDesc
+    });
+  }
+
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(
