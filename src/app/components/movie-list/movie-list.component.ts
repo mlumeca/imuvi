@@ -21,9 +21,9 @@ export class MovieListComponent implements OnInit {
   listName: string = '';
   listDesc: string = '';
   modalRef: NgbModalRef | undefined;
-  
 
-  constructor(private movieService: MovieService, private modalService: NgbModal) {}
+
+  constructor(private movieService: MovieService, private modalService: NgbModal) { }
 
 
   selectedGenres: number[] = [];
@@ -66,10 +66,10 @@ export class MovieListComponent implements OnInit {
   }
 
 
-  openModal() {
-    this.modalRef = this.modalService.open(ModalListComponent);   
+  openModal(movieId: number) {
+    this.modalRef = this.modalService.open(ModalListComponent);
+    this.modalRef.componentInstance.movieId = movieId;
   }
-  
 
   filterByGenre(): void {
     if (this.selectedGenres.length === 0) {

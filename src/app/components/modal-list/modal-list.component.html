@@ -1,7 +1,8 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title">Añadir a lista</h5>
-        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <h6>Nueva lista</h6>
@@ -18,6 +19,14 @@
         </form>
 
         <h6 class="mt-5">Seleccionar lista</h6>
-
+        <div>
+            <select class="form-select" aria-label="Multiple select example" [(ngModel)]="listId" name="listId">
+                <option selected disabled class="h6">Seleccione una lista</option>
+                @for (movie of lists; track movie.id) {
+                <option [value]="movie.id">{{movie.name}}</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-dark mt-3" (click)="addMoviList()">Añadir pelicula</button>
     </div>
 </div>

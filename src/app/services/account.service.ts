@@ -6,6 +6,8 @@ import { UserListsResponse } from '../models/user-lists.interface';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
+import { ListsResponse } from '../models/lists.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -52,7 +54,6 @@ export class AccountService {
     );
   }
 
-  //WATCHLIST
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(

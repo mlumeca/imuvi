@@ -22,6 +22,8 @@ import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from './components/modal-list/modal-list.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
+import { ListsComponent } from './components/lists/lists.component';
+import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
 import { ListFavouritesComponent } from './components/list-favourites/list-favourites.component';
 
@@ -43,6 +45,8 @@ import { ListFavouritesComponent } from './components/list-favourites/list-favou
     RatingListComponent,
     ListProfileComponent,
     ListFavouritesComponent,
+    ListsComponent,
+    ListDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,6 @@ export class ListProfileComponent {
   seriesCount: number = 0;
   totalCount: number = 0;
   averageRating: number = 0;
-  minutosTotal: number = 0;
 
 
   ngOnInit(): void {
