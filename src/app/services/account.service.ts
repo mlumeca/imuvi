@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountDetailsResponse } from '../models/account-details.interface';
 import { UserListsResponse } from '../models/user-lists.interface';
-const API_KEY = '6167e502c63acdce5db7c32294a559d3';
-const API_BASE_URL = 'https://api.themoviedb.org/3';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
+import { ListsResponse } from '../models/lists.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -48,20 +48,22 @@ export class AccountService {
     });
   }
   
-  getListDetailById(listId:number): Observable<any> {
-    return this.http.get(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
+  getListDetailById(listId:string): Observable<ListDetailResponse> {
+    return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
 
   deleteUserList(listId: string): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
-  
+
+  //NO DISPONIBLE EN V3
   updateUserList(listId: string, listName: string, listDesc: string): Observable<any> {
-    return this.http.put(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+    return this.http.put(`https://api.themoviedb.org/4/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
       name: listName,
       description: listDesc
     });
   }
+
 
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');

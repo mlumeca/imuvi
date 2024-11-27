@@ -1,40 +1,52 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AccountService } from '../../services/account.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserList } from '../../models/user-lists.interface';
-import { List } from '../../models/lists.interfaces';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { List, ListsResponse } from '../../models/lists.interfaces';
 import { ListService } from '../../services/list.service';
-import { ActivatedRoute } from '@angular/router';
-import { StatusResponse } from '../../models/status-list.interfaces';
+import { AccountService } from '../../services/account.service';
+import { UserList } from '../../models/user-lists.interface';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal-list',
-  templateUrl: './modal-list.component.html',
-  styleUrl: './modal-list.component.css'
+  selector: 'app-lists',
+  templateUrl: './lists.component.html',
+  styleUrl: './lists.component.css'
 })
-export class ModalListComponent implements OnInit {
+export class ListsComponent implements OnInit {
   @Input() listName: string = '';
   @Input() listDesc: string = '';
-  @Input() movieId!: string;
-  userLists: UserList[] = []; 
-  listId: string | null = '';
   lists: List[] = [];
   account_id: string = '';
+  userId: number = 0;
+  closeResult: string | undefined;
+  userLists: UserList[] = []; 
+  listId: string | null = '';
   sessionId = localStorage.getItem('session_id');
-  isCollapsed = true;
 
-  
+  constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal ) { }
 
-  constructor(private accountService: AccountService, public activeModal: NgbActiveModal, private listService: ListService, private route: ActivatedRoute) { }
-
+ 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.listService.getLists(this.account_id).subscribe(response => {
       this.lists = response.results;
     });
+
+    this.accountService.getAccountDetails().subscribe(response => {
+      this.userId = response.id;
+
+    })
+
+    this.accountService.getUserLists(this.userId).subscribe(response => {
+      this.lists = response.results;
+    })
   }
 
+  open(content: TemplateRef<any>) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+		);
+	}
 
   createList() {
     if (this.sessionId ) {
@@ -70,8 +82,6 @@ export class ModalListComponent implements OnInit {
     
   }
 
-  addMoviList(): void {
-    this.listService.addMovieToList(this.listId!, this.movieId)
-    this.activeModal.close();
-  }
+ 
+
 }

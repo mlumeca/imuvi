@@ -69,8 +69,6 @@
             <div class="row">
                 @for(movie of movieListFilt; track movie.id) {
                 <div class="col-2 mb-4 d-flex">
-                    
-                    
                         <div class="card movie-card">
                             <div ngbDropdown class="d-inline-block diseyoBtn">
                                 <button type="button" class="btn btn-options" id="dropdownBasic1" ngbDropdownToggle>
@@ -79,7 +77,7 @@
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                     <div ngbDropdown class="dropdown-submenu dropdown-toggle-split">
                                         <button type="button" ngbDropdownToggle
-                                            class="btn dropdown-toggle diseyoOpciones text-light ms-1" (click)="openModal()">
+                                            class="btn dropdown-toggle diseyoOpciones text-light ms-1" (click)="openModal(movie.id)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                 class="bi bi-list-ul me-1" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd"
