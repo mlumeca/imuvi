@@ -5,12 +5,6 @@
     margin: 10px;
 }
 
-.movie-card, .serie-card {
-    height: 260px;
-    width: 380px;
-    background-color: #303030;
-}
-
 .card-body {
     width: 100%;
     padding: 0.5rem;
@@ -31,4 +25,58 @@ h5 {
 
 p {
     color: white;
+}
+
+.leftItem {
+    float: left;
+}
+
+.top-card {
+    background-color: #303030;
+    border-radius: 20px;
+    overflow: visible;
+}
+
+.movie-card {
+    background-color: #303030;
+    border-radius: 20px;
+    overflow: visible;
+    height: 475px;
+}
+
+.movie-card img {
+    width: 85%;
+    margin: 15px;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.colorGen {
+    color: white;
+    font-size: 12pt;
+}
+
+.movie-title {
+    color: white;
+    font-weight: bold;
+}
+
+.card-text {
+    color: rgba(255, 255, 255, 0.800);
+}
+
+.rating {
+    position: absolute;
+    top: 97%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #181818;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #303030;
 }

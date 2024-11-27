@@ -15,6 +15,11 @@ export class ListFavouritesComponent {
   movieList: Movie[] = [];
   serieList: Serie[] = [];
   account_id: string = '';
+  totalCount: number = 0;
+  averageRating: number = 0;
+  totalItems: number = 0;
+  totalHours: number = 0;
+  totalMinutes: number = 0;
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -32,7 +37,38 @@ export class ListFavouritesComponent {
     const base_url = 'https://image.tmdb.org/t/p/w500';
     return base_url + path;
   }
-}
 
-// + getAverageRating(): number
-// + getTotalDuration(): string
+  getRatingPercentaje(number: number) {
+    return number * 10;
+  }
+
+  getAverageRating(): void {
+    let totalRating = 0;
+    
+    this.accountService.getFavMovies(this.account_id).subscribe((moviesResponse) => {
+      this.accountService.getFavSeries(this.account_id).subscribe((seriesResponse) => {
+        this.totalCount = moviesResponse.results.length + seriesResponse.results.length;
+      });
+    });
+
+    this.accountService.getFavMovies(this.account_id).subscribe((moviesResponse) => {
+      moviesResponse.results.forEach((movie) => {
+        totalRating += movie.vote_average;
+      });
+      this.totalItems += moviesResponse.results.length;
+
+      this.accountService.getFavSeries(this.account_id).subscribe((seriesResponse) => {
+        seriesResponse.results.forEach((serie) => {
+          totalRating += serie.vote_average;
+        });
+        this.totalItems += seriesResponse.results.length;
+
+        this.averageRating = this.totalItems > 0 ? totalRating / this.totalItems : 0;
+      });
+    });
+  }
+
+  // getTotalDuration() {
+  //   for (let this.totalItems = i; )
+  // }
+}
