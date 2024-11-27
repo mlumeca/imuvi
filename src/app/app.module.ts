@@ -24,6 +24,7 @@ import { ModalListComponent } from './components/modal-list/modal-list.component
 import { RatingListComponent } from './components/rating-list/rating-list.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
 import { ListFavouritesComponent } from './components/list-favourites/list-favourites.component';
+import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ListFavouritesComponent } from './components/list-favourites/list-favou
     RatingListComponent,
     ListProfileComponent,
     ListFavouritesComponent,
+    MinutesToHoursPipe,
   ],
   imports: [
     BrowserModule,

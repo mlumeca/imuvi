@@ -1,21 +1,22 @@
 <main class="container-fluid mt-3 px-5">
-    <div class="align-center">
-        <div class="row">
-            <h1>Favoritos</h1>
-            <p>{{ movieList.length + serieList.length }} elementos en la lista</p>
-            <p>|</p>
-            <p>{{ getAverageRating() | number:'1.0-1' }}% valoración media </p>
-            <p>|</p>
-            <p>{{ getTotalDuration() }}min duración total</p>
+    <div class="top-card p-3">
+        <h2 class="text-center p-3">Favoritos</h2>
+        <div class="row justify-content-center text-center">
+            <p class="col-2">{{ movieList.length + serieList.length }} elementos en la lista</p>
+            <p class="col-1">|</p>
+            <p class="col-2">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de
+                valoración media </p>
+            <p class="col-1">|</p>
+            <p class="col-2">0 min duración total</p>  <!-- {{ getTotalDuration() }} -->
         </div>
     </div>
 
-    <h2>Películas</h2>
+    <h3>Películas</h3>
 
     <div class="col-10">
         <div class="row">
             @if (movieList.length >= 1) {
-            @for(movie of movieListFilt; track movie.id) {
+            @for(movie of movieList; track movie.id) {
             <div class="col-2 mb-4 d-flex">
                 <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
                     <div class="card movie-card">
@@ -29,17 +30,16 @@
                             <p class="card-text">{{movie.release_date | date:"mediumDate"}}</p>
                         </div>
                         <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
+                    </div>
                 </a>
             </div>
-            </a>
-        </div>
         }
         } @else {
         <p>No hay películas favoritas.</p>
         }
     </div>
 
-    <h2>Series</h2>
+    <h3>Series</h3>
     <div class="row">
         @if (serieList.length >= 1) {
             @for(serie of serieList; track serie.id) {
@@ -55,13 +55,11 @@
                             <p class="movie-title">{{serie.name}}</p>
                             <p class="card-text">{{serie.first_air_date | date:"mediumDate"}}</p>
                         </div>
-                        <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
+                        <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
+                    </div>
                 </a>
             </div>
-            </a>
-        </div>
         }
     } @else {
     <p>No hay series favoritas.</p>
     }
-</main>
