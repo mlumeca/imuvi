@@ -46,13 +46,13 @@ export class RatingListComponent implements OnInit {
 
   eliminarValoracion(id: number, tipo: 'movie' | 'serie'): void {
     if (tipo === 'movie') {
-        this.rateService.deleteMovieRating(id).subscribe(response => {
+        this.rateService.deleteMovieRating(id).subscribe({});
             this.movieList = this.movieList.filter(movie => movie.id !== id);
-        });
+
     } else {
-        this.rateService.deleteSerieRating(id).subscribe(response => {
+        this.rateService.deleteSerieRating(id).subscribe({});
             this.serieList = this.serieList.filter(serie => serie.id !== id);
-        });
+
     }
   }
 

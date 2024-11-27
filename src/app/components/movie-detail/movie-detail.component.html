@@ -16,12 +16,12 @@
                                 <h1 class="title">{{oneMovie!.title}}</h1>
                                 <div class="d-flex">
                                     @for (item of oneMovie?.genres; track item.id) {
-                                        <p class="me-2">{{item.name}} • </p>
+                                    <p class="me-2">{{item.name}} • </p>
                                     }
                                     <p>{{oneMovie!.runtime}}m.</p>
-                                 </div>      
-                            </div> 
-                           
+                                </div>
+                            </div>
+
                             <div>
                                 <h3 class="text-start title mb-1">Vista General</h3>
                                 <p><i>{{oneMovie!.tagline}}</i><br>
@@ -37,19 +37,13 @@
                                 <div class="col-3">
                                     <p class="mb-0">Tu Valoración</p>
                                     <div class="d-flex align-items-center">
-                                        <ngb-rating 
-                                            class="rating-star" 
-                                            [(rate)]="rating" 
-                                            [max]="5" 
-                                            [starTemplate]="t"
-                                            (rateChange)="onRateChange($event)" />
-                                        
-                                            <button class="btn btn-dark ms-2 btn-sm" 
-                                                    (click)="eliminarValoracion()"
-                                                    title="Eliminar valoración">
-                                                <i class="bi bi-x"></i>
-                                            </button>
-                                        
+                                        <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
+                                            (rateChange)="onRateChange(rating)" />
+
+                                        <button class="btn btn-dark ms-2 btn-sm" (click)="eliminarValoracion()">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +71,7 @@
             <h4 class="text-light">Reparto</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
-            
+
                 <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
                     <div class="card scrollCard me-3 mb-2">
                         <div>
@@ -88,8 +82,8 @@
                             }
                         </div>
                         <div class="mt-2">
-                            <p>{{item.name}}</p> 
-                            <p>{{item.character}}</p> 
+                            <p>{{item.name}}</p>
+                            <p>{{item.character}}</p>
                         </div>
                     </div>
                 </a>
@@ -97,7 +91,7 @@
             </div>
         </div>
 
-        
+
         <div class="mt-5 divMargin">
             <h4>Media</h4>
             <div class="scrollCardMedia">

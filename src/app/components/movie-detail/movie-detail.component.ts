@@ -75,13 +75,12 @@ export class MovieDetailComponent implements OnInit {
   }
 
   onRateChange(rating: number) {
-      this.rateService.rateMovie(this.movieId!, rating).subscribe({});
-      this.rating = rating;
+    this.rateService.rateMovie(this.movieId!, rating).subscribe({});
+    this.rating = rating;
   }
 
   eliminarValoracion(): void {
-    this.rateService.deleteMovieRating(Number(this.movieId)).subscribe(response => {
+    this.rateService.deleteMovieRating(Number(this.movieId)).subscribe({});
         this.rating = 0;
-    });
   }
 }

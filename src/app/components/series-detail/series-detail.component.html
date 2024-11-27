@@ -15,12 +15,12 @@
                             <div>
                                 <h1>{{oneSeries!.name}}</h1>
                                 <div class="d-flex">
-                                @for (item of oneSeries?.genres; track item.id) {
+                                    @for (item of oneSeries?.genres; track item.id) {
                                     <p class="me-2">{{item.name}} • </p>
-                                }
-                                <p>{{oneSeries!.number_of_seasons}} Temporadas.</p>
-                            </div>   
-                               
+                                    }
+                                    <p>{{oneSeries!.number_of_seasons}} Temporadas.</p>
+                                </div>
+
                             </div> <br> <br>
 
                             <div>
@@ -38,19 +38,15 @@
                                 </p>
                                 <div class="col-3">
                                     <p class="mb-0">Tu Valoración</p>
-                                    <ngb-rating 
-                                        class="rating-star" 
-                                        [(rate)]="rating" 
-                                        [max]="5" 
-                                        [starTemplate]="t"
-                                        (rateChange)="onRateChange($event)" />
+                                    <div class="d-flex align-items-center">
 
-                                        <button class="btn btn-dark ms-2 btn-sm mb-2" 
-                                        (click)="eliminarValoracion()"
-                                        title="Eliminar valoración">
+                                    <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
+                                        (rateChange)="onRateChange(rating)" />
+
+                                    <button class="btn btn-dark ms-2 btn-sm mb-1" (click)="eliminarValoracion()">
                                         <i class="bi bi-x"></i>
-                                        </button>
-                            
+                                    </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -77,25 +73,25 @@
             <h4 class="text-light">Reparto</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
-                    @if(item){
-                        <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
-                            <div class="card scrollCard me-3 mb-2">
-                                <div>
-                                    @if(item.profile_path){
-                                    <img [src]="getImagen(item.profile_path!)" class="tamayoImagen" alt="{{item.name}}">
-                                    }@else {
-                                    <img src="http://placehold.co/150x230" alt="sin imagen">
-                                    }
-                                </div>
-                                <div class="mt-2">
-                                    <p>{{item.name}}</p> 
-                                    <p>{{item.character}}</p> 
-                                </div>
-                            </div>
-                        </a>
-                    }@else {
-                        <p>No tenemos reparto disponible.</p>
-                    }
+                @if(item){
+                <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
+                    <div class="card scrollCard me-3 mb-2">
+                        <div>
+                            @if(item.profile_path){
+                            <img [src]="getImagen(item.profile_path!)" class="tamayoImagen" alt="{{item.name}}">
+                            }@else {
+                            <img src="http://placehold.co/150x230" alt="sin imagen">
+                            }
+                        </div>
+                        <div class="mt-2">
+                            <p>{{item.name}}</p>
+                            <p>{{item.character}}</p>
+                        </div>
+                    </div>
+                </a>
+                }@else {
+                <p>No tenemos reparto disponible.</p>
+                }
                 }
             </div>
         </div>
@@ -123,7 +119,8 @@
                             </div>
 
                             <div>
-                                <p>The {{item.season_number}} season of {{oneSeries?.name}}, was released on {{item.air_date |
+                                <p>The {{item.season_number}} season of {{oneSeries?.name}}, was released on
+                                    {{item.air_date |
                                     date:
                                     "longDate"}}.</p>
                                 <p>{{item.overview}}</p>
@@ -154,7 +151,6 @@
         </div>
     </div>
 </main>
-
 
 <ng-template #t let-fill="fill">
     <span class="star" [class.full]="fill === 100">
