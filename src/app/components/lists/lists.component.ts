@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { List, ListsResponse } from '../../models/lists.interfaces';
 import { AccountService } from '../../services/account.service';
 
@@ -7,7 +7,7 @@ import { AccountService } from '../../services/account.service';
   templateUrl: './lists.component.html',
   styleUrl: './lists.component.css'
 })
-export class ListsComponent {
+export class ListsComponent implements OnInit{
   constructor(private accountService: AccountService) { }
 
   lists: List[] = [];

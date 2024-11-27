@@ -2,19 +2,29 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserList } from '../../models/user-lists.interface';
+import { List } from '../../models/lists.interfaces';
 
 @Component({
   selector: 'app-modal-list',
   templateUrl: './modal-list.component.html',
   styleUrl: './modal-list.component.css'
 })
-export class ModalListComponent{
+export class ModalListComponent implements OnInit{
   @Input() listName: string = '';
   @Input() listDesc: string = '';
   listId: number | undefined;
   userLists: UserList[] = []; 
+  lists: List[] = [];
+  account_id: string = '';
 
   constructor(private accountService: AccountService, public activeModal: NgbActiveModal) {}
+  
+  ngOnInit(): void {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.getLists(this.account_id).subscribe(response => {
+      this.lists = response.results;
+    });
+  }
 
  
   createList() {
