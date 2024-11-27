@@ -10,9 +10,9 @@ import { ActorDetailComponent } from './components/actor-detail/actor-detail.com
 import { ActorListComponent } from './components/actor-list/actor-list.component';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
-import { ListProfileComponent } from './components/list-profile/list-profile.component';
 import { ListsComponent } from './components/lists/lists.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { ListProfileComponent } from './components/list-profile/list-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

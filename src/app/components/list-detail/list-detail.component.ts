@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { ListService } from '../../services/list.service';
 
 @Component({
   selector: 'app-list-detail',
@@ -17,16 +18,22 @@ export class ListDetailComponent implements OnInit {
   totalCount: number = 0;
   averageRating: number = 0;
 
-  constructor(private accountService: AccountService,private route: ActivatedRoute) { }
+  constructor(private listService: ListService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('id');
-    this.accountService.getOneList(this.listId!).subscribe(response => {
+    this.listService.getOneList(this.listId!).subscribe(response => {
       this.lists = response;
     })
-    this.accountService.getOneList(this.listId!).subscribe(response => {
-      this.item = response.items;
-    })
+    this.listId = this.route.snapshot.paramMap.get('id');
+    if (this.listId) {
+      this.listService.getOneList(this.listId).subscribe((response) => {
+        this.lists = response;
+        this.item = response.items;
+        this.calculateTotalCount();
+        this.calculateAverageRating();
+      });
+    }
   }
 
   getImagen(url: string): string {
@@ -37,23 +44,13 @@ export class ListDetailComponent implements OnInit {
   }
 
   calculateTotalCount(): void {
-      this.accountService.getLists(this.listId!).subscribe((response) => {
-        this.totalCount = response.results.length;
-      });
+    this.totalCount = this.item.length;
   }
 
   calculateAverageRating(): void {
-    let totalRating = 0;
-    let totalItems = 0;
-      this.accountService.getOneList(this.listId!).subscribe((response) => {
-        response.items.forEach((movie) => {
-          totalRating += movie.vote_average;
-        });
-        totalItems += response.items.length;
-
-        this.averageRating = totalItems > 0 ? totalRating / totalItems : 0;
-      });
-  };
+    const totalRating = this.item.reduce((sum, item) => sum + item.vote_average, 0);
+    this.averageRating = this.item.length > 0 ? totalRating / this.item.length : 0;
+  }
 }
 
 

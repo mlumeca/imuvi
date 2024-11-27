@@ -11,30 +11,28 @@
                         class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de
                         valoración media</p>
                 </div>
-
             </div>
         </div>
-    
+
         @for (item of item; track item.id) {
         <div class="col-3 mb-5 mt-4">
-                <div class="card movie-card d-flex flex-row ">
-                    @if(item.poster_path) {
-                    <img class="img-card" [src]="getImagen(item.poster_path)" alt="{{item.title}}">
-                    }@else {
-                    <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
-                    }
-                    <div class="card-body d-flex flex-column justify-content-center">
-                        <h5 class="card-title text-center fs-5 mb-2"
-                            [ngClass]="item.title.length > 40 ? 'fs-5' : 'fs-4'">
-                            {{item.title}}</h5>
-                        <p class="card-text text-center">{{item.release_date| date:"mediumDate"}}</p>
-                        <p class="card-text text-center">{{item.media_type}}</p>
-                    </div>
-                    <div class="rating">{{getRatingPercentaje(item.vote_average) | number:'1.0-0'}}%</div>
+            <div class="card movie-card d-flex flex-row ">
+                @if(item.poster_path) {
+                <img class="img-card" [src]="getImagen(item.poster_path)" alt="{{item.title}}">
+                }@else {
+                <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
+                }
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <h5 class="card-title text-center fs-5 mb-2"
+                        [ngClass]="item.title.length > 40 ? 'fs-5' : 'fs-4'">
+                        {{item.title}}</h5>
+                    <p class="card-text text-center">{{item.release_date| date:"mediumDate"}}</p>
+                    <p class="card-text text-center">{{item.media_type}}</p>
                 </div>
+                <div class="rating">{{getRatingPercentaje(item.vote_average) | number:'1.0-0'}}%</div>
+            </div>
         </div>
         }
-           
+
     </div>
 </div>
-
