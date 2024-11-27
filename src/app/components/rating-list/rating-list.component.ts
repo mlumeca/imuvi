@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Movie } from '../../models/movie-list.interface';
 import { Serie } from '../../models/series-list.interface';
+import { RateService } from '../../services/rate.service';
 
 @Component({
   selector: 'app-rating-list',
@@ -10,7 +11,10 @@ import { Serie } from '../../models/series-list.interface';
 })
 export class RatingListComponent implements OnInit {
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService,
+    private rateService: RateService
+
+  ) {}
 
   movieList: Movie [] = [];
   serieList: Serie [] = [];
@@ -39,6 +43,20 @@ export class RatingListComponent implements OnInit {
   getRatingPercentaje(number: number) {
     return number * 10;
   }
+
+  eliminarValoracion(id: number, tipo: 'movie' | 'serie'): void {
+    if (tipo === 'movie') {
+        this.rateService.deleteMovieRating(id).subscribe(response => {
+            this.movieList = this.movieList.filter(movie => movie.id !== id);
+        });
+    } else {
+        this.rateService.deleteSerieRating(id).subscribe(response => {
+            this.serieList = this.serieList.filter(serie => serie.id !== id);
+        });
+    }
+  }
+
+  
   
 
 

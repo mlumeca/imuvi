@@ -148,3 +148,9 @@ img {
     overflow: hidden;
     color: #ffc107;
 }
+
+.btn-dark {
+  background-color: #212529; 
+  border-radius: 10px;
+}
+

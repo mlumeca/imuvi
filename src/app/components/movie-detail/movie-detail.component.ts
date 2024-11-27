@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Buy27, Cast, Crew, MovieCreditResponse, MovieDetailResponse, MovieMediaResponse } from '../../models/movie-detail.interface';
 import { ActivatedRoute } from '@angular/router';
+import { RateService } from '../../services/rate.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -20,30 +21,40 @@ export class MovieDetailComponent implements OnInit {
 
   imgMedia: MovieMediaResponse | undefined;
 
-  constructor(private movieService: MovieService, private route: ActivatedRoute) { }
+  constructor(
+    private movieService: MovieService, 
+    private route: ActivatedRoute,
+    private rateService: RateService
+  ) { }
 
   ngOnInit(): void {
     this.movieId = this.route.snapshot.paramMap.get('id');
 
-    this.movieService.getOneMovie(this.movieId!).subscribe(response => {
-      this.oneMovie = response;
-    })
+      this.rateService.getMovieRating(this.movieId!).subscribe(response => {
+            this.rating = response.rated.value / 2;
+        
+      })
 
-    this.movieService.getMovieCredits(this.movieId!).subscribe(response => {
-      this.cast = response.cast;
-    })
+      this.movieService.getOneMovie(this.movieId!).subscribe(response => {
+        this.oneMovie = response;
+      })
 
-    this.movieService.getMovieCredits(this.movieId!).subscribe(response => {
-      this.crew = response.crew;
-    })
+      this.movieService.getMovieCredits(this.movieId!).subscribe(response => {
+        this.cast = response.cast;
+      })
 
-    this.movieService.getPlatforms(this.movieId!).subscribe(response => {
-      this.buyPlatform = response.results.ES.buy;
-    })
+      this.movieService.getMovieCredits(this.movieId!).subscribe(response => {
+        this.crew = response.crew;
+      })
 
-    this.movieService.getMedia(this.movieId!).subscribe(response => {
-      this.imgMedia = response;
-    })
+      this.movieService.getPlatforms(this.movieId!).subscribe(response => {
+        this.buyPlatform = response.results.ES.buy;
+      })
+
+      this.movieService.getMedia(this.movieId!).subscribe(response => {
+        this.imgMedia = response;
+      })
+    
   }
 
 
@@ -63,5 +74,14 @@ export class MovieDetailComponent implements OnInit {
     return this.oneMovie!.runtime / 60;
   }
 
-  
+  onRateChange(rating: number) {
+      this.rateService.rateMovie(this.movieId!, rating).subscribe({});
+      this.rating = rating;
+  }
+
+  eliminarValoracion(): void {
+    this.rateService.deleteMovieRating(Number(this.movieId)).subscribe(response => {
+        this.rating = 0;
+    });
+  }
 }

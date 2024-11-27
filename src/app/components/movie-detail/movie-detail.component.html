@@ -11,8 +11,6 @@
                             <img src="http://placehold.co/250x450" alt="sin imagen">
                             }
                         </div>
-                       
-
                         <div class="col-9 ms-5 mt-1">
                             <div>
                                 <h1 class="title">{{oneMovie!.title}}</h1>
@@ -38,7 +36,21 @@
                                 </p>
                                 <div class="col-3">
                                     <p class="mb-0">Tu Valoración</p>
-                                    <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"/>
+                                    <div class="d-flex align-items-center">
+                                        <ngb-rating 
+                                            class="rating-star" 
+                                            [(rate)]="rating" 
+                                            [max]="5" 
+                                            [starTemplate]="t"
+                                            (rateChange)="onRateChange($event)" />
+                                        
+                                            <button class="btn btn-dark ms-2 btn-sm" 
+                                                    (click)="eliminarValoracion()"
+                                                    title="Eliminar valoración">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>

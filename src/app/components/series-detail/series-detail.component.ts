@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Cast, Crew, Episode, Flatrate25, Season, SeriesCreditResponse, SeriesDetailResponse, SeriesMediaResponse } from '../../models/series-detail.interface';
 import { SerieService } from '../../services/serie.service';
+import { RateService } from '../../services/rate.service';
 
 @Component({
   selector: 'app-series-detail',
@@ -17,11 +18,17 @@ export class SeriesDetailComponent implements OnInit {
   buyPlatform: Flatrate25[] = [];
   imgMedia: SeriesMediaResponse | undefined;
   seasons: Season[] = [];
+  rating = 0;
 
-  constructor(private seriesService: SerieService, private route: ActivatedRoute) { }
+  constructor(private seriesService: SerieService, private route: ActivatedRoute, private rateService: RateService) { }
 
   ngOnInit(): void {
     this.seriesId = this.route.snapshot.paramMap.get('id');
+
+    this.rateService.getSerieRating(this.seriesId!).subscribe(response => {
+      this.rating = response.rated.value / 2;
+  
+})
 
     this.seriesService.getOneSeries(this.seriesId!).subscribe(response => {
       this.oneSeries = response;
@@ -64,4 +71,16 @@ export class SeriesDetailComponent implements OnInit {
     return 'https://media.themoviedb.org/t/p/w130_and_h195_bestv2' + url;
   }
 
+  onRateChange(rating: number) {
+    if (this.seriesId) {
+      this.rateService.rateSerie(this.seriesId, rating).subscribe({});
+      this.rating = rating
+    }
+  }
+
+  eliminarValoracion(): void {
+    this.rateService.deleteSerieRating(Number(this.seriesId)).subscribe(response => {
+        this.rating = 0;
+    });
+  }
 }
