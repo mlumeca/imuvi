@@ -8,6 +8,8 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
+import { ListsResponse } from '../models/lists.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +41,7 @@ export class AccountService {
   getUserLists(userId: number): Observable<UserListsResponse> {
     const sessionId = localStorage.getItem('session_id');
     return this.http.get<UserListsResponse>(`https://api.themoviedb.org/3/account/${userId}/lists?api_key=${API_KEY}&session_id=${sessionId}`
-  );
+    );
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
@@ -48,13 +50,13 @@ export class AccountService {
       description: listDesc
     });
   }
-  
-  getListDetailById(listId:number): Observable<any> {
+
+  getListDetailById(listId: number): Observable<any> {
     return this.http.get(`https://api.themoviedb.org/3/list/${listId}?api_key=${API_KEY}`
     );
   }
-  
-  
+
+
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(
