@@ -25,9 +25,8 @@ export class ModalListComponent implements OnInit {
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
-    this.listService.getLists(this.account_id).subscribe(response => {
-      this.lists = response.results;
-    });
+    this.fillList();
+
   }
 
 
@@ -46,9 +45,10 @@ export class ModalListComponent implements OnInit {
         };
 
         this.userLists.push(newList);
-
+        this.fillList();
         this.listName = '';
         this.listDesc = '';
+
       });
 
       alert(`Lista "${this.listName}" creada.`);
@@ -60,7 +60,19 @@ export class ModalListComponent implements OnInit {
   }
 
   addMoviList(): void {
-    this.listService.addMovieToList(this.listId!, this.movieId)
-    this.activeModal.close();
+    if (this.listId && this.movieId) {
+      this.listService.addMovieToList(this.listId, this.movieId).subscribe((response:
+        StatusResponse) => {
+        this.activeModal.close();
+      })
+    }
+  }
+
+  fillList() {
+    this.listService.getLists(this.account_id).subscribe(response => {
+      this.lists = response.results;
+    });
   }
 }
+
+

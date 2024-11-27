@@ -38,8 +38,16 @@
                     <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
                 </div>
             </a>
+
         </div>
         }
+        <ngb-pagination
+            class="d-flex justify-content-center"
+            [collectionSize]="totalPages * 20"
+            [(page)]="moviePage"
+            (pageChange)="onPageMovies($event)"
+            [boundaryLinks]="true">
+        </ngb-pagination>
         }
 
         <h5 (click)="showSeries = !showSeries">
@@ -68,12 +76,15 @@
             </a>
         </div>
         }
+        <ngb-pagination
+            class="d-flex justify-content-center"
+            [collectionSize]="totalPages * 20"
+            [(page)]="seriesPage"
+            (pageChange)="onPageSeries($event)"
+            [boundaryLinks]="true">
+        </ngb-pagination>
         }
-    </div>
-</div>
 
-<ng-template #t let-fill="fill">
-    <span class="star" [class.full]="fill === 100">
-        <span class="half" [style.width.%]="fill">★</span>★
-    </span>
-</ng-template>
+    </div>
+
+</div>

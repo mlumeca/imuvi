@@ -7,9 +7,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <p class="me-4">{{totalCount}} elementos en la lista</p> | <p
-                        class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de
-                        valoración media</p>
+                    <p class="me-4">{{totalCount}} elementos en la lista</p> |
+                    <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
                 </div>
             </div>
         </div>
@@ -29,10 +28,16 @@
                     <p class="card-text text-center">{{item.release_date| date:"mediumDate"}}</p>
                     <p class="card-text text-center">{{item.media_type}}</p>
                 </div>
-                <div class="rating">{{getRatingPercentaje(item.vote_average) | number:'1.0-0'}}%</div>
             </div>
+
         </div>
         }
-
+        <ngb-pagination
+            class="d-flex justify-content-center mt-4"
+            [collectionSize]="totalItems"
+            [(page)]="currentPage"
+            (pageChange)="changePage($event)"
+            [boundaryLinks]="true">
+        </ngb-pagination>
     </div>
 </div>

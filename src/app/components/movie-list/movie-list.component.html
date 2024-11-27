@@ -76,7 +76,7 @@
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                             <div ngbDropdown class="dropdown-submenu dropdown-toggle-split">
                                 <button type="button" ngbDropdownToggle
-                                    class="btn dropdown-toggle diseyoOpciones text-light ms-1" (click)="openModal(movie.id)">
+                                    class="btn dropdown-toggle diseyoOpciones text-light ms-1" (click)="openModal(movie.id!)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-list-ul me-1" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
@@ -93,7 +93,7 @@
                                 </svg>
                                 Favoritos
                             </button>
-                            <button ngbDropdownItem class="diseyoOpciones text-light ms-1">
+                            <button ngbDropdownItem class="diseyoOpciones text-light ms-1" (click)="addMoviWatchList(movie.id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-bookmark me-1" viewBox="0 0 16 16">
                                     <path

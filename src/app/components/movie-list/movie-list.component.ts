@@ -3,6 +3,8 @@ import { Movie, MovieGenre } from '../../models/movie-list.interface';
 import { MovieService } from '../../services/movie.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
+import { AccountService } from '../../services/account.service';
+import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-movie-list',
@@ -21,10 +23,7 @@ export class MovieListComponent implements OnInit {
   listName: string = '';
   listDesc: string = '';
   modalRef: NgbModalRef | undefined;
-
-
-  constructor(private movieService: MovieService, private modalService: NgbModal) { }
-
+  account_id: string = '';
 
   selectedGenres: number[] = [];
 
@@ -36,6 +35,7 @@ export class MovieListComponent implements OnInit {
   releaseDateFrom: string = '';
   releaseDateTo: string = '';
 
+  constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService) { }
   ngOnInit(): void {
     this.newPage();
     this.movieService.getMovieGenre().subscribe(response => {
@@ -125,6 +125,13 @@ export class MovieListComponent implements OnInit {
     } else {
       this.movieListFilt = [...this.movieList];
     }
+  }
+
+  addMoviWatchList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addMovieToWatchList(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('Movie added to watchlist:', response); }
+    )
   }
 
 }

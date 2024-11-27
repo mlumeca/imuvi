@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { List, ListsResponse } from '../../models/lists.interfaces';
+import { AccountService } from '../../services/account.service';
 import { ListService } from '../../services/list.service';
 
 @Component({
