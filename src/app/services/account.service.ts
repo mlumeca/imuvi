@@ -8,6 +8,8 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
+import { ListsResponse } from '../models/lists.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
