@@ -22,17 +22,17 @@ export class AccountService {
     );
   }
 
-  getRatedMovies(account_id: string): Observable<MovieListResponse> {
+  getRatedMovies(account_id: string, page: number = 1): Observable<MovieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<MovieListResponse>(
-      `${environment.apiBaseUrl}/account/${account_id}/rated/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
+      `${environment.apiBaseUrl}/account/${account_id}/rated/movies?api_key=${environment.apiKey}&session_id=${sessionId}&page=${page}`
     );
   }
 
-  getRatedSeries(account_id: string): Observable<SerieListResponse> {
+  getRatedSeries(account_id: string, page: number = 1): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(
-      `${environment.apiBaseUrl}/account/${account_id}/rated/tv?api_key=${environment.apiKey}&session_id=${sessionId}`
+      `${environment.apiBaseUrl}/account/${account_id}/rated/tv?api_key=${environment.apiKey}&session_id=${sessionId}&page=${page}`
     );
   }
 
