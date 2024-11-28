@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { List, ListsResponse } from '../../models/lists.interfaces';
-import { ListService } from '../../services/list.service';
 import { AccountService } from '../../services/account.service';
+import { ListService } from '../../services/list.service';
 import { UserList } from '../../models/user-lists.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 

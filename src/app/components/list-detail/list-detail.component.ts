@@ -20,25 +20,34 @@ export class ListDetailComponent implements OnInit {
   moviesCount: number = 0;
   seriesCount: number = 0;
   totalCount: number = 0;
+  totalItems: number = 0;
+  currentPage: number = 1;
+  totalPages: number = 0;
   averageRating: number = 0;
   closeResult = '';
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
+
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('id');
-    this.listService.getOneList(this.listId!).subscribe(response => {
-      this.lists = response;
-    })
+    this.loadItems();
+  }
 
-    this.listId = this.route.snapshot.paramMap.get('id');
-    if (this.listId) {
-      this.listService.getOneList(this.listId).subscribe((response) => {
-        this.lists = response;
-        this.item = response.items;
-        this.calculateTotalCount();
-        this.calculateAverageRating();
-      });
+  loadItems(): void {
+    this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
+      this.item = response.items;
+      this.totalItems = response.item_count;
+      this.totalCount = response.item_count;
+      this.totalPages = Math.ceil(this.totalItems / 20);
+      this.calculateAverageRating();
+    });
+  }
+
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadItems();
     }
   }
 
@@ -54,8 +63,13 @@ export class ListDetailComponent implements OnInit {
   }
 
   calculateAverageRating(): void {
-    const totalRating = this.item.reduce((sum, item) => sum + item.vote_average, 0);
-    this.averageRating = this.item.length > 0 ? totalRating / this.item.length : 0;
+    if (!this.item || this.item.length === 0) {
+      this.averageRating = 0;
+      return;
+    }
+
+    let totalRating = this.item.reduce((sum, movie) => sum + movie.vote_average, 0);
+    this.averageRating = totalRating / this.item.length;
   }
 
   deleteList(listId: string) {

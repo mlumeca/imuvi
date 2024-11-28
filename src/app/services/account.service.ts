@@ -6,7 +6,7 @@ import { UserListsResponse } from '../models/user-lists.interface';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
-import { ListsResponse } from '../models/lists.interfaces';
+import { StatusResponse } from '../models/status-list.interfaces';
 import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
@@ -52,6 +52,7 @@ export class AccountService {
     return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
 
+ 
   deleteUserList(listId: string): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
@@ -72,11 +73,51 @@ export class AccountService {
     );
   }
 
+  getWatchListTvByPage(account_id: string, page: number): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/watchlist/tv?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
   getWatchListhMovie(account_id: string): Observable<MovieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<MovieListResponse>(
       `${environment.apiBaseUrl}/account/${account_id}/watchlist/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
     );
+  }
+
+  getWatchListhMovieByPage(account_id: string, page: number): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/watchlist/movies?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
+  addMovieToWatchList(account_id: string, idMovie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "movie",
+      media_id: idMovie,
+      watchlist: true
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
+  }
+
+  addSerieToWatchList(account_id: string, idSerie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "tv",
+      media_id: idSerie,
+      watchlist: true
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
   }
 
 }
