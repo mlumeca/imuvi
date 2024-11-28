@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Movie } from '../../models/movie-list.interface';
 import { Serie } from '../../models/series-list.interface';
 import { RateService } from '../../services/rate.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-rating-list',
@@ -12,7 +13,9 @@ import { RateService } from '../../services/rate.service';
 export class RatingListComponent implements OnInit {
 
   constructor(private accountService: AccountService,
-    private rateService: RateService
+    private rateService: RateService,
+    private modalService: NgbModal
+
 
   ) {}
 
@@ -21,6 +24,7 @@ export class RatingListComponent implements OnInit {
   account_id: string = '';
   showMovies: boolean = true;
   showSeries: boolean = true;
+  closeResult = '';
 
 
   ngOnInit(): void {
@@ -56,7 +60,14 @@ export class RatingListComponent implements OnInit {
     }
   }
 
-  
+  open(content: TemplateRef<any>) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+
   
 
 
