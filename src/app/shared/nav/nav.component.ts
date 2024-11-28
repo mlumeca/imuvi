@@ -13,10 +13,10 @@ import { Language } from '../../models/configuration.interfaces';
 export class NavComponent {
   userName = '';
   userPhoto = '';
-  langua: Language[] = [];
+  language: Language[] = [];
 
   constructor(private authService: AuthService,
-    private accountService: AccountService, private configuration: ConfigurationService
+    private accountService: AccountService, private configurationService: ConfigurationService
   ) { }
 
   ngOnInit(): void {
@@ -30,9 +30,9 @@ export class NavComponent {
       localStorage.setItem('account_id', response.id.toString());
     });
 
-    this.configuration.getLanguages().subscribe(res => {
+    this.configurationService.getLanguages().subscribe(res => {
       console.log('Idiomas obtenidos:', res);
-      this.langua = res;
+      this.language = res;
     });
   }
 
@@ -53,6 +53,17 @@ export class NavComponent {
     localStorage.clear();
     window.location.href = 'http://localhost:4200';
   }
+
+
+  changeLanguage(event: Event): void {
+    const target = event.target as HTMLSelectElement;  // Hacemos un casting explícito
+    const lang = target.value;  // Ahora podemos acceder a 'value'
+    
+    this.configurationService.setLanguage(lang);  // Cambiar el idioma
+    location.reload();  // Recargar la página
+  }
+
+  
 
 }
 
