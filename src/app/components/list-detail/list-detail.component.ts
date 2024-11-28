@@ -25,6 +25,7 @@ export class ListDetailComponent implements OnInit {
   totalPages: number = 0;
   averageRating: number = 0;
   closeResult = '';
+  idElemento: number= 0;
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
@@ -97,6 +98,27 @@ export class ListDetailComponent implements OnInit {
 			},
 		);
 	}
+
+  openModal(content: TemplateRef<any>, id: number) {
+    this.idElemento = id;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+  
+
+  removeItem(idMedia: number): void {
+      this.listService.removeMovieToList(listId, idMedia).subscribe({});
+      this.item = this.item.filter(movie => movie.id == idMedia);
+
+    
+  }
+  ConfirmDelete() {
+      this.removeItem(this.listId ,this.idElemento);
+      this.modalService.dismissAll(); 
+  }
 
   
     

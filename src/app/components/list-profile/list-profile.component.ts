@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { Movie } from '../../models/movie-list.interface';
 import { AccountService } from '../../services/account.service';
 import { Serie } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 import { MovieService } from '../../services/movie.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-profile',
@@ -12,7 +13,7 @@ import { MovieService } from '../../services/movie.service';
 })
 export class ListProfileComponent {
 
-  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService) { }
+  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService,   private modalService: NgbModal) { }
 
   movieList: Movie[] = [];
   serieList: Serie[] = [];
@@ -26,6 +27,9 @@ export class ListProfileComponent {
   moviePage = 1;
   seriesPage = 1;
   totalPages = 1;
+  idElemento: number= 0;
+  tipoElemento: string = '';
+  closeResult = '';
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -96,7 +100,7 @@ export class ListProfileComponent {
     this.calculateAverageRating();
   }
 
-  removeItem(id: number, tipo: 'movie' | 'serie'): void {
+  removeItem(id: number, tipo: string): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     if (tipo === 'movie') {
         this.accountService.removeMovieToWatchList(this.account_id, id).subscribe({});
@@ -108,4 +112,20 @@ export class ListProfileComponent {
 
     }
   }
+
+  openModal(content: TemplateRef<any>, id: number, tipo: string) {
+    this.idElemento = id;
+    this.tipoElemento = tipo;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+
+  ConfirmDelete() {
+      this.removeItem(this.idElemento, this.tipoElemento);
+      this.modalService.dismissAll(); 
+  }
+
 }

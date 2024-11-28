@@ -79,3 +79,13 @@ h5, p {
     border: none;
 
 }
+
+
+    
+.fondoDatos {
+    background-color: #383838;
+    border-radius: 20px;
+    width: 100%;
+    
+    margin-top: 20px;
+}
