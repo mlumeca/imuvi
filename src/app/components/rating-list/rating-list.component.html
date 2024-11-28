@@ -34,6 +34,13 @@
         }
         }
 
+        <ngb-pagination class="d-flex justify-content-center"
+        [collectionSize]="totalPagesMovie*10"
+        (pageChange)="onPageMovie($event)"
+        [(page)]="pageMovie"
+        [maxSize]="10"
+        [boundaryLinks]="true">
+    </ngb-pagination>
     </div>
     <div class="row">
         <h4 (click)="showSeries = !showSeries">
@@ -66,6 +73,13 @@
         </div>
         }
         }
+        <ngb-pagination class="d-flex justify-content-center"
+        [collectionSize]="totalPagesSerie" 
+        (pageChange)="onPageSerie($event)"
+        [(page)]="pageSerie"
+        [maxSize]="10"
+        [boundaryLinks]="true">
+        </ngb-pagination>
     </div>
 </div>
 

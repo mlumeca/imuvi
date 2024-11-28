@@ -4,6 +4,7 @@ import { Movie } from '../../models/movie-list.interface';
 import { Serie } from '../../models/series-list.interface';
 import { RateService } from '../../services/rate.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-rating-list',
@@ -16,13 +17,12 @@ export class RatingListComponent implements OnInit {
 
   constructor(private accountService: AccountService,
     private rateService: RateService,
-    private modalService: NgbModal
-
-
+    private modalService: NgbModal,
   ) {}
 
   movieList: Movie [] = [];
   serieList: Serie [] = [];
+  movieListFilt: Movie[] = [];
   idElemento: number= 0;
   tipoElemento: string = '';
   account_id: string = '';
@@ -30,16 +30,23 @@ export class RatingListComponent implements OnInit {
   showSeries: boolean = true;
   closeResult = '';
 
+  pageMovie = 1;
+  totalPagesMovie = 1;
+
+  pageSerie = 1;
+  totalPagesSerie = 1;
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
           
-      this.accountService.getRatedMovies(this.account_id).subscribe(response => {
+      this.accountService.getRatedMovies(this.account_id, 1).subscribe(response => {
         this.movieList = response.results;
+        this.totalPagesMovie = response.total_pages;
       });
       
-      this.accountService.getRatedSeries(this.account_id).subscribe(response => {
+      this.accountService.getRatedSeries(this.account_id, 1).subscribe(response => {
         this.serieList = response.results;
+        this.totalPagesSerie = response.total_pages;
       });
   }
 
@@ -79,9 +86,28 @@ export class RatingListComponent implements OnInit {
     }
   }
 
+  onPageMovie(newPage: number): void {
+    this.pageMovie = newPage;
+    this.newPageMovie();
+  }
 
-  
+  onPageSerie(newPage: number): void {
+    this.pageSerie = newPage;
+    this.newPageSerie();
+  }
 
+  newPageMovie(): void {
+    this.accountService.getRatedMovies(this.account_id, this.pageMovie).subscribe(response => {
+      this.movieList = response.results;
+      this.totalPagesMovie = response.total_pages;
+    });
+  }
 
+  newPageSerie(): void {
+    this.accountService.getRatedSeries(this.account_id, this.pageSerie).subscribe(response => {
+      this.serieList = response.results;
+      this.totalPagesSerie = response.total_pages;
+    });
+  }
 
 }
