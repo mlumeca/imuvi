@@ -26,7 +26,7 @@
                     </div>
                     <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
                 </a>
-                <button class="btn btn-dark btn-sm delete-rating" (click)="eliminarValoracion(movie.id, 'movie')">
+                <button class="btn btn-dark btn-sm delete-rating" (click)="openModal(delete, movie.id, 'movie')">
                     <i class="bi bi-x"></i>
                 </button>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
                 </a>
-                <button class="btn btn-dark btn-sm delete-rating" (click)="eliminarValoracion(serie.id, 'serie')">
+                <button class="btn btn-dark btn-sm delete-rating" (click)="openModal(delete,serie.id, 'serie')">
                     <i class="bi bi-x"></i>
                 </button>
             </div>
@@ -85,11 +85,10 @@
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar esta valoración?
                 <div class="d-flex justify-content-end mt-3">
-                   
-                    <button type="button" class="btn btn-danger" (click)="deleteList(listId!)" data-bs-dismiss="modal"> Eliminar </button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
-           
         </div>
     </div>
 </ng-template>
+

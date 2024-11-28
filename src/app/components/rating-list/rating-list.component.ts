@@ -12,6 +12,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RatingListComponent implements OnInit {
 
+
+
   constructor(private accountService: AccountService,
     private rateService: RateService,
     private modalService: NgbModal
@@ -21,6 +23,8 @@ export class RatingListComponent implements OnInit {
 
   movieList: Movie [] = [];
   serieList: Serie [] = [];
+  idElemento: number= 0;
+  tipoElemento: string = '';
   account_id: string = '';
   showMovies: boolean = true;
   showSeries: boolean = true;
@@ -48,7 +52,22 @@ export class RatingListComponent implements OnInit {
     return number * 10;
   }
 
-  eliminarValoracion(id: number, tipo: 'movie' | 'serie'): void {
+  openModal(content: TemplateRef<any>, id: number, tipo: string) {
+    this.idElemento = id;
+    this.tipoElemento = tipo;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+
+  ConfirmDelete() {
+      this.deleteRating(this.idElemento, this.tipoElemento);
+      this.modalService.dismissAll(); 
+  }
+
+  deleteRating(id: number, tipo: string) {
     if (tipo === 'movie') {
         this.rateService.deleteMovieRating(id).subscribe({});
             this.movieList = this.movieList.filter(movie => movie.id !== id);
@@ -60,13 +79,6 @@ export class RatingListComponent implements OnInit {
     }
   }
 
-  open(content: TemplateRef<any>) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-      (result) => {
-        this.closeResult = `Closed with: ${result}`;
-      },
-    );
-  }
 
   
 

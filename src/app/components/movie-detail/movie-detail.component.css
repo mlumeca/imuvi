@@ -154,3 +154,10 @@ img {
   border-radius: 10px;
 }
 
+.modal-content{
+    background-color: #191919;
+    color: white;
+    border: none;
+
+}
+

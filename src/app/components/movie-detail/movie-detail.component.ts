@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MovieService } from '../../services/movie.service';
 import { Buy27, Cast, Crew, MovieCreditResponse, MovieDetailResponse, MovieMediaResponse } from '../../models/movie-detail.interface';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from '../../services/rate.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-movie-detail',
@@ -21,10 +22,13 @@ export class MovieDetailComponent implements OnInit {
 
   imgMedia: MovieMediaResponse | undefined;
 
+  closeResult = '';
+
   constructor(
     private movieService: MovieService, 
     private route: ActivatedRoute,
-    private rateService: RateService
+    private rateService: RateService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -79,8 +83,21 @@ export class MovieDetailComponent implements OnInit {
     this.rating = rating;
   }
 
-  eliminarValoracion(): void {
+  deleteRating(): void {
     this.rateService.deleteMovieRating(Number(this.movieId)).subscribe({});
         this.rating = 0;
   }
+
+  openModal(content: TemplateRef<any>) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+  ConfirmDelete() {
+      this.deleteRating();
+      this.modalService.dismissAll(); 
+  }
+
 }

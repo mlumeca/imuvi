@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Cast,
@@ -12,6 +12,7 @@ import {
 } from '../../models/series-detail.interface';
 import { SerieService } from '../../services/serie.service';
 import { RateService } from '../../services/rate.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-series-detail',
@@ -28,11 +29,14 @@ export class SeriesDetailComponent implements OnInit {
   imgMedia: SeriesMediaResponse | undefined;
   seasons: Season[] = [];
   rating = 0;
+  closeResult = '';
+
 
   constructor(
     private seriesService: SerieService,
     private route: ActivatedRoute,
-    private rateService: RateService
+    private rateService: RateService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -88,8 +92,21 @@ export class SeriesDetailComponent implements OnInit {
     this.rating = rating;
   }
 
-  eliminarValoracion(): void {
+  deleteRating(): void {
     this.rateService.deleteSerieRating(Number(this.seriesId)).subscribe({});
     this.rating = 0;
   }
+
+  openModal(content: TemplateRef<any>) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
+  ConfirmDelete() {
+      this.deleteRating();
+      this.modalService.dismissAll(); 
+  }
+
 }
