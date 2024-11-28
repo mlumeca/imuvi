@@ -3,6 +3,8 @@ import { Serie, SerieGenre } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
+import { AccountService } from '../../services/account.service';
+import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-series-list',
@@ -20,10 +22,8 @@ export class SeriesListComponent {
   listDesc: string = '';
   modalRef: NgbModalRef | undefined;
 
-
-  constructor(private serieService: SerieService,  private modalService: NgbModal) {}
-
   selectedGenres: number[] = [];
+  account_id: string = '';
 
   minRating: number = 0;
   maxRating: number = 10;
@@ -32,6 +32,8 @@ export class SeriesListComponent {
 
   firstAirDateFrom: string = '';
   firstAirDateTo: string = '';
+
+  constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService) { }
 
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class SeriesListComponent {
   }
 
   openModal() {
-    this.modalRef = this.modalService.open(ModalListComponent);   
+    this.modalRef = this.modalService.open(ModalListComponent);
   }
 
   filterByGenre(): void {
@@ -121,6 +123,13 @@ export class SeriesListComponent {
     } else {
       this.serieList = [...this.originalSerieList];
     }
+  }
+
+  addTVWatchList(serieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
+      StatusResponse) => { console.log('sERIE added to watchlist:', response); }
+    )
   }
 
 }
