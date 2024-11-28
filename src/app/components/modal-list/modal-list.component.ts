@@ -56,10 +56,10 @@ export class ModalListComponent implements OnInit {
 
       });
 
-      alert(`Lista "${this.listName}" creada.`);
+      
 
     } else {
-      alert(`Inicie sesión`)
+     
     }
     
   }

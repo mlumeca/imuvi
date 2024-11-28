@@ -74,3 +74,24 @@ h5, p {
     font-size: 1rem;
 }
 
+ngb-pagination ::ng-deep a {
+    background-color: #303030 !important;
+    border-color: rgb(14, 14, 14) !important;
+    color: white !important;
+
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+}
+  
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+  
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+  
+

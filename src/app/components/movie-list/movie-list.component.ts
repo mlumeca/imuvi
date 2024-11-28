@@ -34,6 +34,7 @@ export class MovieListComponent implements OnInit {
 
   releaseDateFrom: string = '';
   releaseDateTo: string = '';
+  
 
   constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService) { }
   ngOnInit(): void {
@@ -132,6 +133,11 @@ export class MovieListComponent implements OnInit {
     this.accountService.addMovieToWatchList(this.account_id, movieId).subscribe((response:
       StatusResponse) => { console.log('Movie added to watchlist:', response); }
     )
+
+  
   }
+
+  
+  
 
 }

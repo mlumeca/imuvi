@@ -4,7 +4,7 @@ import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserList } from '../../models/user-lists.interface';
+
 
 @Component({
   selector: 'app-list-detail',
@@ -32,15 +32,17 @@ export class ListDetailComponent implements OnInit {
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('id');
     this.loadItems();
+
   }
 
   loadItems(): void {
     this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
+      this.lists = response;
       this.item = response.items;
       this.totalItems = response.item_count;
       this.totalCount = response.item_count;
       this.totalPages = Math.ceil(this.totalItems / 20);
-      this.calculateAverageRating();
+      this.calculateAverageRating()
     });
   }
 
@@ -54,6 +56,7 @@ export class ListDetailComponent implements OnInit {
   getImagen(url: string): string {
     return 'https://image.tmdb.org/t/p/w500' + url;
   }
+
   getRatingPercentaje(number: number) {
     return number * 10;
   }
@@ -73,21 +76,15 @@ export class ListDetailComponent implements OnInit {
   }
 
   deleteList(listId: string) {
-    this.accountService.deleteUserList(listId).subscribe(response => {
-        alert('Lista eliminada.');
-    });
+    this.accountService.deleteUserList(listId).subscribe;
   }
 
   updateList(listId:string, listName: string, listDesc: string) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
-
-      alert('Lista actualizada.');
-      console.log(response)
     });
     
-
   }
 
   open(content: TemplateRef<any>) {
