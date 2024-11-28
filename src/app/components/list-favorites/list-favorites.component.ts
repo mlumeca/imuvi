@@ -5,6 +5,7 @@ import { AccountService } from '../../services/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from '../../models/list-detail.interfaces';
 import { ListService } from '../../services/list.service';
+import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-list-favorites',
@@ -35,8 +36,6 @@ export class ListFavoritesComponent {
   pageSeries: number = 1;
   totalPagesMovie: number = 1;
   totalPagesSerie: number = 1;
-  listId: string | null = '';
-
   currentSeriesPage: number = 1;
   currentMoviesPage: number = 1;
   totalPages: number = 1;
@@ -51,6 +50,19 @@ export class ListFavoritesComponent {
 
     this.accountService.getFavSeries(this.account_id).subscribe(response => {
       this.serieList = response.results;
+    });
+
+    this.loadItems();
+  }
+
+  loadItems(): void {
+    this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
+      this.lists = response;
+      this.item = response.items;
+      this.totalItems = response.item_count;
+      this.totalCount = response.item_count;
+      this.totalPages = Math.ceil(this.totalItems / 20);
+      this.calculateAverageRating();
     });
   }
 
@@ -137,11 +149,6 @@ export class ListFavoritesComponent {
     );
   }
 
-  confirmDelete() {
-    this.deleteFavorite(this.idElemento, this.tipoElemento);
-    this.modalService.dismissAll();
-  }
-
   open(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
@@ -150,15 +157,27 @@ export class ListFavoritesComponent {
     );
   }
 
-  deleteFavorite(id: number, tipo: string): void {
-    if (tipo === 'movie') {
-      this.accountService.deleteFavorite(this.account_id, false).subscribe({});
-      this.movieList = this.movieList.filter(movie => movie.id !== id);
+  deleteMovieFromList(movieId: number) {
+    this.confirmDelete("movie", movieId)
+  }
 
+  deleteSerieFromList(serieId: number) {
+    this.confirmDelete("tv", serieId)
+  }
+
+  confirmDelete(mediaType: "movie" | "tv", idMovieSerie: number) {
+    if (mediaType == "movie") {
+      this.account_id = localStorage.getItem('account_id') ?? '';
+      this.accountService.deleteFavorite(this.account_id, idMovieSerie, "movie").subscribe((response:
+        StatusResponse) => { console.log('Movie deleted from favorites:', response); }
+      )
     } else {
-      this.accountService.deleteFavorite(this.account_id, false).subscribe({});
-      this.serieList = this.serieList.filter(serie => serie.id !== id);
-
+      this.account_id = localStorage.getItem('account_id') ?? '';
+      this.accountService.deleteFavorite(this.account_id, idMovieSerie, "tv").subscribe((response:
+        StatusResponse) => { console.log('Serie deleted from favorites:', response); }
+      )
     }
+
+    this.modalService.dismissAll();
   }
 }

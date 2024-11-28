@@ -41,6 +41,7 @@ export class ListDetailComponent implements OnInit {
 
   loadItems(): void {
     this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
+      this.lists = response;
       this.item = response.items;
       this.totalItems = response.item_count;
       this.totalCount = response.item_count;

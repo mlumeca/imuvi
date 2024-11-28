@@ -126,11 +126,17 @@ export class AccountService {
       })
   }
 
-  deleteFavorite(
-    mediaId: string,
-    favorite: boolean
-  ): Observable<any> {
-    return this.deleteFavorite(mediaId, false);
+  deleteFavorite(account_id: string, idSerieMovie: number, mediaType: "movie" | "tv"): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: mediaType,
+      media_id: idSerieMovie,
+      favorite: false
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
   }
 
   //Watchlist
