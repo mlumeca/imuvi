@@ -161,3 +161,19 @@ img {
 
 }
 
+.rating {
+    position: absolute;
+    top: 97%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #181818;
+    color: #ffffff;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #303030;
+}
+

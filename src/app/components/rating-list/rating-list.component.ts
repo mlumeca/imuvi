@@ -12,14 +12,6 @@ import { MovieService } from '../../services/movie.service';
   styleUrl: './rating-list.component.css',
 })
 export class RatingListComponent implements OnInit {
-
-
-
-  constructor(private accountService: AccountService,
-    private rateService: RateService,
-    private modalService: NgbModal,
-  ) {}
-
   movieList: Movie [] = [];
   serieList: Serie [] = [];
   idElemento: number= 0;
@@ -34,6 +26,14 @@ export class RatingListComponent implements OnInit {
 
   pageSerie = 1;
   totalPagesSerie = 1;
+
+  alertMessage: string | null = null;
+  alertType: string = '';
+
+  constructor(private accountService: AccountService,
+    private rateService: RateService,
+    private modalService: NgbModal,
+  ) {}
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -70,15 +70,18 @@ export class RatingListComponent implements OnInit {
     );
   }
 
-  ConfirmDelete() {
+  ConfirmDelete(modal: any) {
       this.deleteRating(this.idElemento, this.tipoElemento);
       this.modalService.dismissAll(); 
+      this.showAlert('Item eliminado.', 'success');
+      modal.close();
   }
 
   deleteRating(id: number, tipo: string) {
     if (tipo === 'movie') {
         this.rateService.deleteMovieRating(id).subscribe({});
             this.movieList = this.movieList.filter(movie => movie.id !== id);
+            
 
     } else {
         this.rateService.deleteSerieRating(id).subscribe({});
@@ -111,6 +114,14 @@ export class RatingListComponent implements OnInit {
       this.serieList = response.results;
       this.totalPagesSerie = response.total_pages;
     });
+  }
+
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

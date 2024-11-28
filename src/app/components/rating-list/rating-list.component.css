@@ -75,7 +75,6 @@ h5, p {
     font-size: 1rem;
 }
 
-<<<<<<< HEAD
 ngb-pagination ::ng-deep a {
     background-color: #303030 !important;
     border-color: rgb(14, 14, 14) !important;
@@ -97,7 +96,6 @@ ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
 }
   
 
-=======
 .delete-rating {
     position: absolute;
     top: 10px;
@@ -120,4 +118,14 @@ ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
 
 }
 
->>>>>>> main
+.custom-alert {
+    position: fixed; 
+    top: 20px;       
+    right: 20px;     
+    z-index: 1050;   
+    width: auto;     
+    max-width: 300px; 
+}
+
+
+

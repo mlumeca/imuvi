@@ -4,12 +4,7 @@ import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
-
-=======
-import { UserList } from '../../models/user-lists.interface';
 import { StatusResponse } from '../../models/status-list.interfaces';
->>>>>>> main
 
 @Component({
   selector: 'app-list-detail',
@@ -33,6 +28,9 @@ export class ListDetailComponent implements OnInit {
   averageRating: number = 0;
   closeResult = '';
   idElemento: number = 0;
+
+  alertMessage: string | null = null;
+  alertType: string = 'success';
 
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
@@ -84,28 +82,24 @@ export class ListDetailComponent implements OnInit {
     this.averageRating = totalRating / this.item.length;
   }
 
-  deleteList(listId: string) {
-<<<<<<< HEAD
-    this.accountService.deleteUserList(listId).subscribe;
-=======
+  deleteList(listId: string, modal: any) {
     this.accountService.deleteUserList(listId).subscribe(response => {
-      alert('Lista eliminada.');
-    });
->>>>>>> main
+      this.showAlert('Lista eliminada.', 'success');
+      modal.close();
+  });
   }
 
-  updateList(listId: string, listName: string, listDesc: string) {
+  updateList(listId: string, listName: string, listDesc: string, modal:any) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
+
+      this.showAlert('Lista actualizada.', 'success');
+      modal.close();
     });
-<<<<<<< HEAD
-    
-=======
 
-
->>>>>>> main
   }
+ 
 
   open(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -133,9 +127,19 @@ export class ListDetailComponent implements OnInit {
     });
   }
 
-  ConfirmDelete(): void {
+  confirmDelete(modal:any): void {
     this.removeItem(this.idElemento);
     this.modalService.dismissAll();
+    this.showAlert('Item eliminado.', 'success');
+    modal.close();
+  }
+
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

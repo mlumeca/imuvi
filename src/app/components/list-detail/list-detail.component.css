@@ -83,7 +83,6 @@ p {
 
 }
 
-<<<<<<< HEAD
 ngb-pagination ::ng-deep a {
     background-color: #303030 !important;
     border-color: rgb(14, 14, 14) !important;
@@ -104,14 +103,19 @@ ngb-pagination ::ng-deep a {
     box-shadow: 0 0 0 0.1rem dimgrey;
   }
   
-=======
-
-
 .fondoDatos {
     background-color: #383838;
     border-radius: 20px;
     width: 100%;
-
     margin-top: 20px;
 }
->>>>>>> main
+
+.custom-alert {
+    position: fixed; 
+    top: 20px;       
+    right: 20px;     
+    z-index: 1050;   
+    width: auto;     
+    max-width: 300px; 
+}
+

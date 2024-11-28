@@ -34,6 +34,9 @@ export class MovieListComponent implements OnInit {
 
   releaseDateFrom: string = '';
   releaseDateTo: string = '';
+
+  alertMessage: string | null = null;
+  alertType: string = 'success';
   
 
   constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService) { }
@@ -134,7 +137,15 @@ export class MovieListComponent implements OnInit {
       StatusResponse) => { console.log('Movie added to watchlist:', response); }
     )
 
-  
+    this.showAlert('Elemento añadido a la lista.', 'success');
+  }
+
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
   

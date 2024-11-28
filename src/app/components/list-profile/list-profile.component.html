@@ -1,4 +1,7 @@
 <div class="container-fluid mt-3 px-5">
+    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+        {{ alertMessage }}
+    </ngb-alert>
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
             <div class="fondoDatos">
@@ -103,7 +106,7 @@
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar este elemento?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()"
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete(modal)"
                         data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
