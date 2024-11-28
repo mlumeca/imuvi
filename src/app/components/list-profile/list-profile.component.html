@@ -14,7 +14,7 @@
 
             </div>
         </div>
-        <h4 (click)="showMovies = !showMovies">
+        <h4 (click)="showMovies = !showMovies" class="mt-4">
             Peliculas
             <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
@@ -33,7 +33,7 @@
                             [ngClass]="movie.title.length > 40 ? 'fs-5' : 'fs-4'">
                             {{movie.title}}</h5>
                         <p class="card-text text-center">{{movie.release_date | date:"mediumDate"}}</p>
-                       
+
                     </div>
                     <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
                 </a>
@@ -71,7 +71,7 @@
                         <h5 class="card-title text-center fs-5 mb-2" [ngClass]="serie.name.length > 40 ? 'fs-5' : 'fs-4'">
                             {{serie.name}}</h5>
                         <p class="card-text text-center">{{serie.first_air_date | date:"mediumDate"}}</p>
-                        
+
                     </div>
                     <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
                 </a>
@@ -92,18 +92,19 @@
     </ngb-pagination>
 </div>
 
-
 <ng-template #delete let-modal>
     <div class="modal-content">
         <div class="modal-header d-flex justify-content-between">
             <h4 class="modal-title">Eliminar</h4>
-            <button type="button" class="btn-close text-light" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close btn-close-white" aria-label="Close"
+                (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar este elemento?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()"
+                        data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
         </div>

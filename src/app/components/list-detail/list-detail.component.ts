@@ -17,7 +17,7 @@ export class ListDetailComponent implements OnInit {
   @Input() listDesc: string = '';
   @Input() movieId!: string;
 
-  listId: string | null = '';  
+  listId: string | null = '';
   lists: ListDetailResponse | undefined;
   item: Item[] = [];
   moviesCount: number = 0;
@@ -28,8 +28,8 @@ export class ListDetailComponent implements OnInit {
   totalPages: number = 0;
   averageRating: number = 0;
   closeResult = '';
-  idElemento: number= 0;
- 
+  idElemento: number = 0;
+
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
@@ -79,11 +79,11 @@ export class ListDetailComponent implements OnInit {
 
   deleteList(listId: string) {
     this.accountService.deleteUserList(listId).subscribe(response => {
-        alert('Lista eliminada.');
+      alert('Lista eliminada.');
     });
   }
 
-  updateList(listId:string, listName: string, listDesc: string) {
+  updateList(listId: string, listName: string, listDesc: string) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
@@ -91,38 +91,41 @@ export class ListDetailComponent implements OnInit {
       alert('Lista actualizada.');
       console.log(response)
     });
-    
+
 
   }
 
   open(content: TemplateRef<any>) {
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-			(result) => {
-				this.closeResult = `Closed with: ${result}`;
-			},
-		);
-	}
-
-  openModal(content: TemplateRef<any>, id: number) {
-    this.idElemento = id;
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
       (result) => {
         this.closeResult = `Closed with: ${result}`;
       },
     );
   }
- 
 
-  removeItem(){
-    this.listService.removeMovieToList(this.listId!, this.movieId).subscribe((response:
-      StatusResponse) => {})
+  openModal(content: TemplateRef<any>, idMedia: number): void {
+    this.idElemento = idMedia;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${reason}`;
+      }
+    );
   }
 
-  ConfirmDelete() {
-    this.removeItem();
-    this.modalService.dismissAll(); 
+  removeItem(movieId: number): void {
+    this.listService.removeMovieToList(this.listId!, movieId).subscribe((response: StatusResponse) => {
+      this.loadItems();
+    });
   }
-   
+
+  ConfirmDelete(): void {
+    this.removeItem(this.idElemento);
+    this.modalService.dismissAll();
+  }
+
 }
 
 

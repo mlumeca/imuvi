@@ -5,7 +5,7 @@
             (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h6 class="">Seleccionar lista</h6>
+        <h6 class>Seleccionar lista</h6>
         <div>
             <select class="form-select" aria-label="Multiple select example" [(ngModel)]="listId" name="listId">
                 <option selected disabled class="h6">Seleccione una lista</option>
@@ -16,15 +16,13 @@
         </div>
         <button type="submit" class="btn btn-dark mt-3" (click)="addMoviList()">Añadir pelicula</button>
 
-
         <p>
             <button
                 type="button"
                 class="btn btn-dark mt-5"
                 (click)="isCollapsed = !isCollapsed"
                 [attr.aria-expanded]="!isCollapsed"
-                aria-controls="collapseExample"
-            >
+                aria-controls="collapseExample">
                 Crear nueva lista
             </button>
         </p>
@@ -41,8 +39,7 @@
                                 [(ngModel)]="listName"
                                 class="form-control"
                                 name="name"
-                                required
-                            />
+                                required />
                         </div>
                         <div class="mb-3">
                             <label for="listDesc" class="form-label">Descripción</label>
@@ -50,15 +47,13 @@
                                 id="listDesc"
                                 [(ngModel)]="listDesc"
                                 class="form-control"
-                                name="description"
-                            ></textarea>
+                                name="description"></textarea>
                         </div>
                         <button type="submit" class="btn btn-dark">Crear Lista</button>
                     </form>
                 </div>
             </div>
         </div>
-        
-        
+
     </div>
 </div>

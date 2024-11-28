@@ -3,10 +3,12 @@
         <div class="d-flex position-relative justify-content-between align-items-center">
             <h2 class="textoList">Listas</h2>
             <div class="d-flex justify-content-center align-items-center">
-                <button class="btn btn-dark btn-addlist d-flex justify-content-center align-items-center" (click)="open(content)"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                <button class="btn btn-dark btn-addlist d-flex justify-content-center align-items-center" (click)="open(content)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-circle"
+                        viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                        <path
+                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                     </svg>
                 </button>
 
@@ -25,8 +27,7 @@
                                         [(ngModel)]="listName"
                                         class="form-control"
                                         name="name"
-                                        required
-                                    />
+                                        required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="listDesc" class="form-label">Descripción</label>
@@ -34,8 +35,7 @@
                                         id="listDesc"
                                         [(ngModel)]="listDesc"
                                         class="form-control"
-                                        name="description"
-                                    ></textarea>
+                                        name="description"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-dark">Crear Lista</button>
                             </form>
@@ -44,7 +44,7 @@
                 </ng-template>
             </div>
         </div>
-        
+
         <div class="row g-4 clase">
             @for(list of lists; track list.id) {
             <div class="col-2 d-flex taamyoCard mb-3">
@@ -57,7 +57,7 @@
                             } @else {
                             <p class="text-light">No tiene descripción.</p>
                             }
-                            <p>{{list.item_count}} elementos</p>
+                            <p class="text-light">{{list.item_count}} elementos</p>
                         </div>
                     </div>
                 </a>

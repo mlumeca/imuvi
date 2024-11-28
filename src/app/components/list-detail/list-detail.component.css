@@ -5,7 +5,8 @@
     margin: 10px;
 }
 
-.movie-card, .serie-card a{
+.movie-card,
+.serie-card a {
     height: 260px;
     width: 400px;
     background-color: #303030;
@@ -29,7 +30,8 @@
 
 
 
-h5, p {
+h5,
+p {
     color: white;
 }
 
@@ -51,10 +53,11 @@ h5, p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030 ;
+    border: 2px solid #303030;
 }
 
-.bi-chevron-up, .bi-chevron-down {
+.bi-chevron-up,
+.bi-chevron-down {
     font-size: 1rem;
 }
 
@@ -73,7 +76,7 @@ h5, p {
     width: 100%;
 }
 
-.modal-content{
+.modal-content {
     background-color: #191919;
     color: white;
     border: none;
@@ -81,11 +84,11 @@ h5, p {
 }
 
 
-    
+
 .fondoDatos {
     background-color: #383838;
     border-radius: 20px;
     width: 100%;
-    
+
     margin-top: 20px;
 }

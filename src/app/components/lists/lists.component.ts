@@ -17,13 +17,13 @@ export class ListsComponent implements OnInit {
   account_id: string = '';
   userId: number = 0;
   closeResult: string | undefined;
-  userLists: UserList[] = []; 
+  userLists: UserList[] = [];
   listId: string | null = '';
   sessionId = localStorage.getItem('session_id');
 
-  constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal ) { }
+  constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal) { }
 
- 
+
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.listService.getLists(this.account_id).subscribe(response => {
@@ -38,50 +38,56 @@ export class ListsComponent implements OnInit {
     this.accountService.getUserLists(this.userId).subscribe(response => {
       this.lists = response.results;
     })
+    this.fillList();
   }
 
   open(content: TemplateRef<any>) {
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-			(result) => {
-				this.closeResult = `Closed with: ${result}`;
-			},
-		);
-	}
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
 
   createList() {
-    if (this.sessionId ) {
+    if (this.sessionId) {
       if (this.listName) {
         this.accountService.createList(this.listName, this.listDesc).subscribe((response) => {
           const newList: UserList = {
-            id: response.list_id, 
+            id: response.list_id,
             name: this.listName,
             description: this.listDesc,
-            favorite_count: 0, 
-            item_count: 0, 
-            iso_639_1: 'en', 
-            list_type: 'movie', 
-            poster_path: null 
+            favorite_count: 0,
+            item_count: 0,
+            iso_639_1: 'en',
+            list_type: 'movie',
+            poster_path: null
           };
-  
+
           this.userLists.push(newList);
-  
-          this.listName = ''; 
+
+          this.listName = '';
           this.listDesc = '';
+          this.fillList();
         });
-  
+
         alert(`Lista "${this.listName}" creada.`);
-  
+
       } else {
         alert(`El nombre de la lista es obligatorio.`);
-  
+
       }
 
     } else {
       alert(`Inicie sesión`)
     }
-    
+
   }
 
- 
+  fillList() {
+    this.listService.getLists(this.account_id).subscribe(response => {
+      this.lists = response.results;
+    });
+  }
 
 }
