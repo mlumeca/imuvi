@@ -95,4 +95,17 @@ export class ListProfileComponent {
     this.calculateTotalCount();
     this.calculateAverageRating();
   }
+
+  removeItem(id: number, tipo: 'movie' | 'serie'): void {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    if (tipo === 'movie') {
+        this.accountService.removeMovieToWatchList(this.account_id, id).subscribe({});
+            this.movieList = this.movieList.filter(movie => movie.id !== id);
+
+    } else {
+        this.accountService.removeSerieToWatchList(this.account_id ,id).subscribe({});
+            this.serieList = this.serieList.filter(serie => serie.id !== id);
+
+    }
+  }
 }
