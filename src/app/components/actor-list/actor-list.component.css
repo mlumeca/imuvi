@@ -58,3 +58,7 @@ ngb-pagination > ul.pagination{
     background-color: white;
     border: none;
 }
+
+p {
+    color: white;
+}
