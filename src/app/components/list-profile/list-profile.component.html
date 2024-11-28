@@ -1,0 +1,90 @@
+<div class="container-fluid mt-3 px-5">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="fondoDatos">
+                <div class="mt-2">
+                    <h3 class="text-center pt-2">Lista de seguimiento</h3>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <p class="me-4">{{totalCount}} elementos en la lista</p> | <p
+                        class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de
+                        valoración media</p>
+                </div>
+
+            </div>
+        </div>
+        <h5 (click)="showMovies = !showMovies" class="mt-5">
+            Peliculas
+            <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </h5>
+        @if (showMovies){
+        @for (movie of movieList; track movie.id) {
+        <div class="col-3 mb-5">
+            <a class="text-decoration-none" [routerLink]="['/movie-detail', movie.id]">
+                <div class="card movie-card d-flex flex-row">
+                    @if(movie.poster_path) {
+                    <img class="img-card" [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                    }@else {
+                    <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
+                    }
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <h5 class="card-title text-center fs-5 mb-2"
+                            [ngClass]="movie.title.length > 40 ? 'fs-5' : 'fs-4'">
+                            {{movie.title}}</h5>
+                        <p class="card-text text-center">{{movie.release_date | date:"mediumDate"}}</p>
+
+                    </div>
+                    <div class="rating">{{getRatingPercentaje(movie.vote_average) | number:'1.0-0'}}%</div>
+                </div>
+            </a>
+
+        </div>
+        }
+        <ngb-pagination
+            class="d-flex justify-content-center"
+            [collectionSize]="totalPages * 20"
+            [(page)]="moviePage"
+            (pageChange)="onPageMovies($event)"
+            [boundaryLinks]="true">
+        </ngb-pagination>
+        }
+
+        <h5 (click)="showSeries = !showSeries">
+            Series
+            <i class="bi" [ngClass]="showSeries ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </h5>
+        @if (showSeries) {
+        @for (serie of serieList; track serie.id) {
+        <div class="col-3 mb-5">
+            <a class="text-decoration-none" [routerLink]="['/series-detail', serie.id]">
+                <div class="card serie-card d-flex flex-row">
+                    @if(serie.poster_path) {
+                    <img class="img-card" [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
+                    }@else {
+                    <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
+                    }
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <h5 class="card-title text-center fs-5 mb-2"
+                            [ngClass]="serie.name.length > 40 ? 'fs-5' : 'fs-4'">
+                            {{serie.name}}</h5>
+                        <p class="card-text text-center">{{serie.first_air_date | date:"mediumDate"}}</p>
+                    </div>
+                    <div class="rating">{{getRatingPercentaje(serie.vote_average) | number:'1.0-0'}}%</div>
+
+                </div>
+            </a>
+        </div>
+        }
+        <ngb-pagination
+            class="d-flex justify-content-center"
+            [collectionSize]="totalPages * 20"
+            [(page)]="seriesPage"
+            (pageChange)="onPageSeries($event)"
+            [boundaryLinks]="true">
+        </ngb-pagination>
+        }
+
+    </div>
+
+</div>

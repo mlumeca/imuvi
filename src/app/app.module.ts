@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavComponent } from './shared/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -18,11 +17,14 @@ import { ActorDetailComponent } from './components/actor-detail/actor-detail.com
 import { HomeComponent } from './components/home/home.component';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule } from '@angular/forms';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ApprovedComponent } from './components/approved/approved.component';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalListComponent } from './components/modal-list/modal-list.component';
 import { RatingListComponent } from './components/rating-list/rating-list.component';
-import { FavListComponent } from './components/fav-list/fav-list.component';
+import { ListsComponent } from './components/lists/lists.component';
+import { ListDetailComponent } from './components/list-detail/list-detail.component';
+import { ListProfileComponent } from './components/list-profile/list-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,11 @@ import { FavListComponent } from './components/fav-list/fav-list.component';
     ActorDetailComponent,
     HomeComponent,
     ApprovedComponent,
+    ModalListComponent,
     RatingListComponent,
-    FavListComponent
+    ListProfileComponent,
+    ListsComponent,
+    ListDetailComponent,
   ],
   imports: [
     BrowserModule,
