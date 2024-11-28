@@ -134,4 +134,10 @@ export class MovieListComponent implements OnInit {
     )
   }
 
+  addMovieToFavoriteList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('Movie added to favorites:', response); }
+    )
+  }
 }

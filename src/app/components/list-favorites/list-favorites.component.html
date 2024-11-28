@@ -1,0 +1,103 @@
+<div class="container-fluid mt-3 px-5">
+    <div class="top-card p-3">
+        <h2 class="text-center p-3">Favoritos</h2>
+        <div class="row justify-content-center text-center">
+            <div class="d-flex justify-content-center">
+                <p class="me-4">{{totalCount}} elementos en la lista</p> |
+                <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4 (click)="showMovies = !showMovies">
+            Peliculas
+            <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </h4>
+        @if (showMovies){
+            @for (movie of movieList; track movie.id) {
+                <div class="col-3 mb-5">
+                    <div class="card movie-card d-flex flex-row position-relative">
+                        <a class="text-decoration-none movie-link" [routerLink]="['/movie-detail', movie.id]">
+                            @if(movie.poster_path) {
+                                <img class="img-card" [src]="getImage(movie.poster_path)" alt="{{movie.title}}">
+                            }@else {
+                                <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
+                            }
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="card-title text-center fs-5 mb-2"
+                                    [ngClass]="movie.title.length > 40 ? 'fs-5' : 'fs-4'">
+                                    {{movie.title}}</h5>
+                                <p class="card-text text-center">{{movie.release_date | date:"mediumDate"}}</p>
+                            </div>
+                        </a>
+                        <button class="btn btn-dark btn-sm delete-rating" (click)="openModal(delete, movie.id, 'movie')">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        } @else {
+        <p>No hay películas favoritas</p>
+        }
+
+        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPagesMovie * 20" [(page)]="currentMoviesPage"
+            (pageChange)="onPageMovie($event)" [boundaryLinks]="true">
+        </ngb-pagination>
+    </div>
+
+    <div class="row">
+        <h4 (click)="showSeries = !showSeries">
+            Series
+            <i class="bi" [ngClass]="showSeries ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+        </h4>
+        @if (showSeries) {
+            @for (serie of serieList; track serie.id) {
+                <div class="col-3 mb-5">
+                    <div class="card movie-card d-flex flex-row position-relative">
+                        <a class="text-decoration-none movie-link" [routerLink]="['/series-detail', serie.id]">
+                            @if(serie.poster_path) {
+                                <img class="img-card" [src]="getImage(serie.poster_path)" alt="{{serie.name}}">
+                            }@else {
+                                <img class="img-card" src="http://placehold.co/194x291" alt="sin imagen">
+                            }
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="card-title text-center fs-5 mb-2"
+                                    [ngClass]="serie.name.length > 40 ? 'fs-5' : 'fs-4'">
+                                    {{serie.name}}</h5>
+                                <p class="card-text text-center">{{serie.first_air_date | date:"mediumDate"}}</p>
+                            </div>
+                        </a>
+                        <button class="btn btn-dark btn-sm delete-rating" (click)="openModal(delete,serie.id, 'serie')">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        } @else {
+            <p>No hay series favoritas</p>
+            }
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalPages * 20" [(page)]="currentSeriesPage"
+            (pageChange)="onPageSeries($event)" [boundaryLinks]="true">
+        </ngb-pagination>
+    </div>
+
+    <ng-template #delete let-modal>
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+                <h4 class="modal-title">Eliminar favorito</h4>
+                <button type="button" class="btn-close" aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    ¿Está seguro de que desea eliminar este favorito?
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-danger" (click)="confirmDelete()"
+                            data-bs-dismiss="modal">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

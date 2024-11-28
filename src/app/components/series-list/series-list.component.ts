@@ -5,6 +5,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 import { AccountService } from '../../services/account.service';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-series-list',
@@ -32,6 +34,7 @@ export class SeriesListComponent {
 
   firstAirDateFrom: string = '';
   firstAirDateTo: string = '';
+  http: any;
 
   constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService) { }
 
@@ -132,4 +135,10 @@ export class SeriesListComponent {
     )
   }
 
+  addSerieToFavoriteList(serieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteSerie(this.account_id, serieId).subscribe((response:
+      StatusResponse) => { console.log('Serie added to favorites:', response); }
+    )
+  }
 }

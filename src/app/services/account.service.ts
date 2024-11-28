@@ -100,22 +100,40 @@ export class AccountService {
     );
   }
 
-  createFav(account_id: string, mediaId: number, mediaType: 'movie' | 'tv', favorite: boolean): Observable<any> {
-    const sessionId = localStorage.getItem('session_id');
+  addFavoriteMovie(account_id: string, idMovie: number): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
-        media_type: mediaType,
-        media_id: mediaId,
-        favorite: favorite,
-      }
-    );
+      media_type: "movie",
+      media_id: idMovie,
+      favorite: true
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
   }
 
-  deleteFav(
+  addFavoriteSerie(account_id: string, idSerie: number): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: "tv",
+      media_id: idSerie,
+      favorite: true
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
+  }
+
+  deleteFavorite(
     mediaId: string,
     favorite: boolean
   ): Observable<any> {
-    return this.deleteFav(mediaId, false);
+    return this.deleteFavorite(mediaId, false);
   }
+
+  //Watchlist
   getWatchListhMovieByPage(account_id: string, page: number): Observable<MovieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<MovieListResponse>(

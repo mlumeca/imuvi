@@ -7,11 +7,11 @@ import { Item } from '../../models/list-detail.interfaces';
 import { ListService } from '../../services/list.service';
 
 @Component({
-  selector: 'app-list-favourites',
-  templateUrl: './list-favourites.component.html',
-  styleUrl: './list-favourites.component.css'
+  selector: 'app-list-favorites',
+  templateUrl: './list-favorites.component.html',
+  styleUrl: './list-favorites.component.css'
 })
-export class ListFavouritesComponent {
+export class ListFavoritesComponent {
 
   constructor(private accountService: AccountService, private modalService: NgbModal, private listService: ListService) { }
 
@@ -25,7 +25,7 @@ export class ListFavouritesComponent {
   totalItems: number = 0;
   totalHours: number = 0;
   totalMinutes: number = 0;
-  favourite: boolean = false;
+  favorite: boolean = false;
   idElemento: number = 0;
   tipoElemento: string = '';
   showMovies: boolean = true;
@@ -35,10 +35,11 @@ export class ListFavouritesComponent {
   pageSeries: number = 1;
   totalPagesMovie: number = 1;
   totalPagesSerie: number = 1;
-  seriesPage: number = 1;
-  currentPage: number = 1;
-  totalPages: number = 1;
   listId: string | null = '';
+
+  currentSeriesPage: number = 1;
+  currentMoviesPage: number = 1;
+  totalPages: number = 1;
 
 
   ngOnInit(): void {
@@ -105,13 +106,11 @@ export class ListFavouritesComponent {
   onPageMovie(newPage: number): void {
     this.pageMovie = newPage;
     this.newPageMovie();
-    
   }
 
   onPageSeries(newPage: number): void {
     this.pageSeries = newPage;
     this.newPageSerie();
-    
   }
 
   newPageMovie(): void {
@@ -139,7 +138,7 @@ export class ListFavouritesComponent {
   }
 
   confirmDelete() {
-    this.deleteFavourite(this.idElemento, this.tipoElemento);
+    this.deleteFavorite(this.idElemento, this.tipoElemento);
     this.modalService.dismissAll();
   }
 
@@ -151,13 +150,13 @@ export class ListFavouritesComponent {
     );
   }
 
-  deleteFavourite(id: number, tipo: string): void {
+  deleteFavorite(id: number, tipo: string): void {
     if (tipo === 'movie') {
-      this.accountService.deleteFav(this.account_id, false).subscribe({});
+      this.accountService.deleteFavorite(this.account_id, false).subscribe({});
       this.movieList = this.movieList.filter(movie => movie.id !== id);
 
     } else {
-      this.accountService.deleteFav(this.account_id, false).subscribe({});
+      this.accountService.deleteFavorite(this.account_id, false).subscribe({});
       this.serieList = this.serieList.filter(serie => serie.id !== id);
 
     }

@@ -25,8 +25,7 @@ import { RatingListComponent } from './components/rating-list/rating-list.compon
 import { ListsComponent } from './components/lists/lists.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
-import { ListFavouritesComponent } from './components/list-favourites/list-favourites.component';
-import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
+import { ListFavoritesComponent } from './components/list-favorites/list-favorites.component';
 
 @NgModule({
   declarations: [
@@ -45,10 +44,9 @@ import { MinutesToHoursPipe } from './pipes/minutes-to-hours.pipe';
     ModalListComponent,
     RatingListComponent,
     ListProfileComponent,
-    ListFavouritesComponent,
+    ListFavoritesComponent,
     ListsComponent,
     ListDetailComponent,
-    MinutesToHoursPipe,
   ],
   imports: [
     BrowserModule,
