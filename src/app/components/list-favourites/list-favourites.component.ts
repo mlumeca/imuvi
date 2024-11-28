@@ -15,11 +15,14 @@ export class ListFavouritesComponent {
   movieList: Movie[] = [];
   serieList: Serie[] = [];
   account_id: string = '';
+  movie_id: string = '';
   totalCount: number = 0;
   averageRating: number = 0;
   totalItems: number = 0;
   totalHours: number = 0;
   totalMinutes: number = 0;
+  favourite: boolean = false;
+  
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -68,6 +71,17 @@ export class ListFavouritesComponent {
     });
   }
 
+  deleteFavourite(id: number, tipo: 'movie' | 'serie'): void {
+    if (tipo === 'movie') {
+      this.accountService.deleteFav(this.account_id, false).subscribe({});
+          this.movieList = this.movieList.filter(movie => movie.id !== id);
+
+  } else {
+      this.accountService.deleteFav(this.account_id, false).subscribe({});
+          this.serieList = this.serieList.filter(serie => serie.id !== id);
+
+  }
+}
   // getTotalDuration() {
   //   for (let this.totalItems = i; )
   // }

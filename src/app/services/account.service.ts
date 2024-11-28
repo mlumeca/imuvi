@@ -83,16 +83,9 @@ export class AccountService {
     );
   }
 
-  createFav(
-    account_id: string,
-    mediaId: number,
-    mediaType: 'movie' | 'tv',
-    favorite: boolean
-  ): Observable<any> {
+  createFav(account_id: string, mediaId: number, mediaType: 'movie' | 'tv', favorite: boolean): Observable<any> {
     const sessionId = localStorage.getItem('session_id');
-    return this.http.post(
-      `${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${sessionId}`,
-      {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
         media_type: mediaType,
         media_id: mediaId,
         favorite: favorite,
@@ -101,10 +94,9 @@ export class AccountService {
   }
 
   deleteFav(
-    account_id: string,
-    mediaId: number,
-    mediaType: 'movie' | 'tv'
+    mediaId: string,
+    favorite: boolean
   ): Observable<any> {
-    return this.createFav(account_id, mediaId, mediaType, false);
+    return this.deleteFav(mediaId, false);
   }
 }
