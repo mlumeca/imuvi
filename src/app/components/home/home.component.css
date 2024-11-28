@@ -173,3 +173,64 @@
     border: none;
 }
 
+.btn-options {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #1818189f;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #303030;
+}
+
+.btnLogin {
+    color: white;
+    background-color: #383838;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+.diseyoBtn {
+    background-color: #383838;
+    border-radius: 20px;
+    color: white;
+    border: none;
+}
+
+.btn {
+    color: white;
+    border: none;
+}
+
+.dropdown-menu {
+    background-color: #383838;
+    border-radius: 20px;
+    color: white;
+}
+
+.diseyoOpciones:hover {
+    background-color: #191919;
+    border-radius: 20px;
+    width: 95%;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: 0;
+}
+
