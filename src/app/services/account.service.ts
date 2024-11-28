@@ -22,17 +22,17 @@ export class AccountService {
     );
   }
 
-  getRatedMovies(account_id: string): Observable<MovieListResponse> {
+  getRatedMovies(account_id: string, page: number = 1): Observable<MovieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<MovieListResponse>(
-      `${environment.apiBaseUrl}/account/${account_id}/rated/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
+      `${environment.apiBaseUrl}/account/${account_id}/rated/movies?api_key=${environment.apiKey}&session_id=${sessionId}&page=${page}`
     );
   }
 
-  getRatedSeries(account_id: string): Observable<SerieListResponse> {
+  getRatedSeries(account_id: string, page: number = 1): Observable<SerieListResponse> {
     let sessionId = localStorage.getItem('session_id');
     return this.http.get<SerieListResponse>(
-      `${environment.apiBaseUrl}/account/${account_id}/rated/tv?api_key=${environment.apiKey}&session_id=${sessionId}`
+      `${environment.apiBaseUrl}/account/${account_id}/rated/tv?api_key=${environment.apiKey}&session_id=${sessionId}&page=${page}`
     );
   }
 
@@ -136,11 +136,37 @@ export class AccountService {
     })
   }
 
+  removeMovieToWatchList(account_id: string, idMovie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "movie",
+      media_id: idMovie,
+      watchlist: false
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
+  }
+
   addSerieToWatchList(account_id: string, idSerie: number): Observable<StatusResponse> {
     return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
       media_type: "tv",
       media_id: idSerie,
       watchlist: true
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
+  }
+
+  removeSerieToWatchList(account_id: string, idSerie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "tv",
+      media_id: idSerie,
+      watchlist: false
     }, {
       headers: {
         'Content-Type': 'application/json',
