@@ -7,6 +7,7 @@ import { MovieListResponse } from '../models/movie-list.interface';
 import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
 import { StatusResponse } from '../models/status-list.interfaces';
+import { ListDetailResponse } from '../models/list-detail.interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -37,8 +38,7 @@ export class AccountService {
 
   getUserLists(userId: number): Observable<UserListsResponse> {
     const sessionId = localStorage.getItem('session_id');
-    return this.http.get<UserListsResponse>(`https://api.themoviedb.org/3/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`
-    );
+    return this.http.get<UserListsResponse>(`${environment.apiBaseUrl}/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`);
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
@@ -47,10 +47,22 @@ export class AccountService {
       description: listDesc
     });
   }
+  
+  getListDetailById(listId:string): Observable<ListDetailResponse> {
+    return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
+  }
 
-  getListDetailById(listId: number): Observable<any> {
-    return this.http.get(`https://api.themoviedb.org/3/list/${listId}?api_key=${environment.apiKey}`
-    );
+ 
+  deleteUserList(listId: string): Observable<any> {
+    return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
+  }
+
+  //NO DISPONIBLE EN V3
+  updateUserList(listId: string, listName: string, listDesc: string): Observable<any> {
+    return this.http.put(`https://api.themoviedb.org/4/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      name: listName,
+      description: listDesc
+    });
   }
 
 
