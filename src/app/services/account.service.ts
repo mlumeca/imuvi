@@ -38,12 +38,7 @@ export class AccountService {
 
   getUserLists(userId: number): Observable<UserListsResponse> {
     const sessionId = localStorage.getItem('session_id');
-<<<<<<< HEAD
-    return this.http.get<UserListsResponse>(`${environment.apiBaseUrl}/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`
-    );
-=======
     return this.http.get<UserListsResponse>(`${environment.apiBaseUrl}/account/${userId}/lists?api_key=${environment.apiKey}&session_id=${sessionId}`);
->>>>>>> main
   }
 
   createList(listName: string, listDesc: string): Observable<any> {
@@ -57,12 +52,6 @@ export class AccountService {
     return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
 
-<<<<<<< HEAD
-  getListDetailById(listId: number): Observable<any> {
-    return this.http.get(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}`
-    );
-=======
- 
   deleteUserList(listId: string): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
@@ -73,7 +62,6 @@ export class AccountService {
       name: listName,
       description: listDesc
     });
->>>>>>> main
   }
 
   getWatchListTv(account_id: string): Observable<SerieListResponse> {

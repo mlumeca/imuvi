@@ -5,9 +5,17 @@
     margin: 10px;
 }
 
+.movie-card, .serie-card {
+    height: 260px;
+    width: 400px;
+    background-color: #303030;
+    border-radius: 20px;
+}
+
 .card-body {
     width: 100%;
     padding: 0.5rem;
+    position: relative;
 }
 
 .card-title {
@@ -19,50 +27,32 @@
     font-size: 14px;
 }
 
-h5 {
+
+.star {
+    position: relative;
+    display: inline-block;
+    color: #d3d3d3;
+    font-size: 2rem;
+  }
+
+.full {
+    color: #ffc107;
+  }
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffc107;
+}
+
+h5, p {
     color: white;
 }
 
-p {
-    color: white;
-}
-
-.leftItem {
-    float: left;
-}
-
-.top-card {
-    background-color: #303030;
-    border-radius: 20px;
-    overflow: visible;
-}
-
-.movie-card {
-    background-color: #303030;
-    border-radius: 20px;
-    overflow: visible;
-    height: 475px;
-}
-
-.movie-card img {
-    width: 85%;
-    margin: 15px;
-    align-items: center;
-    border-radius: 20px;
-}
-
-.colorGen {
-    color: white;
-    font-size: 12pt;
-}
-
-.movie-title {
-    color: white;
-    font-weight: bold;
-}
-
-.card-text {
-    color: rgba(255, 255, 255, 0.800);
+.rating-star {
+    display: flex;
+    justify-content: center;
 }
 
 .rating {
@@ -78,5 +68,31 @@ p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030;
+    border: 2px solid #303030 ;
+}
+
+.bi-chevron-up, .bi-chevron-down {
+    font-size: 1rem;
+}
+
+.delete-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #191919;
+    border-radius: 10px;
+}
+
+
+.movie-link {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modal-content{
+    background-color: #191919;
+    color: white;
+    border: none;
+
 }
