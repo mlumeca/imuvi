@@ -22,7 +22,6 @@ export class RatingListComponent implements OnInit {
 
   movieList: Movie [] = [];
   serieList: Serie [] = [];
-  movieListFilt: Movie[] = [];
   idElemento: number= 0;
   tipoElemento: string = '';
   account_id: string = '';
@@ -48,6 +47,8 @@ export class RatingListComponent implements OnInit {
         this.serieList = response.results;
         this.totalPagesSerie = response.total_pages;
       });
+
+      console.log(this.movieList)
   }
 
   getImage(path: string) {
@@ -89,11 +90,13 @@ export class RatingListComponent implements OnInit {
   onPageMovie(newPage: number): void {
     this.pageMovie = newPage;
     this.newPageMovie();
+    
   }
 
   onPageSerie(newPage: number): void {
     this.pageSerie = newPage;
     this.newPageSerie();
+    
   }
 
   newPageMovie(): void {
