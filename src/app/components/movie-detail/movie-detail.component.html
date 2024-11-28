@@ -11,19 +11,17 @@
                             <img src="http://placehold.co/250x450" alt="sin imagen">
                             }
                         </div>
-                       
-
                         <div class="col-9 ms-5 mt-1">
                             <div>
                                 <h1 class="title">{{oneMovie!.title}}</h1>
                                 <div class="d-flex">
                                     @for (item of oneMovie?.genres; track item.id) {
-                                        <p class="me-2">{{item.name}} • </p>
+                                    <p class="me-2">{{item.name}} • </p>
                                     }
                                     <p>{{oneMovie!.runtime}}m.</p>
-                                 </div>      
-                            </div> 
-                           
+                                </div>
+                            </div>
+
                             <div>
                                 <h3 class="text-start title mb-1">Vista General</h3>
                                 <p><i>{{oneMovie!.tagline}}</i><br>
@@ -36,6 +34,18 @@
                                 <p class="col-3">Idioma Original<br>
                                     {{oneMovie!.spoken_languages[0].name}}
                                 </p>
+                                <div class="col-3">
+                                    <p class="mb-0">Tu Valoración</p>
+                                    <div class="d-flex align-items-center">
+                                        <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
+                                            (rateChange)="onRateChange(rating)" />
+
+                                        <button class="btn btn-dark ms-2 btn-sm" (click)="openModal(delete)">
+                                            <i class="bi bi-x"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +71,7 @@
             <h4 class="text-light">Reparto</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
-            
+
                 <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">
                     <div class="card scrollCard me-3 mb-2">
                         <div>
@@ -72,8 +82,8 @@
                             }
                         </div>
                         <div class="mt-2">
-                            <p>{{item.name}}</p> 
-                            <p>{{item.character}}</p> 
+                            <p>{{item.name}}</p>
+                            <p>{{item.character}}</p>
                         </div>
                     </div>
                 </a>
@@ -81,7 +91,7 @@
             </div>
         </div>
 
-        
+
         <div class="mt-5 divMargin">
             <h4>Media</h4>
             <div class="scrollCardMedia">
@@ -100,3 +110,26 @@
         </div>
     </div>
 </main>
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">★</span>★
+    </span>
+</ng-template>
+
+<ng-template #delete let-modal>
+    <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between">
+            <h4 class="modal-title">Eliminar valoración</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body">
+                ¿Está seguro de que desea eliminar esta valoración?
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

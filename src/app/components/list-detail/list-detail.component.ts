@@ -4,7 +4,12 @@ import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
 
+=======
+import { UserList } from '../../models/user-lists.interface';
+import { StatusResponse } from '../../models/status-list.interfaces';
+>>>>>>> main
 
 @Component({
   selector: 'app-list-detail',
@@ -14,6 +19,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ListDetailComponent implements OnInit {
   @Input() listName: string = '';
   @Input() listDesc: string = '';
+  @Input() movieId!: string;
+
   listId: string | null = '';
   lists: ListDetailResponse | undefined;
   item: Item[] = [];
@@ -25,6 +32,8 @@ export class ListDetailComponent implements OnInit {
   totalPages: number = 0;
   averageRating: number = 0;
   closeResult = '';
+  idElemento: number = 0;
+
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
@@ -76,27 +85,59 @@ export class ListDetailComponent implements OnInit {
   }
 
   deleteList(listId: string) {
+<<<<<<< HEAD
     this.accountService.deleteUserList(listId).subscribe;
+=======
+    this.accountService.deleteUserList(listId).subscribe(response => {
+      alert('Lista eliminada.');
+    });
+>>>>>>> main
   }
 
-  updateList(listId:string, listName: string, listDesc: string) {
+  updateList(listId: string, listName: string, listDesc: string) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
     });
+<<<<<<< HEAD
     
+=======
+
+
+>>>>>>> main
   }
 
   open(content: TemplateRef<any>) {
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
-			(result) => {
-				this.closeResult = `Closed with: ${result}`;
-			},
-		);
-	}
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+    );
+  }
 
-  
-    
+  openModal(content: TemplateRef<any>, idMedia: number): void {
+    this.idElemento = idMedia;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+      (result) => {
+        this.closeResult = `Closed with: ${result}`;
+      },
+      (reason) => {
+        this.closeResult = `Dismissed ${reason}`;
+      }
+    );
+  }
+
+  removeItem(movieId: number): void {
+    this.listService.removeMovieToList(this.listId!, movieId).subscribe((response: StatusResponse) => {
+      this.loadItems();
+    });
+  }
+
+  ConfirmDelete(): void {
+    this.removeItem(this.idElemento);
+    this.modalService.dismissAll();
+  }
+
 }
 
 

@@ -5,16 +5,8 @@
     margin: 10px;
 }
 
-.fondoDatos {
-    background-color: #383838;
-    border-radius: 20px;
-    width: 100%;
-    
-    margin-top: 20px;
-}
-
 .movie-card,
-.serie-card {
+.serie-card a {
     height: 260px;
     width: 400px;
     background-color: #303030;
@@ -24,6 +16,7 @@
 .card-body {
     width: 100%;
     padding: 0.5rem;
+    position: relative;
 }
 
 .card-title {
@@ -36,23 +29,6 @@
 }
 
 
-.star {
-    position: relative;
-    display: inline-block;
-    color: #d3d3d3;
-    font-size: 2rem;
-}
-
-.full {
-    color: #ffc107;
-}
-
-.half {
-    position: absolute;
-    display: inline-block;
-    overflow: hidden;
-    color: #ffc107;
-}
 
 h5,
 p {
@@ -85,13 +61,29 @@ p {
     font-size: 1rem;
 }
 
-.modal-content{
+.delete-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #191919;
+    border-radius: 10px;
+}
+
+
+.movie-link {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modal-content {
     background-color: #191919;
     color: white;
     border: none;
 
 }
 
+<<<<<<< HEAD
 ngb-pagination ::ng-deep a {
     background-color: #303030 !important;
     border-color: rgb(14, 14, 14) !important;
@@ -112,3 +104,14 @@ ngb-pagination ::ng-deep a {
     box-shadow: 0 0 0 0.1rem dimgrey;
   }
   
+=======
+
+
+.fondoDatos {
+    background-color: #383838;
+    border-radius: 20px;
+    width: 100%;
+
+    margin-top: 20px;
+}
+>>>>>>> main

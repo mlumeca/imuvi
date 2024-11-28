@@ -15,6 +15,7 @@
 .card-body {
     width: 100%;
     padding: 0.5rem;
+    position: relative;
 }
 
 .card-title {
@@ -74,6 +75,7 @@ h5, p {
     font-size: 1rem;
 }
 
+<<<<<<< HEAD
 ngb-pagination ::ng-deep a {
     background-color: #303030 !important;
     border-color: rgb(14, 14, 14) !important;
@@ -95,3 +97,27 @@ ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
 }
   
 
+=======
+.delete-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #191919;
+    border-radius: 10px;
+}
+
+
+.movie-link {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modal-content{
+    background-color: #191919;
+    color: white;
+    border: none;
+
+}
+
+>>>>>>> main
