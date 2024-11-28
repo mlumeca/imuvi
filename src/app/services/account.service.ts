@@ -107,11 +107,37 @@ export class AccountService {
     })
   }
 
+  removeMovieToWatchList(account_id: string, idMovie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "movie",
+      media_id: idMovie,
+      watchlist: false
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
+  }
+
   addSerieToWatchList(account_id: string, idSerie: number): Observable<StatusResponse> {
     return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
       media_type: "tv",
       media_id: idSerie,
       watchlist: true
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.token}`
+      }
+    })
+  }
+
+  removeSerieToWatchList(account_id: string, idSerie: number): Observable<StatusResponse> {
+    return this.http.post<StatusResponse>(`${environment.apiBaseUrl}/account/${account_id}/watchlist?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`, {
+      media_type: "tv",
+      media_id: idSerie,
+      watchlist: false
     }, {
       headers: {
         'Content-Type': 'application/json',
