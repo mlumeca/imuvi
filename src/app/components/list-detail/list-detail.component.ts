@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserList } from '../../models/user-lists.interface';
+import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-list-detail',
@@ -14,7 +15,9 @@ import { UserList } from '../../models/user-lists.interface';
 export class ListDetailComponent implements OnInit {
   @Input() listName: string = '';
   @Input() listDesc: string = '';
-  listId: string | null = '';
+  @Input() movieId!: string;
+
+  listId: string | null = '';  
   lists: ListDetailResponse | undefined;
   item: Item[] = [];
   moviesCount: number = 0;
@@ -26,6 +29,7 @@ export class ListDetailComponent implements OnInit {
   averageRating: number = 0;
   closeResult = '';
   idElemento: number= 0;
+ 
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
@@ -107,21 +111,18 @@ export class ListDetailComponent implements OnInit {
       },
     );
   }
-  
+ 
 
-  removeItem(idMedia: number): void {
-      this.listService.removeMovieToList(listId, idMedia).subscribe({});
-      this.item = this.item.filter(movie => movie.id == idMedia);
-
-    
+  removeItem(){
+    this.listService.removeMovieToList(this.listId!, this.movieId).subscribe((response:
+      StatusResponse) => {})
   }
+
   ConfirmDelete() {
-      this.removeItem(this.listId ,this.idElemento);
-      this.modalService.dismissAll(); 
+    this.removeItem();
+    this.modalService.dismissAll(); 
   }
-
-  
-    
+   
 }
 
 
