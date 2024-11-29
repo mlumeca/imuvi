@@ -6,6 +6,7 @@ import { ModalListComponent } from '../modal-list/modal-list.component';
 import { AccountService } from '../../services/account.service';
 import { StatusResponse } from '../../models/status-list.interfaces';
 
+
 @Component({
   selector: 'app-series-list',
   templateUrl: './series-list.component.html',
@@ -32,9 +33,11 @@ export class SeriesListComponent {
 
   firstAirDateFrom: string = '';
   firstAirDateTo: string = '';
+  http: any;
 
   alertMessage: string | null = null;
   alertType: string = 'success';
+
 
   constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService) { }
 
@@ -135,6 +138,14 @@ export class SeriesListComponent {
     )
     this.showAlert('Elemento añadido a la lista.', 'success');
 
+  }
+
+  addSerieToFavoriteList(serieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteSerie(this.account_id, serieId).subscribe((response:
+      StatusResponse) => { console.log('Serie added to favorites:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
   }
 
   showAlert(message: string, type: string = 'success') {

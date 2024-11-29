@@ -13,6 +13,7 @@ import { RatingListComponent } from './components/rating-list/rating-list.compon
 import { ListsComponent } from './components/lists/lists.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
+import { ListFavoritesComponent } from './components/list-favorites/list-favorites.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'list-detail/:id', component: ListDetailComponent },
   { path: 'rating', component: RatingListComponent },
   { path: 'listSeguimiento', component: ListProfileComponent },
+  { path: 'listFavoritos', component: ListFavoritesComponent },
   { path: 'lists', component: ListsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'approved', component: ApprovedComponent },

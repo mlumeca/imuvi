@@ -27,17 +27,69 @@
                     @if (actor.profile_path){
                     <div>
                         <img class="img-actor" [src]="getImage(actor.profile_path)" [alt]="actor.name">
-
                     </div>
+                    
+                    <div class="card-body">
+                        <h5 class="actor-title text-white">{{actor.name}}</h5>
+                        
+                        @if (actor.known_for && actor.known_for.length > 0) {
+                            @if (actor.known_for[0].title) {
+                                <p>{{actor.known_for[0].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[0].name}}</p>
+                            }
+                        }
+
+                        @if (actor.known_for && actor.known_for.length > 1) {
+                            @if (actor.known_for[1].title) {
+                                <p>{{actor.known_for[1].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[1].name}}</p>
+                            }
+                        }
+
+                        @if (actor.known_for && actor.known_for.length > 2) {
+                            @if (actor.known_for[2].title) {
+                                <p>{{actor.known_for[2].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[2].name}}</p>
+                            }
+                        }
+                    </div>
+                
                     }@else{
                     <div>
                         <img class="img-actor" src="http://placehold.co/278x323" alt="sin imagen">
                     </div>
-                    }
+                
                     <div class="card-body">
                         <h5 class="actor-title text-white">{{actor.name}}</h5>
+                        @if (actor.known_for && actor.known_for.length > 0) {
+                            @if (actor.known_for[0].title) {
+                                <p>{{actor.known_for[0].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[0].name}}</p>
+                            }
+                        }
 
+                        @if (actor.known_for && actor.known_for.length > 1) {
+                            @if (actor.known_for[1].title) {
+                                <p>{{actor.known_for[1].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[1].name}}</p>
+                            }
+                        }
+
+                        @if (actor.known_for && actor.known_for.length > 2) {
+                            @if (actor.known_for[2].title) {
+                                <p>{{actor.known_for[2].title}}</p>
+                            } @else {
+                                <p>{{actor.known_for[2].name}}</p>
+                            }
+                        }
                     </div>
+                    }
+                    
                 </div>
             </a>
         </div>
@@ -50,4 +102,4 @@
         [maxSize]="10"
         [boundaryLinks]="true">
     </ngb-pagination>
-</div>
+</div>  
