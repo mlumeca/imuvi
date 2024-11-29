@@ -83,12 +83,39 @@ p {
 
 }
 
+ngb-pagination ::ng-deep a {
+    background-color: #303030 !important;
+    border-color: rgb(14, 14, 14) !important;
+    color: white !important;
 
+}
 
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
 .fondoDatos {
     background-color: #383838;
     border-radius: 20px;
     width: 100%;
-
     margin-top: 20px;
 }
+
+.custom-alert {
+    position: fixed; 
+    top: 20px;       
+    right: 20px;     
+    z-index: 1050;   
+    width: auto;     
+    max-width: 300px; 
+}
+

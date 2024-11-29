@@ -1,4 +1,8 @@
 <div class="modal-content">
+    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+        {{ alertMessage }}
+    </ngb-alert>
+
     <div class="modal-header">
         <h5 class="modal-title">Añadir a lista</h5>
         <button type="button" class="btn-close btn-close-white" aria-label="Close"
@@ -26,6 +30,7 @@
                 Crear nueva lista
             </button>
         </p>
+        
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
             <div class="card  newListCard">
                 <div class="card-body">

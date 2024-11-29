@@ -78,6 +78,10 @@ export class MovieDetailComponent implements OnInit {
     return this.oneMovie!.runtime / 60;
   }
 
+  getRatingPercentaje(number: number) {
+    return number * 10;
+  }
+
   onRateChange(rating: number) {
     this.rateService.rateMovie(this.movieId!, rating).subscribe({});
     this.rating = rating;
@@ -95,9 +99,13 @@ export class MovieDetailComponent implements OnInit {
       },
     );
   }
+
+
   ConfirmDelete() {
       this.deleteRating();
       this.modalService.dismissAll(); 
   }
+
+  
 
 }
