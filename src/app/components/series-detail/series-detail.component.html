@@ -1,6 +1,7 @@
 <main>
     <div class="container-fluid">
-        <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+        <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null"
+            class="custom-alert alert alert-success alert-dismissible fade show">
             {{ alertMessage }}
         </ngb-alert>
         <div class="row justify-content-center">
@@ -45,10 +46,11 @@
 
                                         <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
                                             (rateChange)="onRateChange(rating)" />
-
+                                        @if(rating > 0){
                                         <button class="btn btn-dark ms-2 btn-sm mb-1" (click)="openModal(delete)">
                                             <i class="bi bi-x"></i>
                                         </button>
+                                        }
                                     </div>
                                 </div>
                             </div>
