@@ -80,20 +80,20 @@
     <ng-template #delete let-modal>
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
-                <h4 class="modal-title">Eliminar favorito</h4>
-                <button type="button" class="btn-close" aria-label="Close"
+                <h4 class="modal-title">Eliminar</h4>
+                <button type="button" class="btn-close btn-close-white" aria-label="Close"
                     (click)="modal.dismiss('Cross click')"></button>
             </div>
             <div class="modal-body">
                 <div class="modal-body">
-                    ¿Está seguro de que desea eliminar este favorito?
+                    ¿Está seguro de que desea eliminar este elemento?
                     <div class="d-flex justify-content-end mt-3">
-                        <button type="button" class="btn btn-danger">
-                            <!-- (click)="confirmDelete()" -->
+                        <button type="button" class="btn btn-danger" (click)="ConfirmDelete(modal)"
                             data-bs-dismiss="modal">Eliminar</button>
                     </div>
                 </div>
             </div>
         </div>
     </ng-template>
+    
 </div>

@@ -23,7 +23,6 @@ export class ListFavoritesComponent {
   totalCount: number = 0;
   averageRating: number = 0;
   totalItems: number = 0;
-  favorite: boolean = false;
   idElemento: number = 0;
   tipoElemento: string = '';
   showMovies: boolean = true;
@@ -32,6 +31,8 @@ export class ListFavoritesComponent {
   moviePage = 1;
   seriesPage = 1;
   totalPages = 1;
+  alertMessage: string | null = null;
+  alertType: string = '';
 
 
   ngOnInit(): void {
@@ -52,48 +53,35 @@ export class ListFavoritesComponent {
     return base_url + path;
   }
 
+  calculateTotalCount(): void {
+    const currentMoviesCount = this.movieList.length;
+    const currentSeriesCount = this.serieList.length;
+    this.totalCount = currentMoviesCount + currentSeriesCount;
+  }
+
   getRatingPercentaje(number: number) {
     return number * 10;
   }
 
-  getAverageRating(): void {
-    let totalRating = 0;
-
-    this.accountService.getFavMovies(this.account_id).subscribe((moviesResponse) => {
-      this.accountService.getFavSeries(this.account_id).subscribe((seriesResponse) => {
-        this.totalCount = moviesResponse.results.length + seriesResponse.results.length;
-      });
-    });
-
-    this.accountService.getFavMovies(this.account_id).subscribe((moviesResponse) => {
-      moviesResponse.results.forEach((movie) => {
-        totalRating += movie.vote_average;
-      });
-      this.totalItems += moviesResponse.results.length;
-
-      this.accountService.getFavSeries(this.account_id).subscribe((seriesResponse) => {
-        seriesResponse.results.forEach((serie) => {
-          totalRating += serie.vote_average;
-        });
-        this.totalItems += seriesResponse.results.length;
-
-        this.averageRating = this.totalItems > 0 ? totalRating / this.totalItems : 0;
-      });
-    });
-  }
-
-  calculateTotalCount(): void {
-    this.totalCount = this.item.length;
-  }
-
   calculateAverageRating(): void {
-    if (!this.item || this.item.length === 0) {
-      this.averageRating = 0;
-      return;
-    }
+    let totalRating = 0;
+    let totalItems = 0;
+    this.movieList.forEach((movie) => {
+      totalRating += movie.vote_average;
+    });
+    totalItems += this.movieList.length;
 
-    let totalRating = this.item.reduce((sum, movie) => sum + movie.vote_average, 0);
-    this.averageRating = totalRating / this.item.length;
+    this.serieList.forEach((serie) => {
+      totalRating += serie.vote_average;
+    });
+    totalItems += this.serieList.length;
+
+    this.averageRating = totalItems > 0 ? totalRating / totalItems : 0;
+  }
+
+  updateValues(): void {
+    this.calculateTotalCount();
+    this.calculateAverageRating();
   }
 
   openModal(content: TemplateRef<any>, id: number, tipo: string) {
@@ -114,29 +102,34 @@ export class ListFavoritesComponent {
     );
   }
 
-  deleteMovieFromList(movieId: number) {
-    this.confirmDelete("movie", movieId)
-  }
+  removeItem(id: number, tipo: string): void {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    if (tipo === 'movie') {
+        this.accountService.deleteMovieFavorite(this.account_id, id).subscribe({});
+            this.movieList = this.movieList.filter(movie => movie.id !== id);
 
-  deleteSerieFromList(serieId: number) {
-    this.confirmDelete("tv", serieId)
-  }
-
-  confirmDelete(mediaType: "movie" | "tv", idMovieSerie: number) {
-    if (mediaType == "movie") {
-      this.account_id = localStorage.getItem('account_id') ?? '';
-      this.accountService.deleteFavorite(this.account_id, idMovieSerie, "movie").subscribe((response:
-        StatusResponse) => { console.log('Movie deleted from favorites:', response); }
-      )
     } else {
-      this.account_id = localStorage.getItem('account_id') ?? '';
-      this.accountService.deleteFavorite(this.account_id, idMovieSerie, "tv").subscribe((response:
-        StatusResponse) => { console.log('Serie deleted from favorites:', response); }
-      )
-    }
+        this.accountService.deleteSerieFavorite(this.account_id ,id).subscribe({});
+            this.serieList = this.serieList.filter(serie => serie.id !== id);
 
-    this.modalService.dismissAll();
+    }
   }
+
+  ConfirmDelete(modal: any) {
+    this.removeItem(this.idElemento, this.tipoElemento);
+    this.modalService.dismissAll(); 
+
+    this.showAlert('Item eliminado.', 'success');
+    modal.close();
+}
+
+showAlert(message: string, type: string) {
+  this.alertMessage = message;
+  this.alertType = type;
+  setTimeout(() => {
+    this.alertMessage = null;
+  }, 3000); 
+}
 
   newPageMovies(): void {
     this.accountService.geFavoriteMovieByPage(this.account_id, this.moviePage).subscribe(resp => {
@@ -161,10 +154,5 @@ export class ListFavoritesComponent {
   onPageSeries(newPage: number): void {
     this.seriesPage = newPage;
     this.newPageSeries();
-  }
-
-  updateValues(): void {
-    this.calculateTotalCount();
-    this.calculateAverageRating();
   }
 }

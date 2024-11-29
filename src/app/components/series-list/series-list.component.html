@@ -1,5 +1,10 @@
 
 <div class="container-fluid mt-5 px-5">
+
+    <ngb-alert *ngIf="alertMessage" [type]="'success'" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+        {{ alertMessage }}
+    </ngb-alert>
+
     <div class="row">
         <div class="col">
             <div class="d-flex justify-content-between">
