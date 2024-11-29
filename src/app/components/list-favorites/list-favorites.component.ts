@@ -139,7 +139,7 @@ export class ListFavoritesComponent {
   }
 
   newPageMovies(): void {
-    this.accountService.geFavoriteSerieByPage(this.account_id, this.moviePage).subscribe(resp => {
+    this.accountService.geFavoriteMovieByPage(this.account_id, this.moviePage).subscribe(resp => {
       this.movieList = resp.results;
       this.totalPages = resp.total_pages;
       this.updateValues();

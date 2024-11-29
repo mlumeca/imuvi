@@ -1,4 +1,8 @@
 <div class="container-fluid mt-3 px-5">
+    <ngb-alert *ngIf="alertMessage" [type]="'success'" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+        {{ alertMessage }}
+    </ngb-alert>
+
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
             <div class="fondoDatos">
@@ -30,6 +34,7 @@
                         </svg>
                     </button>
 
+
                     <ng-template #delete let-modal>
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
@@ -41,13 +46,14 @@
                                 <div class="modal-body">
                                     ¿Está seguro de que desea eliminar esta lista?
                                     <div class="d-flex justify-content-end mt-3">
-                                        <button type="button" class="btn btn-danger" (click)="deleteList(listId!)"
+                                        <button type="button" class="btn btn-danger" (click)="deleteList(listId!, modal)"
                                             data-bs-dismiss="modal"> Eliminar </button>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+
                     </ng-template>
 
                     <ng-template #update let-modal>
@@ -58,7 +64,7 @@
                                     (click)="modal.dismiss('Cross click')"></button>
                             </div>
                             <div class="modal-body">
-                                <form (ngSubmit)="updateList(listId!, listName, listDesc)">
+                                <form (ngSubmit)="updateList(listId!, listName, listDesc, modal)">
                                     <div class="mb-3">
                                         <label for="listName" class="form-label">Nombre de la lista</label>
                                         <input
@@ -81,8 +87,7 @@
                                 </form>
                             </div>
                         </div>
-                    </ng-template>
-
+                    </ng-template>                    
                 </div>
 
             </div>
@@ -132,8 +137,10 @@
         <div class="modal-body">
             <p>¿Está seguro de que desea eliminar esta película?</p>
             <div class="d-flex justify-content-end mt-3">
-                <button type="button" class="btn btn-danger" (click)="ConfirmDelete()">Eliminar</button>
+                <button type="button" class="btn btn-danger" (click)="confirmDelete(modal)">Eliminar</button>
             </div>
         </div>
     </div>
 </ng-template>
+
+
