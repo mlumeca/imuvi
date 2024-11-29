@@ -100,6 +100,20 @@ export class AccountService {
     );
   }
 
+  geFavoriteMovieByPage(account_id: string, page: number): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/movies?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
+  geFavoriteSerieByPage(account_id: string, page: number): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/tv?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
   addFavoriteMovie(account_id: string, idMovie: number): Observable<any> {
     return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
       media_type: "movie",

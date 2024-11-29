@@ -20,25 +20,18 @@ export class ListFavoritesComponent {
   serieList: Serie[] = [];
   item: Item[] = [];
   account_id: string = '';
-  movie_id: string = '';
   totalCount: number = 0;
   averageRating: number = 0;
   totalItems: number = 0;
-  totalHours: number = 0;
-  totalMinutes: number = 0;
   favorite: boolean = false;
   idElemento: number = 0;
   tipoElemento: string = '';
   showMovies: boolean = true;
   showSeries: boolean = true;
   closeResult = '';
-  pageMovie: number = 1;
-  pageSeries: number = 1;
-  totalPagesMovie: number = 1;
-  totalPagesSerie: number = 1;
-  currentSeriesPage: number = 1;
-  currentMoviesPage: number = 1;
-  totalPages: number = 1;
+  moviePage = 1;
+  seriesPage = 1;
+  totalPages = 1;
 
 
   ngOnInit(): void {
@@ -51,20 +44,8 @@ export class ListFavoritesComponent {
     this.accountService.getFavSeries(this.account_id).subscribe(response => {
       this.serieList = response.results;
     });
-
-    this.loadItems();
   }
 
-  loadItems(): void {
-    this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
-      this.lists = response;
-      this.item = response.items;
-      this.totalItems = response.item_count;
-      this.totalCount = response.item_count;
-      this.totalPages = Math.ceil(this.totalItems / 20);
-      this.calculateAverageRating();
-    });
-  }
 
   getImage(path: string) {
     const base_url = 'https://image.tmdb.org/t/p/w500';
@@ -115,30 +96,6 @@ export class ListFavoritesComponent {
     this.averageRating = totalRating / this.item.length;
   }
 
-  onPageMovie(newPage: number): void {
-    this.pageMovie = newPage;
-    this.newPageMovie();
-  }
-
-  onPageSeries(newPage: number): void {
-    this.pageSeries = newPage;
-    this.newPageSerie();
-  }
-
-  newPageMovie(): void {
-    this.accountService.getFavMovies(this.account_id).subscribe(response => {
-      this.movieList = response.results;
-      this.totalPagesMovie = response.total_pages;
-    });
-  }
-
-  newPageSerie(): void {
-    this.accountService.getFavSeries(this.account_id).subscribe(response => {
-      this.serieList = response.results;
-      this.totalPagesSerie = response.total_pages;
-    });
-  }
-
   openModal(content: TemplateRef<any>, id: number, tipo: string) {
     this.idElemento = id;
     this.tipoElemento = tipo;
@@ -179,5 +136,35 @@ export class ListFavoritesComponent {
     }
 
     this.modalService.dismissAll();
+  }
+
+  newPageMovies(): void {
+    this.accountService.geFavoriteSerieByPage(this.account_id, this.moviePage).subscribe(resp => {
+      this.movieList = resp.results;
+      this.totalPages = resp.total_pages;
+      this.updateValues();
+    });
+  }
+
+  newPageSeries(): void {
+    this.accountService.geFavoriteSerieByPage(this.account_id, this.seriesPage).subscribe(resp => {
+      this.serieList = resp.results;
+      this.totalPages = resp.total_pages;
+      this.updateValues();
+    });
+  }
+  onPageMovies(newPage: number): void {
+    this.moviePage = newPage;
+    this.newPageMovies();
+  }
+
+  onPageSeries(newPage: number): void {
+    this.seriesPage = newPage;
+    this.newPageSeries();
+  }
+
+  updateValues(): void {
+    this.calculateTotalCount();
+    this.calculateAverageRating();
   }
 }
