@@ -25,6 +25,7 @@ import { RatingListComponent } from './components/rating-list/rating-list.compon
 import { ListsComponent } from './components/lists/lists.component';
 import { ListDetailComponent } from './components/list-detail/list-detail.component';
 import { ListProfileComponent } from './components/list-profile/list-profile.component';
+import { ListFavoritesComponent } from './components/list-favorites/list-favorites.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ListProfileComponent } from './components/list-profile/list-profile.com
     ModalListComponent,
     RatingListComponent,
     ListProfileComponent,
+    ListFavoritesComponent,
     ListsComponent,
     ListDetailComponent,
   ],

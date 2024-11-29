@@ -140,6 +140,14 @@ export class MovieListComponent implements OnInit {
     this.showAlert('Elemento añadido a la lista.', 'success');
   }
 
+  addMovieToFavoriteList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('Movie added to favorites:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+  }
+  
   showAlert(message: string, type: string = 'success') {
     this.alertMessage = message;
     this.alertType = type;
@@ -147,8 +155,4 @@ export class MovieListComponent implements OnInit {
       this.alertMessage = null;
     }, 3000); 
   }
-
-  
-  
-
 }

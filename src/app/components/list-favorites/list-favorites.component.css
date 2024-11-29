@@ -1,0 +1,123 @@
+.img-card {
+    width: 180px;
+    height: 240px;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.top-card {
+    background-color: #303030;
+    border-radius: 20px;
+}
+
+.movie-card, .serie-card {
+    height: 260px;
+    width: 400px;
+    background-color: #303030;
+    border-radius: 20px;
+}
+
+.card-body {
+    width: 100%;
+    padding: 0.5rem;
+    position: relative;
+}
+
+.card-title {
+    max-width: 100%;
+    margin: 0;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+
+.star {
+    position: relative;
+    display: inline-block;
+    color: #d3d3d3;
+    font-size: 2rem;
+  }
+
+.full {
+    color: #ffc107;
+  }
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffc107;
+}
+
+h5, p {
+    color: white;
+}
+
+.rating-star {
+    display: flex;
+    justify-content: center;
+}
+
+.rating {
+    position: absolute;
+    top: 97%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #181818;
+    color: #ffffff;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #303030 ;
+}
+
+.bi-chevron-up, .bi-chevron-down {
+    font-size: 1rem;
+}
+
+.delete-rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #191919;
+    border-radius: 10px;
+}
+
+
+.movie-link {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modal-content{
+    background-color: #191919;
+    color: white;
+    border: none;
+
+}
+
+ngb-pagination ::ng-deep a {
+    background-color: #303030 !important;
+    border-color: rgb(14, 14, 14) !important;
+    color: white !important;
+
+}
+
+  ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
+  
+  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+  }
