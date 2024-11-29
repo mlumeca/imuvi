@@ -43,4 +43,21 @@ export class ListService {
       }
     );
   }
+
+  removeMovieToList(idList: string, mediaId: number): Observable<StatusResponse> {
+    const sessionId = localStorage.getItem('session_id');
+    return this.http.post<StatusResponse>(
+      `${environment.apiBaseUrl}/list/${idList}/remove_item?api_key=${environment.apiKey}&session_id=${sessionId}`,
+      {
+        media_id: mediaId,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      }
+    );
+  }
+
 }

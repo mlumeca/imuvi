@@ -40,12 +40,12 @@
                                     <p class="mb-0">Tu Valoración</p>
                                     <div class="d-flex align-items-center">
 
-                                    <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
-                                        (rateChange)="onRateChange(rating)" />
+                                        <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
+                                            (rateChange)="onRateChange(rating)" />
 
-                                    <button class="btn btn-dark ms-2 btn-sm mb-1" (click)="openModal(delete)">
-                                        <i class="bi bi-x"></i>
-                                    </button>
+                                        <button class="btn btn-dark ms-2 btn-sm mb-1" (click)="openModal(delete)">
+                                            <i class="bi bi-x"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -112,18 +112,41 @@
 
                         <div class="flex-column ms-4">
                             <div>
+                                @if (item.season_number) {
                                 <h5 class="text-light mt-2">Temporada {{item.season_number}}</h5>
+                                }@else {
+                                <h5 class="text-light mt-2">No tenemos el número de la temporada</h5>
+                                }
+
                             </div>
                             <div>
+                                @if(item.air_date && item.episode_count){
                                 <p>{{item.air_date.slice(0,4)}} • {{item.episode_count}} episodios</p>
+                                }@if(!item.air_date && item.episode_count) {
+                                <p>Año desconocido • {{item.episode_count}} episodios</p>
+                                }@if(item.air_date && !item.episode_count){
+                                <p>{{item.air_date.slice(0,4)}} • Episodios no encontrados</p>
+                                }@if(!item.air_date && !item.episode_count) {
+                                <p>Año desconocido • Episodios no encontrados</p>
+                                }
                             </div>
 
                             <div>
+                                @if(item.season_number && item.air_date){
                                 <p>The {{item.season_number}} season of {{oneSeries?.name}}, was released on
                                     {{item.air_date |
                                     date:
                                     "longDate"}}.</p>
+
+                                }@else {
+                                <p>No tenemos dicha información</p>
+                                }
+                                @if(item.overview){
                                 <p>{{item.overview}}</p>
+                                }@else {
+                                <p class="text-light">No tenemos descripcion. </p>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -168,7 +191,8 @@
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar esta valoración?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()"
+                        data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
         </div>

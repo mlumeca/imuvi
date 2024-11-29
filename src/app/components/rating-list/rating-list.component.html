@@ -35,12 +35,12 @@
         }
 
         <ngb-pagination class="d-flex justify-content-center"
-        [collectionSize]="totalPagesMovie * 10"
-        (pageChange)="onPageMovie($event)"
-        [(page)]="pageMovie"
-        [maxSize]="10"
-        [boundaryLinks]="true">
-    </ngb-pagination>
+            [collectionSize]="totalPagesMovie * 10"
+            (pageChange)="onPageMovie($event)"
+            [(page)]="pageMovie"
+            [maxSize]="10"
+            [boundaryLinks]="true">
+        </ngb-pagination>
     </div>
     <div class="row">
         <h4 (click)="showSeries = !showSeries">
@@ -74,11 +74,11 @@
         }
         }
         <ngb-pagination class="d-flex justify-content-center"
-        [collectionSize]="totalPagesSerie * 10" 
-        (pageChange)="onPageSerie($event)"
-        [(page)]="pageSerie"
-        [maxSize]="10"
-        [boundaryLinks]="true">
+            [collectionSize]="totalPagesSerie * 10"
+            (pageChange)="onPageSerie($event)"
+            [(page)]="pageSerie"
+            [maxSize]="10"
+            [boundaryLinks]="true">
         </ngb-pagination>
     </div>
 </div>
@@ -93,16 +93,17 @@
     <div class="modal-content">
         <div class="modal-header d-flex justify-content-between">
             <h4 class="modal-title">Eliminar valoración</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close btn-close-white " aria-label="Close"
+                (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar esta valoración?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()"
+                        data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
 </ng-template>
-
