@@ -128,7 +128,7 @@ export class ListProfileComponent {
       this.removeItem(this.idElemento, this.tipoElemento);
       this.modalService.dismissAll(); 
 
-      this.showAlert('Item eliminado.', 'success');
+      this.showAlert('Item eliminado.', 'danger');
       modal.close();
   }
 

@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { List } from '../../models/lists.interfaces';
 
 @Component({
   selector: 'app-list-detail',
@@ -28,6 +29,8 @@ export class ListDetailComponent implements OnInit {
   averageRating: number = 0;
   closeResult = '';
   idElemento: number = 0;
+  account_id: string = '';
+  list: List[] = [];
 
   alertMessage: string | null = null;
   alertType: string = 'success';
@@ -37,6 +40,7 @@ export class ListDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.account_id = localStorage.getItem('account_id') ?? '';
     this.listId = this.route.snapshot.paramMap.get('id');
     this.loadItems();
 
@@ -130,17 +134,18 @@ export class ListDetailComponent implements OnInit {
   confirmDelete(modal:any): void {
     this.removeItem(this.idElemento);
     this.modalService.dismissAll();
-    this.showAlert('Item eliminado.', 'success');
+    this.showAlert('Item eliminado.', 'danger');
     modal.close();
   }
 
-  showAlert(message: string, type: string = 'success') {
+  showAlert(message: string, type: string = 'danger') {
     this.alertMessage = message;
     this.alertType = type;
     setTimeout(() => {
       this.alertMessage = null;
     }, 3000); 
   }
+
 
 }
 

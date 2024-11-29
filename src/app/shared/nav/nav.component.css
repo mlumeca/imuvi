@@ -15,8 +15,8 @@ i {
     margin-top: 15px;
 }
 
-.seleccionado:active,
-.seleccionado:focus {
+.seleccionado:active,.seleccionado:focus
+{
     color: red;
 }
 

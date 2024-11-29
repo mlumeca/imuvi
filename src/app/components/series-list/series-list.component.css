@@ -200,3 +200,11 @@ ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
     box-shadow: 0 0 0 0.1rem dimgrey;
 }
   
+.custom-alert {
+    position: fixed; 
+    top: 20px;       
+    right: 20px;     
+    z-index: 1050;   
+    width: auto;     
+    max-width: 300px; 
+}

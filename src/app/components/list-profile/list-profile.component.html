@@ -1,5 +1,5 @@
 <div class="container-fluid mt-3 px-5">
-    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-danger alert-dismissible fade show">
         {{ alertMessage }}
     </ngb-alert>
     <div class="row">
@@ -49,7 +49,7 @@
         }
         <ngb-pagination
             class="d-flex justify-content-center mt-4"
-            [collectionSize]="totalPages * 20"
+            [collectionSize]="totalPages * 10"
             [(page)]="moviePage"
             (pageChange)="onPageMovies($event)"
             [boundaryLinks]="true">
@@ -88,7 +88,7 @@
     </div>
     <ngb-pagination
         class="d-flex justify-content-center mt-4"
-        [collectionSize]="totalPages * 20"
+        [collectionSize]="totalPages * 10"
         [(page)]="seriesPage"
         (pageChange)="onPageSeries($event)"
         [boundaryLinks]="true">
