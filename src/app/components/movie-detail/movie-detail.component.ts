@@ -24,6 +24,9 @@ export class MovieDetailComponent implements OnInit {
 
   closeResult = '';
 
+  alertMessage: string | null = null;
+  alertType: string = '';
+
   constructor(
     private movieService: MovieService, 
     private route: ActivatedRoute,
@@ -101,9 +104,19 @@ export class MovieDetailComponent implements OnInit {
   }
 
 
-  ConfirmDelete() {
+  ConfirmDelete(modal: any) {
       this.deleteRating();
       this.modalService.dismissAll(); 
+      this.showAlert('Valoración eliminada.', 'success');
+      modal.close();
+  }
+
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
   

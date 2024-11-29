@@ -1,5 +1,8 @@
 <main>
     <div class="container-fluid">
+        <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+            {{ alertMessage }}
+        </ngb-alert>
         <div class="row justify-content-center">
             <div class="col-12 d-flex justify-content-center">
                 <div class="card tamayoInfo">
@@ -45,11 +48,13 @@
                                     <div class="d-flex align-items-center">
                                         <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
                                             (rateChange)="onRateChange(rating)" />
-
+                                
+                                        @if(rating > 0){
                                         <button class="btn btn-dark ms-2 btn-sm" (click)="openModal(delete)">
                                             <i class="bi bi-x"></i>
                                         </button>
-
+                                        }   
+                                
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +138,7 @@
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar esta valoración?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete(modal)" data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
         </div>

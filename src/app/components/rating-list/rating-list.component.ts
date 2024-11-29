@@ -73,7 +73,7 @@ export class RatingListComponent implements OnInit {
   ConfirmDelete(modal: any) {
       this.deleteRating(this.idElemento, this.tipoElemento);
       this.modalService.dismissAll(); 
-      this.showAlert('Item eliminado.', 'success');
+      this.showAlert('Valoración eliminada.', 'success');
       modal.close();
   }
 

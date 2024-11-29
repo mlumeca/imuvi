@@ -31,6 +31,9 @@ export class SeriesDetailComponent implements OnInit {
   rating = 0;
   closeResult = '';
 
+  alertMessage: string | null = null;
+  alertType: string = '';
+
 
   constructor(
     private seriesService: SerieService,
@@ -104,9 +107,19 @@ export class SeriesDetailComponent implements OnInit {
       },
     );
   }
-  ConfirmDelete() {
+  ConfirmDelete(modal: any) {
       this.deleteRating();
       this.modalService.dismissAll(); 
+      this.showAlert('Valoración eliminada.', 'success');
+      modal.close();
+  }
+
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

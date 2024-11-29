@@ -1,5 +1,8 @@
 <main>
     <div class="container-fluid">
+        <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+            {{ alertMessage }}
+        </ngb-alert>
         <div class="row justify-content-center">
             <div class="col-12 d-flex justify-content-center">
                 <div class="card tamayoInfo">
@@ -191,7 +194,7 @@
             <div class="modal-body">
                 ¿Está seguro de que desea eliminar esta valoración?
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()"
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete(modal)"
                         data-bs-dismiss="modal">Eliminar</button>
                 </div>
             </div>
