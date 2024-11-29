@@ -48,11 +48,7 @@ export class AccountService {
     });
   }
   
-  getListDetailById(listId:string): Observable<ListDetailResponse> {
-    return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
-  }
-
- 
+  
   deleteUserList(listId: string): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
