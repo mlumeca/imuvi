@@ -38,7 +38,7 @@
         </div>
         }
         }
-        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPages * 20"
+        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPagesMovies * 20"
             [(page)]="moviePage" (pageChange)="onPageMovies($event)" [boundaryLinks]="true">
         </ngb-pagination>
     </div>
@@ -73,7 +73,7 @@
         }
         }
     </div>
-    <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPages * 20" [(page)]="seriesPage"
+    <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPagesSeries * 20" [(page)]="seriesPage"
         (pageChange)="onPageSeries($event)" [boundaryLinks]="true">
     </ngb-pagination>
 

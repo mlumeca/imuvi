@@ -30,7 +30,8 @@ export class ListFavoritesComponent {
   closeResult = '';
   moviePage = 1;
   seriesPage = 1;
-  totalPages = 1;
+  totalPagesSeries = 1;
+  totalPagesMovies = 1;
   alertMessage: string | null = null;
   alertType: string = '';
 
@@ -134,7 +135,7 @@ showAlert(message: string, type: string) {
   newPageMovies(): void {
     this.accountService.geFavoriteMovieByPage(this.account_id, this.moviePage).subscribe(resp => {
       this.movieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesMovies = resp.total_pages;
       this.updateValues();
     });
   }
@@ -142,7 +143,7 @@ showAlert(message: string, type: string) {
   newPageSeries(): void {
     this.accountService.geFavoriteSerieByPage(this.account_id, this.seriesPage).subscribe(resp => {
       this.serieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesSeries = resp.total_pages;
       this.updateValues();
     });
   }
