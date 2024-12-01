@@ -144,10 +144,10 @@ img {
 .temporadaCard {
     background-color: #383838;
     width: 100%;
-    border-radius: 20px; 
+    border-radius: 20px;
 }
 
-.positionImg{
+.positionImg {
     margin-left: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -158,11 +158,11 @@ img {
     display: inline-block;
     color: #d3d3d3;
     font-size: 2rem;
-  }
+}
 
 .full {
     color: #ffc107;
-  }
+}
 
 .half {
     position: absolute;
@@ -172,14 +172,17 @@ img {
 }
 
 .btn-dark {
-  background-color: #212529; 
-  border-radius: 10px;
+    background-color: #212529;
+    border-radius: 10px;
 }
 
-.modal-content{
+.modal-content {
     background-color: #191919;
     color: white;
     border: none;
 
 }
 
+.title {
+    margin: 0;
+}

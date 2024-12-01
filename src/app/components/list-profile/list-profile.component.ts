@@ -17,20 +17,26 @@ export class ListProfileComponent {
   account_id: string = '';
   showMovies: boolean = true;
   showSeries: boolean = true;
+
   moviesCount: number = 0;
   seriesCount: number = 0;
   totalCount: number = 0;
   averageRating: number = 0;
-  moviePage = 1;
-  seriesPage = 1;
-  totalPages = 1;
-  idElemento: number= 0;
+
+  pageMovie = 1;
+  totalPagesMovie = 1;
+
+  pageSerie = 1;
+  totalPagesSerie = 1;
+
+  idElemento: number = 0;
   tipoElemento: string = '';
   closeResult = '';
+
   alertMessage: string | null = null;
   alertType: string = '';
 
-  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService,   private modalService: NgbModal) { }
+  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -40,27 +46,27 @@ export class ListProfileComponent {
 
   }
   newPageMovies(): void {
-    this.accountService.getWatchListhMovieByPage(this.account_id, this.moviePage).subscribe(resp => {
+    this.accountService.getWatchListhMovieByPage(this.account_id, this.pageMovie).subscribe(resp => {
       this.movieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesMovie = resp.total_pages;
       this.updateValues();
     });
   }
 
   newPageSeries(): void {
-    this.accountService.getWatchListTvByPage(this.account_id, this.seriesPage).subscribe(resp => {
+    this.accountService.getWatchListTvByPage(this.account_id, this.pageSerie).subscribe(resp => {
       this.serieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesSerie = resp.total_pages;
       this.updateValues();
     });
   }
   onPageMovies(newPage: number): void {
-    this.moviePage = newPage;
+    this.pageMovie = newPage;
     this.newPageMovies();
   }
 
   onPageSeries(newPage: number): void {
-    this.seriesPage = newPage;
+    this.pageSerie = newPage;
     this.newPageSeries();
   }
 
@@ -104,12 +110,12 @@ export class ListProfileComponent {
   removeItem(id: number, tipo: string): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     if (tipo === 'movie') {
-        this.accountService.removeMovieToWatchList(this.account_id, id).subscribe({});
-            this.movieList = this.movieList.filter(movie => movie.id !== id);
+      this.accountService.removeMovieToWatchList(this.account_id, id).subscribe({});
+      this.movieList = this.movieList.filter(movie => movie.id !== id);
 
     } else {
-        this.accountService.removeSerieToWatchList(this.account_id ,id).subscribe({});
-            this.serieList = this.serieList.filter(serie => serie.id !== id);
+      this.accountService.removeSerieToWatchList(this.account_id, id).subscribe({});
+      this.serieList = this.serieList.filter(serie => serie.id !== id);
 
     }
   }
@@ -125,11 +131,11 @@ export class ListProfileComponent {
   }
 
   ConfirmDelete(modal: any) {
-      this.removeItem(this.idElemento, this.tipoElemento);
-      this.modalService.dismissAll(); 
+    this.removeItem(this.idElemento, this.tipoElemento);
+    this.modalService.dismissAll();
 
-      this.showAlert('Item eliminado.', 'danger');
-      modal.close();
+    this.showAlert('Item eliminado.', 'danger');
+    modal.close();
   }
 
   showAlert(message: string, type: string) {
@@ -137,7 +143,7 @@ export class ListProfileComponent {
     this.alertType = type;
     setTimeout(() => {
       this.alertMessage = null;
-    }, 3000); 
+    }, 3000);
   }
 
 }

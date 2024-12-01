@@ -10,7 +10,8 @@
     border-radius: 20px;
 }
 
-.movie-card, .serie-card {
+.movie-card,
+.serie-card {
     height: 260px;
     width: 400px;
     background-color: #303030;
@@ -38,11 +39,11 @@
     display: inline-block;
     color: #d3d3d3;
     font-size: 2rem;
-  }
+}
 
 .full {
     color: #ffc107;
-  }
+}
 
 .half {
     position: absolute;
@@ -51,7 +52,8 @@
     color: #ffc107;
 }
 
-h5, p {
+h5,
+p {
     color: white;
 }
 
@@ -73,10 +75,11 @@ h5, p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030 ;
+    border: 2px solid #303030;
 }
 
-.bi-chevron-up, .bi-chevron-down {
+.bi-chevron-up,
+.bi-chevron-down {
     font-size: 1rem;
 }
 
@@ -95,7 +98,7 @@ h5, p {
     width: 100%;
 }
 
-.modal-content{
+.modal-content {
     background-color: #191919;
     color: white;
     border: none;
@@ -109,15 +112,16 @@ ngb-pagination ::ng-deep a {
 
 }
 
-  ngb-pagination ::ng-deep .page-item.active .page-link {
+ngb-pagination ::ng-deep .page-item.active .page-link {
     border-color: black;
     background-color: lightgrey;
-  }
-  
-  ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
     box-shadow: 0 0 0 0.1rem dimgrey;
-  }
-  
-  ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
     box-shadow: 0 0 0 0.1rem dimgrey;
-  }
+}

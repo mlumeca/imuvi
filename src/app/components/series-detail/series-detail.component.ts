@@ -37,7 +37,7 @@ export class SeriesDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private rateService: RateService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.seriesId = this.route.snapshot.paramMap.get('id');
@@ -105,8 +105,12 @@ export class SeriesDetailComponent implements OnInit {
     );
   }
   ConfirmDelete() {
-      this.deleteRating();
-      this.modalService.dismissAll(); 
+    this.deleteRating();
+    this.modalService.dismissAll();
+  }
+
+  getRatingPercentaje(number: number) {
+    return number * 10;
   }
 
 }

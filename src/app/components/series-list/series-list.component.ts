@@ -124,10 +124,10 @@ export class SeriesListComponent {
   searchingSerie(name: string): void {
     if (name.trim() !== '') {
       this.serieService.getSerieByName(name).subscribe(resp => {
-        this.serieList = resp.results;
+        this.originalSerieList = resp.results;
       });
     } else {
-      this.serieList = [...this.originalSerieList];
+      this.originalSerieList = [...this.serieList];
     }
   }
 
@@ -153,6 +153,6 @@ export class SeriesListComponent {
     this.alertType = type;
     setTimeout(() => {
       this.alertMessage = null;
-    }, 3000); 
+    }, 3000);
   }
 }
