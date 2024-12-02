@@ -19,12 +19,17 @@
     </div>
 
     <div class="d-flex position-absolute top-0 end-0 me-4 text-light mt-2">
-        <select class="form-select me-3 h-25 diseyoLangu" aria-label="Default select example" (change)="changeLanguage($event)">
-            <option selected disabled>Languages</option>
-            @for (item of language.slice(1); track $index) {
-            <option [value]="item.iso_639_1">{{item.english_name}}</option>
-            }
-        </select>
+        
+        <mat-form-field appearance="fill">
+            <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event)">
+                <mat-option value="es-ES,ES">
+                    <img src="/img/es.svg" alt="ES" style="width: 20px; margin-right: 8px;">ES
+                </mat-option>
+                <mat-option value="en-GB,GB">
+                    <img src="/img/sh.svg" alt="EN" style="width: 20px; margin-right: 8px;">GB
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
         @if(isLoggedIn()) {
         <div ngbDropdown class="d-inline-block diseyoBtn">

@@ -11,7 +11,7 @@ export class ConfigurationService {
 
   constructor(private http: HttpClient) { }
 
-  private currentLanguage: string = 'es-ES';
+  currentLanguage: string = 'es-ES';
 
   getLanguages(): Observable<LanguagesListResponse> {
     return this.http.get<LanguagesListResponse>(
@@ -23,9 +23,9 @@ export class ConfigurationService {
     this.currentLanguage = language;
     localStorage.setItem('language', language);
   }
-  
+
   getLanguage(): string {
     return localStorage.getItem('language') || this.currentLanguage;
   }
-  
+
 }

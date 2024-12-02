@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { AccountService } from '../../services/account.service';
 import { ConfigurationService } from '../../services/configuration.service';
 import { Language } from '../../models/configuration.interfaces';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-nav',
@@ -14,6 +15,7 @@ export class NavComponent {
   userName = '';
   userPhoto = '';
   language: Language[] = [];
+  selectedLanguage: String = ''
 
   constructor(private authService: AuthService,
     private accountService: AccountService, private configurationService: ConfigurationService
@@ -34,6 +36,8 @@ export class NavComponent {
       console.log('Idiomas obtenidos:', res);
       this.language = res;
     });
+    this.selectedLanguage = localStorage.getItem('language')!
+    console.log("selectedlanguage",this.selectedLanguage)
   }
 
   createRequestToken() {
@@ -54,14 +58,18 @@ export class NavComponent {
     window.location.href = 'http://localhost:4200';
   }
 
+  changeLanguage(event: MatSelectChange): void {
 
-  changeLanguage(event: Event): void {
-    
-    
-    
+    localStorage.setItem('language', event.value);
+
+    this.configurationService.setLanguage(event.value);
+
+    this.selectedLanguage = event.value
+
+    console.log("eventvalue", event.value)
+
+    window.location.reload();
+  }
   }
 
-  
-
-}
 
