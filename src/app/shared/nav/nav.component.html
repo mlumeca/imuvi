@@ -21,7 +21,7 @@
     <div class="d-flex position-absolute top-0 end-0 me-4 text-light mt-2">
         <select class="form-select me-3 h-25 diseyoLangu" aria-label="Default select example" (change)="changeLanguage($event)">
             <option selected disabled>Languages</option>
-            @for (item of language; track $index) {
+            @for (item of language.slice(1); track $index) {
             <option [value]="item.iso_639_1">{{item.english_name}}</option>
             }
         </select>
