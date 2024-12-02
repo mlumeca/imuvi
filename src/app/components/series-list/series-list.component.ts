@@ -85,25 +85,11 @@ export class SeriesListComponent {
     }
   }
 
-  onGenreChange(genreId: number, isChecked: boolean): void {
-    if (isChecked) {
-      if (!this.selectedGenres.includes(genreId)) {
-        this.selectedGenres.push(genreId);
-      }
-    } else {
-      this.selectedGenres = this.selectedGenres.filter(id => id !== genreId);
-    }
-    this.applyFilters();
-  }
 
   applyFilters(): void {
     this.originalSerieList = this.serieList;
 
-    if (this.selectedGenres.length > 0) {
-      this.originalSerieList = this.originalSerieList.filter(serie =>
-        serie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
-      );
-    }
+    this.filterByGenre();
 
     this.originalSerieList = this.originalSerieList.filter(serie =>
       serie.vote_average >= this.minRating && serie.vote_average <= this.maxRating
