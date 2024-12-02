@@ -20,7 +20,8 @@ export class ListsComponent implements OnInit {
   userLists: UserList[] = [];
   listId: string | null = '';
   sessionId = localStorage.getItem('session_id');
-
+  alertMessage: string | null = null;
+  alertType: string = '';
   constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal) { }
 
 
@@ -65,29 +66,33 @@ export class ListsComponent implements OnInit {
           };
 
           this.userLists.push(newList);
-
+          this.fillList();
           this.listName = '';
           this.listDesc = '';
-          this.fillList();
         });
 
-        alert(`Lista "${this.listName}" creada.`);
+        this.showAlert('Lista creada.', 'success');
 
       } else {
-        alert(`El nombre de la lista es obligatorio.`);
+        this.showAlert('Error al crear la lista. Introduzca un nombre', 'danger');
 
       }
 
-    } else {
-      alert(`Inicie sesión`)
     }
-
   }
 
   fillList() {
     this.listService.getLists(this.account_id).subscribe(response => {
       this.lists = response.results;
     });
+  }
+
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

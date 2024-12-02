@@ -1,5 +1,6 @@
 <div class="container-fluid mt-3 px-5">
-    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null"
+        class="custom-alert alert alert-success alert-dismissible fade show">
         {{ alertMessage }}
     </ngb-alert>
 
@@ -11,6 +12,9 @@
             <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showMovies){
+        @if (movieList.length === 0) {
+        <p>No hay película en la lista de seguimiento.</p>
+        }@else {
         @for (movie of movieList; track movie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -36,8 +40,6 @@
             </div>
         </div>
         }
-        }
-
         <ngb-pagination class="d-flex justify-content-center"
             [collectionSize]="totalPagesMovie * 10"
             (pageChange)="onPageMovie($event)"
@@ -45,13 +47,19 @@
             [maxSize]="10"
             [boundaryLinks]="true">
         </ngb-pagination>
+        }
+        }
+
     </div>
     <div class="row">
-        <h4 (click)="showSeries = !showSeries">
+        <h4 (click)="showSeries = !showSeries" class="mt-4">
             Series
             <i class="bi" [ngClass]="showSeries ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showSeries) {
+        @if (serieList.length === 0) {
+        <p>No hay serie en la lista de seguimiento.</p>
+        }@else {
         @for (serie of serieList; track serie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -76,7 +84,6 @@
             </div>
         </div>
         }
-        }
         <ngb-pagination class="d-flex justify-content-center"
             [collectionSize]="totalPagesSerie * 10"
             (pageChange)="onPageSerie($event)"
@@ -84,6 +91,8 @@
             [maxSize]="10"
             [boundaryLinks]="true">
         </ngb-pagination>
+        }
+        }
     </div>
 </div>
 

@@ -10,11 +10,14 @@
     </div>
 
     <div class="row">
-        <h4 (click)="showMovies = !showMovies">
+        <h4 (click)="showMovies = !showMovies" class="mt-4">
             Peliculas
             <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showMovies){
+        @if (movieList.length === 0) {
+        <p>No hay películas en la lista de seguimiento.</p>
+        }@else {
         @for (movie of movieList; track movie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -37,18 +40,28 @@
             </div>
         </div>
         }
-        }
-        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPages * 20"
-            [(page)]="moviePage" (pageChange)="onPageMovies($event)" [boundaryLinks]="true">
+        <ngb-pagination
+            class="d-flex justify-content-center mt-4"
+            [collectionSize]="totalPagesMovie * 10"
+            [(page)]="pageMovie"
+            (pageChange)="onPageMovies($event)"
+            [boundaryLinks]="true">
         </ngb-pagination>
+        }
+
+        }
+
     </div>
 
     <div class="row">
-        <h4 (click)="showSeries = !showSeries">
+        <h4 (click)="showSeries = !showSeries" class="mt-4">
             Series
             <i class="bi" [ngClass]="showSeries ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showSeries) {
+        @if (serieList.length === 0) {
+        <p>No hay serie en la lista de seguimiento.</p>
+        }@else {
         @for (serie of serieList; track serie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -71,11 +84,16 @@
             </div>
         </div>
         }
+        <ngb-pagination class="d-flex justify-content-center"
+            [collectionSize]="totalPagesSerie * 10"
+            (pageChange)="onPageSeries($event)"
+            [(page)]="pageSerie"
+            [maxSize]="10"
+            [boundaryLinks]="true">
+        </ngb-pagination>
+        }
         }
     </div>
-    <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPages * 20" [(page)]="seriesPage"
-        (pageChange)="onPageSeries($event)" [boundaryLinks]="true">
-    </ngb-pagination>
 
     <ng-template #delete let-modal>
         <div class="modal-content">
@@ -95,5 +113,5 @@
             </div>
         </div>
     </ng-template>
-    
+
 </div>

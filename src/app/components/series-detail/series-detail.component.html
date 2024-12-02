@@ -1,5 +1,18 @@
 <main>
     <div class="container-fluid">
+
+        <ngb-alert *ngIf="alertMessage" [type]="'success'" (closed)="alertMessage = null"
+        class="custom-alert alert alert-success alert-dismissible fade show">
+        {{ alertMessage }}
+    </ngb-alert>
+
+    <div class="row">
+        <ngb-alert *ngIf="alertMessage" [type]="'success'" (closed)="alertMessage = null"
+            class="custom-alert alert alert-success alert-dismissible fade show">
+            {{ alertMessage }}
+        </ngb-alert>
+    </div>
+
         <div class="row justify-content-center">
             <div class="col-12 d-flex justify-content-center">
                 <div class="card tamayoInfo">
@@ -12,29 +25,77 @@
                             }
                         </div>
                         <div class="col-9 ms-5 mt-1">
-                            <div>
-                                <h1>{{oneSeries!.name}}</h1>
-                                <div class="d-flex">
-                                    @for (item of oneSeries?.genres; track item.id) {
-                                    <p class="me-2">{{item.name}} • </p>
-                                    }
-                                    <p>{{oneSeries!.number_of_seasons}} Temporadas.</p>
+                            <div class="d-flex">
+                                <div class="flex-column">
+                                    <h1 class="title">{{oneSeries!.name}}</h1>
+                                    <div class="d-flex">
+                                        @for (item of oneSeries?.genres; track item.id) {
+                                        <p class="me-2">{{item.name}} • </p>
+                                        }
+                                        <p>{{oneSeries!.number_of_seasons}} Temporadas.</p>
+                                    </div>
                                 </div>
-
-                            </div> <br> <br>
+                                <div class="position-absolute end-0 me-3">
+                                    <div ngbDropdown class="d-inline-block diseyoBtn">
+                                        <button type="button" class="btn btn-options" id="dropdownBasic1"
+                                            ngbDropdownToggle>
+                                            <p>...</p>
+                                        </button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                            <button ngbDropdownItem class="diseyoOpciones text-light ms-1"
+                                                (click)="addSerieToFavoriteList(oneSeries!.id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-heart me-1"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                                </svg>
+                                                Favoritos
+                                            </button>
+                                            <button ngbDropdownItem class="diseyoOpciones text-light ms-1"
+                                                (click)="addTVWatchList(oneSeries!.id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-bookmark me-1"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
+                                                </svg>
+                                                Seguir
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div>
-                                <h4 class="text-start">Vista General</h4>
-                                <p><i>{{oneSeries!.tagline}}</i><br>
+                                <h4 class="text-start title mb-1 mt-3">Vista General</h4>
+
+                                <p><br>
                                     {{oneSeries!.overview}}</p>
                             </div>
                             <div class="row mt-5">
-                                <p class="col-3">Título Original<br>
+                                @if(oneSeries?.original_language){
+                                <p class="col-3"><strong>Título original</strong><br>
                                     {{oneSeries!.original_name}}
                                 </p>
+                                }@else {
+                                <p class="col-3"><strong>Título original</strong><br>
+                                    -
+                                </p>
+                                }
 
-                                <p class="col-3">Idioma Original<br>
+                                @if(oneSeries!.spoken_languages[0].name){
+                                <p class="col-3"><strong>Idioma original</strong><br>
                                     {{oneSeries!.spoken_languages[0].name}}
+                                </p>
+                                }@else {
+                                <p class="col-3"><strong>Idioma original</strong><br>
+                                    -
+                                </p>
+                                }
+
+                                <p class="col-3"><strong>Valoración media</strong><br>
+                                    {{getRatingPercentaje(oneSeries!.vote_average) | number:'1.0-0'}}%
                                 </p>
                                 <div class="col-3">
                                     <p class="mb-0">Tu Valoración</p>

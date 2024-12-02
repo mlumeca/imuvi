@@ -80,7 +80,7 @@ export class MovieListComponent implements OnInit {
       this.movieListFilt = this.movieList;
     } else {
       this.movieListFilt = this.movieList.filter(movie =>
-        movie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
+        movie.genre_ids.some(genreId => this.selectedGenres.includes(genreId)) //comprueba que al menos un elemento del array cumple la condicion
       );
     }
   }
@@ -95,15 +95,11 @@ export class MovieListComponent implements OnInit {
     }
     this.applyFilters();
   }
-
+  
   applyFilters(): void {
     this.movieListFilt = this.movieList;
 
-    if (this.selectedGenres.length > 0) {
-      this.movieListFilt = this.movieListFilt.filter(movie =>
-        movie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
-      );
-    }
+    this.filterByGenre();
 
     this.movieListFilt = this.movieListFilt.filter(movie =>
       movie.vote_average >= this.minRating && movie.vote_average <= this.maxRating

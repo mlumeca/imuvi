@@ -38,7 +38,7 @@ export class SerieService {
   }
 
   getMedia(id: string): Observable<SeriesMediaResponse> {
-    return this.http.get<SeriesMediaResponse>(`${environment.apiBaseUrl}/tv/${id}/images?api_key=${environment.apiKey}&language=${this.configService.getLanguage()}`);
+    return this.http.get<SeriesMediaResponse>(`${environment.apiBaseUrl}/tv/${id}/images?include_image_language${this.configService.getLanguage()}&api_key=${environment.apiKey}`);
   }
 
   getSeriePage(page: number): Observable<SerieListResponse> {

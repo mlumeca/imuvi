@@ -36,7 +36,7 @@ export class MovieService {
   }
 
   getMedia(id: string): Observable<MovieMediaResponse> {
-    return this.http.get<MovieMediaResponse>(`${environment.apiBaseUrl}/movie/${id}/images?api_key=${environment.apiKey}&language=${this.configService.getLanguage()}`);
+    return this.http.get<MovieMediaResponse>(`${environment.apiBaseUrl}/movie/${id}/images?include_image_language${this.configService.getLanguage()}&api_key=${environment.apiKey}`);
   }
 
   getMovieGenre(): Observable<MovieGenreResponse> {

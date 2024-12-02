@@ -1,19 +1,27 @@
-
 <nav class="d-flex justify-content-center container-fluid">
     <div class="ms-3 mt-2 position-absolute top-0 start-0">
         <img src="/assets/logo.png" width="200px" alt="imuvi logo" routerLink="/home">
     </div>
 
     <div class="d-flex">
-        <div class="me-5 ms-5 justify-content-between seleccionado opciones" routerLink="/movie-list">
+        <div class="me-5 ms-5 justify-content-between opciones"
+            routerLink="/home"
+            routerLinkActive="active">
+            <h4>Home</h4>
+        </div>
+        <div class="me-5 ms-5 justify-content-between opciones"
+            routerLink="/movie-list"
+            routerLinkActive="active">
             <h4>Películas</h4>
         </div>
-
-        <div class="ms-5 me-5 justify-content-between seleccionado opciones" routerLink="/series-list">
+        <div class="ms-5 me-5 justify-content-between opciones"
+            routerLink="/series-list"
+            routerLinkActive="active">
             <h4>Series</h4>
         </div>
-
-        <div class="ms-5 me-5 justify-content-between seleccionado opciones" routerLink="/actor-list">
+        <div class="ms-5 me-5 justify-content-between opciones"
+            routerLink="/actor-list"
+            routerLinkActive="active">
             <h4>Actores</h4>
         </div>
     </div>
@@ -22,11 +30,17 @@
         
         <mat-form-field appearance="fill">
             <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event)">
+                <mat-select-trigger>
+                    <img class="Flag" [src]="selectedLanguage === 'es-ES,ES' ? './assets/es.svg' : './assets/gb.svg'" style="width: 20px; margin-right: 8px;">
+                    {{selectedLanguage === 'es-ES,ES' ? 'Español' : 'English'}}
+                </mat-select-trigger>
                 <mat-option value="es-ES,ES">
-                    <img src="/img/es.svg" alt="ES" style="width: 20px; margin-right: 8px;">ES
+                    <img class="Flag" src="./assets/es.svg" style="width: 20px; margin-right: 8px;">
+                    Español
                 </mat-option>
                 <mat-option value="en-GB,GB">
-                    <img src="/img/sh.svg" alt="EN" style="width: 20px; margin-right: 8px;">GB
+                    <img class="Flag" src="./assets/gb.svg" style="width: 20px; margin-right: 8px;">
+                    English
                 </mat-option>
             </mat-select>
         </mat-form-field>
