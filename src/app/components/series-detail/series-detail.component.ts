@@ -13,6 +13,8 @@ import {
 import { SerieService } from '../../services/serie.service';
 import { RateService } from '../../services/rate.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AccountService } from '../../services/account.service';
+import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-series-detail',
@@ -23,20 +25,26 @@ export class SeriesDetailComponent implements OnInit {
   seriesId: string | null = '';
   oneSeries: SeriesDetailResponse | undefined;
   seriesCredits: SeriesCreditResponse | undefined;
+
   cast: Cast[] = [];
   crew: Crew[] = [];
+
   buyPlatform: Flatrate25[] = [];
+
   imgMedia: SeriesMediaResponse | undefined;
   seasons: Season[] = [];
   rating = 0;
   closeResult = '';
+  account_id: string = '';
 
-
+  alertMessage: string | null = null;
+  alertType: string = 'success';
   constructor(
     private seriesService: SerieService,
     private route: ActivatedRoute,
     private rateService: RateService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private accountService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -104,6 +112,8 @@ export class SeriesDetailComponent implements OnInit {
       },
     );
   }
+
+
   ConfirmDelete() {
     this.deleteRating();
     this.modalService.dismissAll();
@@ -113,4 +123,28 @@ export class SeriesDetailComponent implements OnInit {
     return number * 10;
   }
 
+  addTVWatchList(serieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
+      StatusResponse) => { console.log('sERIE added to watchlist:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+
+  }
+
+  addSerieToFavoriteList(serieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteSerie(this.account_id, serieId).subscribe((response:
+      StatusResponse) => { console.log('Serie added to favorites:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+  }
+
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000);
+  }
 }
