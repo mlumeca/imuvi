@@ -57,6 +57,7 @@ mat-slider {
     justify-content: center;
     border-radius: 50%;
     border: 2px solid #303030;
+    font-size: medium;
 }
 
 

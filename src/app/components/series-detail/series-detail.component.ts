@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Cast,
@@ -12,9 +12,9 @@ import {
 } from '../../models/series-detail.interface';
 import { SerieService } from '../../services/serie.service';
 import { RateService } from '../../services/rate.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService } from '../../services/account.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-series-detail',
@@ -35,10 +35,11 @@ export class SeriesDetailComponent implements OnInit {
   seasons: Season[] = [];
   rating = 0;
   closeResult = '';
-  account_id: string = '';
-
   alertMessage: string | null = null;
   alertType: string = 'success';
+  modalRef: NgbModalRef | undefined;
+  account_id: string = '';
+
   constructor(
     private seriesService: SerieService,
     private route: ActivatedRoute,
@@ -126,7 +127,7 @@ export class SeriesDetailComponent implements OnInit {
   addTVWatchList(serieId: number) {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
-      StatusResponse) => { console.log('sERIE added to watchlist:', response); }
+      StatusResponse) => { console.log('Serie added to watchlist:', response); }
     )
     this.showAlert('Elemento añadido a la lista.', 'success');
 

@@ -186,3 +186,89 @@ img {
 .title {
     margin: 0;
 }
+
+ngb-pagination ::ng-deep a {
+    background-color: #303030 !important;
+    border-color: rgb(14, 14, 14) !important;
+    color: white !important;
+
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    width: auto;
+    max-width: 300px;
+}
+
+
+.dropdown-menu {
+    background-color: #383838;
+    border-radius: 20px;
+    color: white;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: 0;
+}
+
+.diseyoBtn {
+    background-color: #383838;
+    border-radius: 20px;
+    color: white;
+    border: none;
+}
+
+.diseyoOpciones:hover {
+    background-color: #191919;
+    border-radius: 20px;
+    width: 95%;
+}
+
+.btn-options {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #1818189f;
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid #303030;
+    font-size: 18pt;
+}
+
+.btn {
+    color: white;
+    border: none;
+}

@@ -71,10 +71,6 @@ export class SeriesListComponent {
     this.newPage();
   }
 
-  openModal() {
-    this.modalRef = this.modalService.open(ModalListComponent);
-  }
-
   filterByGenre(): void {
     if (this.selectedGenres.length === 0) {
       this.originalSerieList = this.serieList;
@@ -130,7 +126,7 @@ export class SeriesListComponent {
   addTVWatchList(serieId: number) {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
-      StatusResponse) => { console.log('sERIE added to watchlist:', response); }
+      StatusResponse) => { console.log('Serie added to watchlist:', response); }
     )
     this.showAlert('Elemento añadido a la lista.', 'success');
 
