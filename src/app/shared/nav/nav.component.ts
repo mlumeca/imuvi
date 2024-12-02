@@ -56,11 +56,9 @@ export class NavComponent {
 
 
   changeLanguage(event: Event): void {
-    const target = event.target as HTMLSelectElement;  // Hacemos un casting explícito
-    const lang = target.value;  // Ahora podemos acceder a 'value'
     
-    this.configurationService.setLanguage(lang);  // Cambiar el idioma
-    location.reload();  // Recargar la página
+    
+    
   }
 
   
