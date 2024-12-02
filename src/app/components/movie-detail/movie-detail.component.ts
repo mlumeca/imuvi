@@ -3,7 +3,10 @@ import { MovieService } from '../../services/movie.service';
 import { Buy27, Cast, Crew, MovieCreditResponse, MovieDetailResponse, MovieMediaResponse } from '../../models/movie-detail.interface';
 import { ActivatedRoute } from '@angular/router';
 import { RateService } from '../../services/rate.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { StatusResponse } from '../../models/status-list.interfaces';
+import { AccountService } from '../../services/account.service';
+import { ModalListComponent } from '../modal-list/modal-list.component';
 
 @Component({
   selector: 'app-movie-detail',
@@ -24,11 +27,17 @@ export class MovieDetailComponent implements OnInit {
 
   closeResult = '';
 
+  account_id: string = '';
+  modalRef: NgbModalRef | undefined;
+
+  alertMessage: string | null = null;
+  alertType: string = 'success';
   constructor(
     private movieService: MovieService, 
     private route: ActivatedRoute,
     private rateService: RateService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private accountService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -106,6 +115,35 @@ export class MovieDetailComponent implements OnInit {
       this.modalService.dismissAll(); 
   }
 
+  addMovieWatchList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addMovieToWatchList(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('movie added to watchlist:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+
+  }
+
+  addMovieToFavoriteList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('movie added to favorites:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+  }
+
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000);
+  }
+
+  openModalCreate(movieId: number) {
+    this.modalRef = this.modalService.open(ModalListComponent);
+    this.modalRef.componentInstance.movieId = movieId;
+  }
   
 
 }
