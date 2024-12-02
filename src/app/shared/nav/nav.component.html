@@ -28,18 +28,18 @@
 
     <div class="d-flex position-absolute top-0 end-0 me-4 text-light mt-2">
         
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="languaje-menu">
             <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event)">
                 <mat-select-trigger>
-                    <img class="Flag" [src]="selectedLanguage === 'es-ES,ES' ? './assets/es.svg' : './assets/gb.svg'" style="width: 20px; margin-right: 8px;">
+                    <img class="Flag" [src]="selectedLanguage === 'es-ES,ES' ? 'https://flagicons.lipis.dev/flags/4x3/es.svg' : 'https://flagicons.lipis.dev/flags/4x3/gb.svg'" style="width: 20px; margin-right: 8px;">
                     {{selectedLanguage === 'es-ES,ES' ? 'Español' : 'English'}}
                 </mat-select-trigger>
                 <mat-option value="es-ES,ES">
-                    <img class="Flag" src="./assets/es.svg" style="width: 20px; margin-right: 8px;">
+                    <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/es.svg" style="width: 20px; margin-right: 8px;">
                     Español
                 </mat-option>
                 <mat-option value="en-GB,GB">
-                    <img class="Flag" src="./assets/gb.svg" style="width: 20px; margin-right: 8px;">
+                    <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/gb.svg" style="width: 20px; margin-right: 8px;">
                     English
                 </mat-option>
             </mat-select>
