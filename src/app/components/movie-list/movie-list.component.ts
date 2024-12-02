@@ -80,7 +80,7 @@ export class MovieListComponent implements OnInit {
       this.movieListFilt = this.movieList;
     } else {
       this.movieListFilt = this.movieList.filter(movie =>
-        movie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
+        movie.genre_ids.some(genreId => this.selectedGenres.includes(genreId)) //comprueba que al menos un elemento del array cumple la condicion
       );
     }
   }

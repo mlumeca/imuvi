@@ -13,10 +13,8 @@ import {
 import { SerieService } from '../../services/serie.service';
 import { RateService } from '../../services/rate.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalListComponent } from '../modal-list/modal-list.component';
 import { StatusResponse } from '../../models/status-list.interfaces';
 import { AccountService } from '../../services/account.service';
-import { Serie } from '../../models/series-list.interface';
 
 @Component({
   selector: 'app-series-detail',
@@ -27,9 +25,12 @@ export class SeriesDetailComponent implements OnInit {
   seriesId: string | null = '';
   oneSeries: SeriesDetailResponse | undefined;
   seriesCredits: SeriesCreditResponse | undefined;
+
   cast: Cast[] = [];
   crew: Crew[] = [];
+
   buyPlatform: Flatrate25[] = [];
+
   imgMedia: SeriesMediaResponse | undefined;
   seasons: Season[] = [];
   rating = 0;
@@ -112,6 +113,8 @@ export class SeriesDetailComponent implements OnInit {
       },
     );
   }
+
+
   ConfirmDelete() {
     this.deleteRating();
     this.modalService.dismissAll();

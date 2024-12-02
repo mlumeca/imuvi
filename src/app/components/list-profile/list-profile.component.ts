@@ -60,6 +60,7 @@ export class ListProfileComponent {
       this.updateValues();
     });
   }
+  
   onPageMovies(newPage: number): void {
     this.pageMovie = newPage;
     this.newPageMovies();
