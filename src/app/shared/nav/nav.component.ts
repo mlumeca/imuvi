@@ -17,15 +17,11 @@ export class NavComponent {
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('user_name') ?? '';
-    if (this.userPhoto) {
-      this.userPhoto = localStorage.getItem('user_photo')
+    this.userPhoto = localStorage.getItem('user_photo')
       ? `https://image.tmdb.org/t/p/w50_and_h50_face${localStorage.getItem(
           'user_photo'
         )}`
       : '';
-    } else {
-      this.userPhoto = `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`
-    }
     this.accountService.getAccountDetails().subscribe(response => {
         localStorage.setItem('account_id', response.id.toString());
     });
@@ -50,4 +46,3 @@ export class NavComponent {
   }
 
 }
-
