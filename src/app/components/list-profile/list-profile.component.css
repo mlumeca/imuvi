@@ -106,7 +106,7 @@ ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
 
 
 .fondoDatos {
-    background-color: #383838;
+    background-color: #303030;
     border-radius: 20px;
     width: 100%;
     margin-top: 20px;

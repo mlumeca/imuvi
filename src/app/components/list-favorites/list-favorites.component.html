@@ -40,12 +40,8 @@
             </div>
         </div>
         }
-        <ngb-pagination
-            class="d-flex justify-content-center mt-4"
-            [collectionSize]="totalPagesMovie * 10"
-            [(page)]="pageMovie"
-            (pageChange)="onPageMovies($event)"
-            [boundaryLinks]="true">
+        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPagesMovie * 10"
+            [(page)]="pageMovie" (pageChange)="onPageMovies($event)" [boundaryLinks]="true">
         </ngb-pagination>
         }
 
@@ -84,12 +80,8 @@
             </div>
         </div>
         }
-        <ngb-pagination class="d-flex justify-content-center"
-            [collectionSize]="totalPagesSerie * 10"
-            (pageChange)="onPageSeries($event)"
-            [(page)]="pageSerie"
-            [maxSize]="10"
-            [boundaryLinks]="true">
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalPagesSerie * 10"
+            (pageChange)="onPageSeries($event)" [(page)]="pageSerie" [maxSize]="10" [boundaryLinks]="true">
         </ngb-pagination>
         }
         }
