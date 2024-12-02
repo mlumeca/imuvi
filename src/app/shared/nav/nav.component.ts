@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AccountService } from '../../services/account.service';
 import { ConfigurationService } from '../../services/configuration.service';
@@ -8,7 +8,7 @@ import { MatSelectChange } from '@angular/material/select';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
 
 export class NavComponent {

@@ -69,3 +69,7 @@ i {
     width: 20px; 
     margin-right: 8px;
 }
+
+::ng-deep .mat-select-panel{
+    background: red !important;
+} 
