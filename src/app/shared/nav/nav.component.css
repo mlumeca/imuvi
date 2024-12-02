@@ -1,6 +1,6 @@
 nav {
     background-color: #101010;
-    height: 60px;
+    height: 65px;
 }
 
 .opciones {
@@ -24,8 +24,8 @@ i {
     color: white;
     background-color: #383838;
     border-radius: 20px;
-    margin-top: 8px;
-    height: 50px;
+    margin-top: 1px;
+    height: 45px;
 }
 
 .diseyoBtn {
@@ -33,7 +33,7 @@ i {
     border-radius: 20px;
     color: white;
     border: none;
-    height: 50px;
+    height: 45px;
 }
 
 .btn {
