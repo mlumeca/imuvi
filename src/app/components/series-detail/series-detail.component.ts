@@ -15,6 +15,7 @@ import { RateService } from '../../services/rate.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
 import { AccountService } from '../../services/account.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-series-detail',
@@ -45,7 +46,8 @@ export class SeriesDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private rateService: RateService,
     private modalService: NgbModal,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private translationService: TranslationService
   ) { }
 
   ngOnInit(): void {
@@ -78,6 +80,8 @@ export class SeriesDetailComponent implements OnInit {
     this.seriesService.getOneSeries(this.seriesId!).subscribe((response) => {
       this.seasons = response.seasons;
     });
+
+    this.translationService.initializeLanguage();
   }
 
   getImagen(url: string): string {
@@ -147,5 +151,9 @@ export class SeriesDetailComponent implements OnInit {
     setTimeout(() => {
       this.alertMessage = null;
     }, 3000);
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 }

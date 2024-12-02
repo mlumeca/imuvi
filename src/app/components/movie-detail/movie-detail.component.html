@@ -40,7 +40,7 @@
                                                             <path fill-rule="evenodd"
                                                                 d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
                                                         </svg>
-                                                        Añadir a lista
+                                                        {{getText('ADD_TO_LIST')}}
                                                     </button>
                                                 </div>
                                                 <button ngbDropdownItem class="diseyoOpciones text-light ms-1"
@@ -50,7 +50,7 @@
                                                         <path
                                                             d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
                                                     </svg>
-                                                    Favoritos
+                                                    {{getText('FAVORITES')}}
                                                 </button>
                                                 <button ngbDropdownItem class="diseyoOpciones text-light ms-1"
                                                     (click)="addMovieWatchList(oneMovie!.id)">
@@ -59,7 +59,7 @@
                                                         <path
                                                             d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z" />
                                                     </svg>
-                                                    Seguir
+                                                    {{getText('FOLLOW')}}
                                                 </button>
                                             </div>
                                       
@@ -69,25 +69,25 @@
                         </div>
 
                             <div>
-                                <h3 class="text-start title mb-1 mt-3">Vista General</h3>
+                                <h3 class="text-start title mb-1 mt-3">{{getText('GENERAL_VIEW')}}</h3>
                                 <p><i>{{oneMovie!.tagline}}</i><br>
                                     {{oneMovie!.overview}}</p>
                             </div>
                             <div class="row mt-5">
-                                <p class="col-3"><strong>Título original</strong><br>
+                                <p class="col-3"><strong>{{getText('ORIGINAL_TITLE')}}</strong><br>
                                     {{oneMovie!.original_title}}
                                 </p>
 
-                                <p class="col-3"><strong>Idioma original</strong><br>
+                                <p class="col-3"><strong>{{getText('ORIGINAL_LANGUAGE')}}</strong><br>
                                     {{oneMovie!.spoken_languages[0].name}}
                                 </p>
 
-                                <p class="col-3"><strong>Valoración media</strong><br>
+                                <p class="col-3"><strong>{{getText('AVERAGE_RATING')}}</strong><br>
                                     {{getRatingPercentaje(oneMovie!.vote_average) | number:'1.0-0'}}%
                                 </p>
 
                                 <div class="col-3">
-                                    <p class="mb-0"><strong>Tu Valoración</strong></p>
+                                    <p class="mb-0"><strong>{{getText('YOUR_RATING')}}</strong></p>
                                     <div class="d-flex align-items-center">
                                         <ngb-rating class="rating-star" [(rate)]="rating" [max]="5" [starTemplate]="t"
                                             (rateChange)="onRateChange(rating)" />
@@ -106,7 +106,7 @@
         </div>
 
         <div class="mt-5 divMargin">
-            <h4>Plataformas</h4>
+            <h4>{{getText('PLATFORMS')}}</h4>
             <div>
                 @if(buyPlatform) {
                 @for(item of buyPlatform; track item.provider_id) {
@@ -114,13 +114,13 @@
                 }
                 }
                 @else {
-                <p>No disponible en ninguna plataforma.</p>
+                <p>{{getText('NOT_AVAILABLE_IN_ANY_PLATFORM')}}</p>
                 }
             </div>
         </div>
 
         <div class="mt-5 divMargin">
-            <h4 class="text-light">Reparto</h4>
+            <h4 class="text-light">{{getText('CAST')}}</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
 
@@ -145,7 +145,7 @@
 
 
         <div class="mt-5 divMargin">
-            <h4>Media</h4>
+            <h4>{{getText('MEDIA')}}</h4>
             <div class="scrollCardMedia">
                 @for (item of imgMedia?.backdrops; track $index) {
                 <div class="card scrollCardMediaBack me-3 mb-2">
@@ -172,14 +172,14 @@
 <ng-template #delete let-modal>
     <div class="modal-content">
         <div class="modal-header d-flex justify-content-between">
-            <h4 class="modal-title">Eliminar valoración</h4>
+            <h4 class="modal-title">{{getText('DELETE_RATING')}}</h4>
             <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
             <div class="modal-body">
-                ¿Está seguro de que desea eliminar esta valoración?
+                {{getText('CONFIRM_DELETE_RATING')}}
                 <div class="d-flex justify-content-end mt-3">
-                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">Eliminar</button>
+                    <button type="button" class="btn btn-danger" (click)="ConfirmDelete()" data-bs-dismiss="modal">{{getText('DELETE')}}</button>
                 </div>
             </div>
         </div>

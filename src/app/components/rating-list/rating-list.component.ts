@@ -5,6 +5,7 @@ import { Serie } from '../../models/series-list.interface';
 import { RateService } from '../../services/rate.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MovieService } from '../../services/movie.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-rating-list',
@@ -33,6 +34,7 @@ export class RatingListComponent implements OnInit {
   constructor(private accountService: AccountService,
     private rateService: RateService,
     private modalService: NgbModal,
+    private translationService: TranslationService
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +49,7 @@ export class RatingListComponent implements OnInit {
         this.serieList = response.results;
         this.totalPagesSerie = response.total_pages;
       });
+      this.translationService.initializeLanguage();
 
       console.log(this.movieList)
   }
@@ -73,7 +76,7 @@ export class RatingListComponent implements OnInit {
   ConfirmDelete(modal: any) {
       this.deleteRating(this.idElemento, this.tipoElemento);
       this.modalService.dismissAll(); 
-      this.showAlert('Item eliminado.', 'success');
+      this.showAlert(this.getText('ITEM_REMOVED'), 'success');
       modal.close();
   }
 
@@ -124,4 +127,7 @@ export class RatingListComponent implements OnInit {
     }, 3000); 
   }
 
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
 }

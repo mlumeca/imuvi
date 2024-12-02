@@ -4,21 +4,21 @@
     </ngb-alert>
 
     <div class="modal-header">
-        <h5 class="modal-title">Añadir a lista</h5>
+        <h5 class="modal-title">{{getText('ADD_TO_LIST')}}</h5>
         <button type="button" class="btn-close btn-close-white" aria-label="Close"
             (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <h6 class>Seleccionar lista</h6>
+        <h6 class>{{getText('SELECT_LIST')}}</h6>
         <div>
             <select class="form-select" aria-label="Multiple select example" [(ngModel)]="listId" name="listId">
-                <option selected disabled class="h6">Seleccione una lista</option>
+                <option selected disabled class="h6">{{getText('SELECT_A_LIST')}}</option>
                 @for (movie of lists; track movie.id) {
                 <option [value]="movie.id">{{movie.name}}</option>
                 }
             </select>
         </div>
-        <button type="submit" class="btn btn-dark mt-3" (click)="addMoviList()">Añadir pelicula</button>
+        <button type="submit" class="btn btn-dark mt-3" (click)="addMoviList()">{{getText('ADD_MOVIE_TO_LIST')}}</button>
 
         <p>
             <button
@@ -27,17 +27,17 @@
                 (click)="isCollapsed = !isCollapsed"
                 [attr.aria-expanded]="!isCollapsed"
                 aria-controls="collapseExample">
-                Crear nueva lista
+                {{getText('CREATE_NEW_LIST')}}
             </button>
         </p>
         
         <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
             <div class="card  newListCard">
                 <div class="card-body">
-                    <h6>Nueva lista</h6>
+                    <h6>{{getText('NEW_LIST')}}</h6>
                     <form (ngSubmit)="createList()">
                         <div class="mb-3">
-                            <label for="listName" class="form-label">Nombre de la lista</label>
+                            <label for="listName" class="form-label">{{getText('LIST_NAME')}}</label>
                             <input
                                 type="text"
                                 id="listName"
@@ -47,14 +47,14 @@
                                 required />
                         </div>
                         <div class="mb-3">
-                            <label for="listDesc" class="form-label">Descripción</label>
+                            <label for="listDesc" class="form-label">{{getText('LIST_DESCRIPTION')}}</label>
                             <textarea
                                 id="listDesc"
                                 [(ngModel)]="listDesc"
                                 class="form-control"
                                 name="description"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-dark">Crear Lista</button>
+                        <button type="submit" class="btn btn-dark">{{getText('CREATE_LIST')}}</button>
                     </form>
                 </div>
             </div>

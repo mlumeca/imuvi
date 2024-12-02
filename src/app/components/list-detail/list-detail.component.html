@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                    <p class="me-4">{{totalCount}} elementos en la lista</p> |
-                    <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
+                    <p class="me-4">{{totalCount}} {{getText('ITEMS_IN_LIST')}}</p> |
+                    <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% {{getText('AVERAGE_RATING')}}</p>
                 </div>
                 <div class="d-flex justify-content-end">
                     <button class="btn btn-dark me-1 mb-1" (click)="open(delete)">
@@ -38,16 +38,16 @@
                     <ng-template #delete let-modal>
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
-                                <h4 class="modal-title">Eliminar lista</h4>
+                                <h4 class="modal-title">{{getText('DELETE_LIST')}}</h4>
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="modal-body">
-                                    ¿Está seguro de que desea eliminar esta lista?
+                                    {{getText('CONFIRM_DELETE_LIST')}}
                                     <div class="d-flex justify-content-end mt-3">
                                         <button type="button" class="btn btn-danger" (click)="deleteList(listId!, modal)"
-                                            data-bs-dismiss="modal"> Eliminar </button>
+                                            data-bs-dismiss="modal">{{getText('DELETE')}}</button>
                                     </div>
                                 </div>
 
@@ -59,14 +59,14 @@
                     <ng-template #update let-modal>
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
-                                <h4 class="modal-title">Actualizar lista</h4>
+                                <h4 class="modal-title">{{getText('UPDATE_LIST')}}</h4>
                                 <button type="button" class="btn-close btn-close-white" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')"></button>
                             </div>
                             <div class="modal-body">
                                 <form (ngSubmit)="updateList(listId!, listName, listDesc, modal)">
                                     <div class="mb-3">
-                                        <label for="listName" class="form-label">Nombre de la lista</label>
+                                        <label for="listName" class="form-label">{{getText('LIST_NAME')}}</label>
                                         <input
                                             type="text"
                                             id="listName"
@@ -76,14 +76,14 @@
                                             required />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="listDesc" class="form-label">Descripción</label>
+                                        <label for="listDesc" class="form-label">{{getText('LIST_DESCRIPTION')}}</label>
                                         <textarea
                                             id="listDesc"
                                             [(ngModel)]="listDesc"
                                             class="form-control"
                                             name="description"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-dark">Actualizar lista</button>
+                                    <button type="submit" class="btn btn-dark">{{getText('UPDATE')}}</button>
                                 </form>
                             </div>
                         </div>
@@ -129,14 +129,14 @@
 <ng-template #deleteItem let-modal>
     <div class="modal-content">
         <div class="modal-header d-flex justify-content-between">
-            <h4 class="modal-title">Eliminar película</h4>
+            <h4 class="modal-title">{{getText('DELETE_ITEM')}}</h4>
             <button type="button" class="btn-close btn-close-white text-dark" aria-label="Close"
                 (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
-            <p>¿Está seguro de que desea eliminar esta película?</p>
+            <p>{{getText('CONFIRM_DELETE_ITEM')}}</p>
             <div class="d-flex justify-content-end mt-3">
-                <button type="button" class="btn btn-danger" (click)="confirmDelete(modal)">Eliminar</button>
+                <button type="button" class="btn btn-danger" (click)="confirmDelete(modal)">{{getText('DELETE')}}</button>
             </div>
         </div>
     </div>

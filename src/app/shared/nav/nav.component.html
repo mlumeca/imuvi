@@ -7,22 +7,22 @@
         <div class="me-5 ms-5 justify-content-between opciones"
             routerLink="/home"
             routerLinkActive="active">
-            <h4>Home</h4>
+            <h4>{{ getText('HOME') }}</h4>
         </div>
         <div class="me-5 ms-5 justify-content-between opciones"
             routerLink="/movie-list"
             routerLinkActive="active">
-            <h4>Películas</h4>
+            <h4>{{ getText('MOVIES') }}</h4>
         </div>
         <div class="ms-5 me-5 justify-content-between opciones"
             routerLink="/series-list"
             routerLinkActive="active">
-            <h4>Series</h4>
+            <h4>{{ getText('SERIES') }}</h4>
         </div>
         <div class="ms-5 me-5 justify-content-between opciones"
             routerLink="/actor-list"
             routerLinkActive="active">
-            <h4>Actores</h4>
+            <h4>{{ getText('ACTORS') }}</h4>
         </div>
     </div>
 
@@ -51,19 +51,17 @@
                 <img [src]="userPhoto" alt="Avatar" class="avatar me-3" />
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/rating">Valoraciones</button>
-                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/lists">Listas</button>
-                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/listFavoritos">Favoritos</button>
-                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/listSeguimiento">Lista de
-                    seguimiento</button>
-
+                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/rating">{{ getText('RATINGS') }}</button>
+                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/lists">{{ getText('LISTS') }}</button>
+                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/listFavoritos">{{ getText('FAVORITES') }}</button>
+                <button ngbDropdownItem class="diseyoOpciones text-light ms-1" routerLink="/listSeguimiento">{{ getText('WATCHLIST') }}</button>
                 <hr>
-                <button ngbDropdownItem (click)="logout()" class="diseyoOpciones text-light ms-1">Cerrar sesión</button>
+                <button ngbDropdownItem (click)="logout()" class="diseyoOpciones text-light ms-1">{{ getText('LOGOUT') }}</button>
             </div>
         </div>
         }@else {
         <button class="btn btn-sm btnLogin text-light" (click)="createRequestToken()">
-            Iniciar sesión
+            {{getText('LOGIN')}}
         </button>
         }
     </div>

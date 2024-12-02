@@ -5,6 +5,7 @@ import { Serie } from '../../models/series-list.interface';
 import { SerieService } from '../../services/serie.service';
 import { MovieService } from '../../services/movie.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-list-profile',
@@ -36,13 +37,14 @@ export class ListProfileComponent {
   alertMessage: string | null = null;
   alertType: string = '';
 
-  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService, private modalService: NgbModal) { }
+  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService, private modalService: NgbModal, private translationService: TranslationService) { }
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.updateValues();
     this.newPageMovies();
     this.newPageSeries();
+    this.translationService.initializeLanguage();
 
   }
   newPageMovies(): void {
@@ -145,6 +147,10 @@ export class ListProfileComponent {
     setTimeout(() => {
       this.alertMessage = null;
     }, 3000);
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 
 }

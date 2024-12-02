@@ -4,16 +4,16 @@
         {{ alertMessage }}
     </ngb-alert>
 
-    <h1 class="title mb-4 text-white">Valoraciones</h1>
+    <h1 class="title mb-4 text-white">{{getText('RATES')}}</h1>
 
     <div class="row">
         <h4 (click)="showMovies = !showMovies">
-            Peliculas
+            {{getText('MOVIES')}}
             <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showMovies){
         @if (movieList.length === 0) {
-        <p>No hay película en la lista de seguimiento.</p>
+        <p>{{getText('NO_MOVIES_IN_WATCHLIST')}}</p>
         }@else {
         @for (movie of movieList; track movie.id) {
         <div class="col-3 mb-5">
@@ -58,7 +58,7 @@
         </h4>
         @if (showSeries) {
         @if (serieList.length === 0) {
-        <p>No hay serie en la lista de seguimiento.</p>
+        <p>{{getText('NO_SERIES_IN_WATCHLIST')}}</p>
         }@else {
         @for (serie of serieList; track serie.id) {
         <div class="col-3 mb-5">
@@ -105,16 +105,16 @@
 <ng-template #delete let-modal>
     <div class="modal-content">
         <div class="modal-header d-flex justify-content-between">
-            <h4 class="modal-title">Eliminar valoración</h4>
+            <h4 class="modal-title">{{getText('DELETE_RATING')}}</h4>
             <button type="button" class="btn-close btn-close-white " aria-label="Close"
                 (click)="modal.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
             <div class="modal-body">
-                ¿Está seguro de que desea eliminar esta valoración?
+                {{getText('CONFIRM_DELETE_RATING')}}
                 <div class="d-flex justify-content-end mt-3">
                     <button type="button" class="btn btn-danger" (click)="ConfirmDelete(modal)"
-                        data-bs-dismiss="modal">Eliminar</button>
+                        data-bs-dismiss="modal">{{getText('DELETE')}}</button>
                 </div>
             </div>
         </div>

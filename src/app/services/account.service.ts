@@ -8,16 +8,16 @@ import { SerieListResponse } from '../models/series-list.interface';
 import { environment } from '../../environments/environment';
 import { StatusResponse } from '../models/status-list.interfaces';
 import { ListDetailResponse } from '../models/list-detail.interfaces';
-import { ConfigurationService } from './configuration.service';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
-  constructor(private http: HttpClient, private configurationService: ConfigurationService) { }
+  constructor(private http: HttpClient, private translationService: TranslationService) { }
 
   getLanguage(): string {
-    return this.configurationService.getLanguage(); 
+    return this.translationService.getLanguage(); 
   }
 
   getAccountDetails(): Observable<AccountDetailsResponse> {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActorDetailResponse, Cast } from '../../models/actor-detail.interface';
 import { ActorService } from '../../services/actor.service';
 import { ActivatedRoute } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-actor-detail',
@@ -15,7 +16,7 @@ export class ActorDetailComponent implements OnInit {
   groupedCastByYear: Map<string, Cast[]> = new Map(); // Agrupar por año
   cast: Cast[] = [];
 
-  constructor(private actorService: ActorService, private route: ActivatedRoute) { }
+  constructor(private actorService: ActorService, private route: ActivatedRoute, private translationService: TranslationService) { }
 
   ngOnInit(): void {
     this.actorId = this.route.snapshot.paramMap.get('id');
@@ -28,6 +29,8 @@ export class ActorDetailComponent implements OnInit {
       this.cast = response.cast;
       this.groupCastByYear();
     })
+
+    this.translationService.initializeLanguage();
   }
 
   getImagen(url: string): string {
@@ -57,5 +60,9 @@ export class ActorDetailComponent implements OnInit {
 
   getSortedYears(): string[] {
     return Array.from(this.groupedCastByYear.keys()).sort((a, b) => parseInt(b) - parseInt(a));
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 }

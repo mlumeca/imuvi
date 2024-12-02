@@ -7,6 +7,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
 import { AccountService } from '../../services/account.service';
 import { ModalListComponent } from '../modal-list/modal-list.component';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -37,7 +38,8 @@ export class MovieDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private rateService: RateService,
     private modalService: NgbModal,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private translationService: TranslationService
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +69,8 @@ export class MovieDetailComponent implements OnInit {
       this.movieService.getMedia(this.movieId!).subscribe(response => {
         this.imgMedia = response;
       })
+
+      this.translationService.initializeLanguage();
     
   }
 
@@ -120,7 +124,7 @@ export class MovieDetailComponent implements OnInit {
     this.accountService.addMovieToWatchList(this.account_id, movieId).subscribe((response:
       StatusResponse) => { console.log('movie added to watchlist:', response); }
     )
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
 
   }
 
@@ -129,7 +133,7 @@ export class MovieDetailComponent implements OnInit {
     this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
       StatusResponse) => { console.log('movie added to favorites:', response); }
     )
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
   }
 
   showAlert(message: string, type: string = 'success') {
@@ -144,6 +148,9 @@ export class MovieDetailComponent implements OnInit {
     this.modalRef = this.modalService.open(ModalListComponent);
     this.modalRef.componentInstance.movieId = movieId;
   }
-  
 
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
+  
 }

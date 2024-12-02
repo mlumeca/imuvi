@@ -6,6 +6,7 @@ import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
 import { List } from '../../models/lists.interfaces';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-list-detail',
@@ -36,13 +37,14 @@ export class ListDetailComponent implements OnInit {
   alertType: string = 'success';
 
 
-  constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal, private router: Router) { }
+  constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal, private router: Router, private translationService: TranslationService) { }
 
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.listId = this.route.snapshot.paramMap.get('id');
     this.loadItems();
+    this.translationService.initializeLanguage();
 
   }
 
@@ -88,7 +90,7 @@ export class ListDetailComponent implements OnInit {
 
   deleteList(listId: string, modal: any) {
     this.accountService.deleteUserList(listId).subscribe(response => {
-      this.showAlert('Lista eliminada.', 'success');
+      this.showAlert(this.getText('LIST_DELETED'), 'success');
       modal.close();
       this.router.navigate(['/lists']);
     });
@@ -99,7 +101,7 @@ export class ListDetailComponent implements OnInit {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
 
-      this.showAlert('Lista actualizada.', 'success');
+      this.showAlert(this.getText('LIST_UPDATED'), 'success');
       modal.close();
     });
 
@@ -135,7 +137,7 @@ export class ListDetailComponent implements OnInit {
   confirmDelete(modal: any): void {
     this.removeItem(this.idElemento);
     this.modalService.dismissAll();
-    this.showAlert('Item eliminado.', 'danger');
+    this.showAlert(this.getText('ITEM_REMOVED'), 'danger');
     modal.close();
 
   }
@@ -147,6 +149,11 @@ export class ListDetailComponent implements OnInit {
       this.alertMessage = null;
     }, 3000);
   }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
+
 
 
 }

@@ -5,6 +5,7 @@ import { AccountService } from '../../services/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from '../../models/list-detail.interfaces';
 import { ListService } from '../../services/list.service';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-list-favorites',
@@ -13,7 +14,7 @@ import { ListService } from '../../services/list.service';
 })
 export class ListFavoritesComponent {
 
-  constructor(private accountService: AccountService, private modalService: NgbModal, private listService: ListService) { }
+  constructor(private accountService: AccountService, private modalService: NgbModal, private listService: ListService, private translationService: TranslationService) { }
 
   movieList: Movie[] = [];
   serieList: Serie[] = [];
@@ -51,9 +52,13 @@ export class ListFavoritesComponent {
       this.serieList = response.results;
     });
 
+    this.translationService.initializeLanguage();
+
     this.updateValues();
     this.newPageMovies();
     this.newPageSeries();
+
+    
   }
 
 
@@ -128,7 +133,7 @@ export class ListFavoritesComponent {
     this.removeItem(this.idElemento, this.tipoElemento);
     this.modalService.dismissAll();
 
-    this.showAlert('Item eliminado.', 'success');
+    this.showAlert(this.getText('ITEM_REMOVED'), 'success');
     modal.close();
   }
 
@@ -164,5 +169,9 @@ export class ListFavoritesComponent {
   onPageSeries(newPage: number): void {
     this.pageSerie = newPage;
     this.newPageSeries();
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 }

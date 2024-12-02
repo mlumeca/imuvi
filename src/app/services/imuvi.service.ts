@@ -4,26 +4,26 @@ import { Observable } from 'rxjs';
 import { MovieVideoResponse, TrendingResponse, UpcomingMoviesResponse } from '../models/home.interface';
 import { TrendingActorsResponse } from '../models/homeActors.interface';
 import { environment } from '../../environments/environment';
-import { ConfigurationService } from './configuration.service';
+import { TranslationService } from './translation.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImuviService {
 
-  constructor(private http: HttpClient, private configurationService: ConfigurationService) { }
+  constructor(private http: HttpClient, private translationService: TranslationService) { }
 
 
   getTrending(): Observable<TrendingResponse> {
-    return this.http.get<TrendingResponse>(`${environment.apiBaseUrl}/trending/all/week?api_key=${environment.apiKey}&language=${this.configurationService.getLanguage()}`);
+    return this.http.get<TrendingResponse>(`${environment.apiBaseUrl}/trending/all/week?api_key=${environment.apiKey}&language=${this.translationService.getLanguage()}`);
   }
 
   getTrendingActor(): Observable<TrendingActorsResponse> {
-    return this.http.get<TrendingActorsResponse>(`${environment.apiBaseUrl}/trending/person/week?api_key=${environment.apiKey}&language=${this.configurationService.getLanguage()}`);
+    return this.http.get<TrendingActorsResponse>(`${environment.apiBaseUrl}/trending/person/week?api_key=${environment.apiKey}&language=${this.translationService.getLanguage()}`);
   }
 
   getUpcomingMovies(): Observable<UpcomingMoviesResponse> {
-    return this.http.get<UpcomingMoviesResponse>(`${environment.apiBaseUrl}/movie/upcoming?api_key=${environment.apiKey}&language=${this.configurationService.getLanguage()}`);
+    return this.http.get<UpcomingMoviesResponse>(`${environment.apiBaseUrl}/movie/upcoming?api_key=${environment.apiKey}&language=${this.translationService.getLanguage()}`);
   }
   
   getMovieVideoById(movieId: number): Observable<MovieVideoResponse> {
