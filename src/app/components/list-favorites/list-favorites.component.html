@@ -1,12 +1,15 @@
 <div class="container-fluid mt-3 px-5">
-    <div class="top-card p-3">
-        <h2 class="text-center p-3">Favoritos</h2>
-        <div class="row justify-content-center text-center">
-            <div class="d-flex justify-content-center">
-                <p class="me-4">{{totalCount}} elementos en la lista</p> |
-                <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
+    <div class="top-card mt-5 p-3">
+        <div>
+            <h3 class="text-center p-3">Favoritos</h3>
+            <div class="row justify-content-center text-center">
+                <div class="d-flex justify-content-center">
+                    <p class="me-4">{{totalCount}} elementos en la lista</p> |
+                    <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
+                </div>
             </div>
         </div>
+        
     </div>
 
     <div class="row">
