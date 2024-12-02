@@ -5,7 +5,6 @@ import { AccountService } from '../../services/account.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Item } from '../../models/list-detail.interfaces';
 import { ListService } from '../../services/list.service';
-import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
   selector: 'app-list-favorites',
@@ -51,6 +50,10 @@ export class ListFavoritesComponent {
     this.accountService.getFavSeries(this.account_id).subscribe(response => {
       this.serieList = response.results;
     });
+
+    this.updateValues();
+    this.newPageMovies();
+    this.newPageSeries();
   }
 
 
