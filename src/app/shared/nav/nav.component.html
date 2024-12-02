@@ -1,49 +1,54 @@
 <nav class="d-flex justify-content-center container-fluid">
     <div class="ms-3 mt-2 position-absolute top-0 start-0">
-        <img src="/assets/logo.png" width="200px" alt="imuvi logo" routerLink="/home">
+        <img src="/assets/logo.png" width="150px" alt="imuvi logo" routerLink="/home">
     </div>
 
     <div class="d-flex">
         <div class="me-5 ms-5 justify-content-between opciones"
             routerLink="/home"
             routerLinkActive="active">
-            <h4>Home</h4>
+            <h6>Home</h6>
         </div>
         <div class="me-5 ms-5 justify-content-between opciones"
             routerLink="/movie-list"
             routerLinkActive="active">
-            <h4>Películas</h4>
+            <h6>Películas</h6>
         </div>
         <div class="ms-5 me-5 justify-content-between opciones"
             routerLink="/series-list"
             routerLinkActive="active">
-            <h4>Series</h4>
+            <h6>Series</h6>
         </div>
         <div class="ms-5 me-5 justify-content-between opciones"
             routerLink="/actor-list"
             routerLinkActive="active">
-            <h4>Actores</h4>
+            <h6>Actores</h6>
         </div>
     </div>
 
     <div class="d-flex position-absolute top-0 end-0 me-4 text-light mt-2">
+
+        <div class="languageFormField">
+            <mat-form-field appearance="fill">
+                <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event)">
+                    <mat-select-trigger>
+                        <img class="Flag" [src]="selectedLanguage === 'es-ES,ES' ? 'https://flagicons.lipis.dev/flags/4x3/es.svg' : 'https://flagicons.lipis.dev/flags/4x3/gb.svg'" style="width: 20px; margin-right: 8px;">
+                        {{selectedLanguage === 'es-ES,ES' ? 'Español' : 'English'}}
+                    </mat-select-trigger>
+                    <mat-option value="es-ES,ES">
+                        <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/es.svg" style="width: 20px; margin-right: 8px;">
+                        Español
+                    </mat-option>
+                    <mat-option value="en-GB,GB">
+                        <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/gb.svg" style="width: 20px; margin-right: 8px;">
+                        English
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
         
-        <mat-form-field appearance="fill" class="languaje-menu">
-            <mat-select [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event)">
-                <mat-select-trigger>
-                    <img class="Flag" [src]="selectedLanguage === 'es-ES,ES' ? 'https://flagicons.lipis.dev/flags/4x3/es.svg' : 'https://flagicons.lipis.dev/flags/4x3/gb.svg'" style="width: 20px; margin-right: 8px;">
-                    {{selectedLanguage === 'es-ES,ES' ? 'Español' : 'English'}}
-                </mat-select-trigger>
-                <mat-option value="es-ES,ES">
-                    <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/es.svg" style="width: 20px; margin-right: 8px;">
-                    Español
-                </mat-option>
-                <mat-option value="en-GB,GB">
-                    <img class="Flag" src="https://flagicons.lipis.dev/flags/4x3/gb.svg" style="width: 20px; margin-right: 8px;">
-                    English
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        
 
         @if(isLoggedIn()) {
         <div ngbDropdown class="d-inline-block diseyoBtn">
