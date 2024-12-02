@@ -85,6 +85,17 @@ export class MovieListComponent implements OnInit {
     }
   }
 
+  onGenreChange(genreId: number, isChecked: boolean): void {
+    if (isChecked) {
+      if (!this.selectedGenres.includes(genreId)) {
+        this.selectedGenres.push(genreId);
+      }
+    } else {
+      this.selectedGenres = this.selectedGenres.filter(id => id !== genreId);
+    }
+    this.applyFilters();
+  }
+  
   applyFilters(): void {
     this.movieListFilt = this.movieList;
 

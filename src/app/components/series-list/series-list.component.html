@@ -40,7 +40,8 @@
                     @for(genre of serieGenre; track genre.id) {
                     <div class="d-colum">
                         <mat-checkbox
-                            [checked]="selectedGenres.includes(genre.id)">
+                            [checked]="selectedGenres.includes(genre.id)"
+                            (change)="onGenreChange(genre.id, $event.checked)">
                             <span class="colorGen">{{ genre.name }}</span>
                         </mat-checkbox>
                     </div>
