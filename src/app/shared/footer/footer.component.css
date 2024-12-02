@@ -2,4 +2,6 @@ footer {
     background-color: #101010;
     height: 80px;
     color: rgb(196, 196, 196);
+    position: relative;
+    width: 100%;
 }

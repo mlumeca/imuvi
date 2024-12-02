@@ -1,10 +1,11 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { AccountService } from '../../services/account.service';
 import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { List } from '../../models/lists.interfaces';
 
 @Component({
   selector: 'app-list-detail',
@@ -28,15 +29,18 @@ export class ListDetailComponent implements OnInit {
   averageRating: number = 0;
   closeResult = '';
   idElemento: number = 0;
+  account_id: string = '';
+  list: List[] = [];
 
   alertMessage: string | null = null;
   alertType: string = 'success';
 
 
-  constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
+  constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal, private router: Router) { }
 
 
   ngOnInit(): void {
+    this.account_id = localStorage.getItem('account_id') ?? '';
     this.listId = this.route.snapshot.paramMap.get('id');
     this.loadItems();
 
@@ -86,10 +90,11 @@ export class ListDetailComponent implements OnInit {
     this.accountService.deleteUserList(listId).subscribe(response => {
       this.showAlert('Lista eliminada.', 'success');
       modal.close();
-  });
+      this.router.navigate(['/lists']);
+    });
   }
 
-  updateList(listId: string, listName: string, listDesc: string, modal:any) {
+  updateList(listId: string, listName: string, listDesc: string, modal: any) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
@@ -99,7 +104,7 @@ export class ListDetailComponent implements OnInit {
     });
 
   }
- 
+
 
   open(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -127,20 +132,22 @@ export class ListDetailComponent implements OnInit {
     });
   }
 
-  confirmDelete(modal:any): void {
+  confirmDelete(modal: any): void {
     this.removeItem(this.idElemento);
     this.modalService.dismissAll();
-    this.showAlert('Item eliminado.', 'success');
+    this.showAlert('Item eliminado.', 'danger');
     modal.close();
+
   }
 
-  showAlert(message: string, type: string = 'success') {
+  showAlert(message: string, type: string = 'danger') {
     this.alertMessage = message;
     this.alertType = type;
     setTimeout(() => {
       this.alertMessage = null;
-    }, 3000); 
+    }, 3000);
   }
+
 
 }
 

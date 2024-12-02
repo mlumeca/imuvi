@@ -20,17 +20,23 @@ export class ListFavoritesComponent {
   serieList: Serie[] = [];
   item: Item[] = [];
   account_id: string = '';
+
   totalCount: number = 0;
   averageRating: number = 0;
   totalItems: number = 0;
   idElemento: number = 0;
   tipoElemento: string = '';
+
   showMovies: boolean = true;
   showSeries: boolean = true;
   closeResult = '';
-  moviePage = 1;
-  seriesPage = 1;
-  totalPages = 1;
+
+  pageMovie = 1;
+  totalPagesMovie = 1;
+
+  pageSerie = 1;
+  totalPagesSerie = 1;
+
   alertMessage: string | null = null;
   alertType: string = '';
 
@@ -105,54 +111,54 @@ export class ListFavoritesComponent {
   removeItem(id: number, tipo: string): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     if (tipo === 'movie') {
-        this.accountService.deleteMovieFavorite(this.account_id, id).subscribe({});
-            this.movieList = this.movieList.filter(movie => movie.id !== id);
+      this.accountService.deleteMovieFavorite(this.account_id, id).subscribe({});
+      this.movieList = this.movieList.filter(movie => movie.id !== id);
 
     } else {
-        this.accountService.deleteSerieFavorite(this.account_id ,id).subscribe({});
-            this.serieList = this.serieList.filter(serie => serie.id !== id);
+      this.accountService.deleteSerieFavorite(this.account_id, id).subscribe({});
+      this.serieList = this.serieList.filter(serie => serie.id !== id);
 
     }
   }
 
   ConfirmDelete(modal: any) {
     this.removeItem(this.idElemento, this.tipoElemento);
-    this.modalService.dismissAll(); 
+    this.modalService.dismissAll();
 
     this.showAlert('Item eliminado.', 'success');
     modal.close();
-}
+  }
 
-showAlert(message: string, type: string) {
-  this.alertMessage = message;
-  this.alertType = type;
-  setTimeout(() => {
-    this.alertMessage = null;
-  }, 3000); 
-}
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000);
+  }
 
   newPageMovies(): void {
-    this.accountService.geFavoriteMovieByPage(this.account_id, this.moviePage).subscribe(resp => {
+    this.accountService.geFavoriteMovieByPage(this.account_id, this.pageMovie).subscribe(resp => {
       this.movieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesMovie = resp.total_pages;
       this.updateValues();
     });
   }
 
   newPageSeries(): void {
-    this.accountService.geFavoriteSerieByPage(this.account_id, this.seriesPage).subscribe(resp => {
+    this.accountService.geFavoriteSerieByPage(this.account_id, this.pageSerie).subscribe(resp => {
       this.serieList = resp.results;
-      this.totalPages = resp.total_pages;
+      this.totalPagesSerie = resp.total_pages;
       this.updateValues();
     });
   }
   onPageMovies(newPage: number): void {
-    this.moviePage = newPage;
+    this.pageMovie = newPage;
     this.newPageMovies();
   }
 
   onPageSeries(newPage: number): void {
-    this.seriesPage = newPage;
+    this.pageSerie = newPage;
     this.newPageSeries();
   }
 }

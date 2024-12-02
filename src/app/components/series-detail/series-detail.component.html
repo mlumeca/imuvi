@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-9 ms-5 mt-1">
                             <div>
-                                <h1>{{oneSeries!.name}}</h1>
+                                <h1 class="title">{{oneSeries!.name}}</h1>
                                 <div class="d-flex">
                                     @for (item of oneSeries?.genres; track item.id) {
                                     <p class="me-2">{{item.name}} • </p>
@@ -21,20 +21,37 @@
                                     <p>{{oneSeries!.number_of_seasons}} Temporadas.</p>
                                 </div>
 
-                            </div> <br> <br>
+                            </div>
 
                             <div>
-                                <h4 class="text-start">Vista General</h4>
-                                <p><i>{{oneSeries!.tagline}}</i><br>
+                                <h4 class="text-start title mb-1 mt-3">Vista General</h4>
+
+                                <p><br>
                                     {{oneSeries!.overview}}</p>
                             </div>
                             <div class="row mt-5">
-                                <p class="col-3">Título Original<br>
+                                @if(oneSeries?.original_language){
+                                <p class="col-3"><strong>Título original</strong><br>
                                     {{oneSeries!.original_name}}
                                 </p>
+                                }@else {
+                                <p class="col-3"><strong>Título original</strong><br>
+                                    -
+                                </p>
+                                }
 
-                                <p class="col-3">Idioma Original<br>
+                                @if(oneSeries!.spoken_languages[0].name){
+                                <p class="col-3"><strong>Idioma original</strong><br>
                                     {{oneSeries!.spoken_languages[0].name}}
+                                </p>
+                                }@else {
+                                <p class="col-3"><strong>Idioma original</strong><br>
+                                    -
+                                </p>
+                                }
+
+                                <p class="col-3"><strong>Valoración media</strong><br>
+                                    {{getRatingPercentaje(oneSeries!.vote_average) | number:'1.0-0'}}%
                                 </p>
                                 <div class="col-3">
                                     <p class="mb-0">Tu Valoración</p>

@@ -1,5 +1,6 @@
 <div class="container-fluid mt-3 px-5">
-    <ngb-alert *ngIf="alertMessage" [type]="'success'" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+    <ngb-alert *ngIf="alertMessage" [type]="'danger'" (closed)="alertMessage = null"
+        class="custom-alert alert alert-danger alert-dismissible fade show">
         {{ alertMessage }}
     </ngb-alert>
 
@@ -34,12 +35,11 @@
                         </svg>
                     </button>
 
-
                     <ng-template #delete let-modal>
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
                                 <h4 class="modal-title">Eliminar lista</h4>
-                                <button type="button" class="btn-close" aria-label="Close"
+                                <button type="button" class="btn-close btn-close-white" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')"></button>
                             </div>
                             <div class="modal-body">
@@ -60,7 +60,7 @@
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
                                 <h4 class="modal-title">Actualizar lista</h4>
-                                <button type="button" class="btn-close" aria-label="Close"
+                                <button type="button" class="btn-close btn-close-white" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')"></button>
                             </div>
                             <div class="modal-body">
@@ -87,12 +87,11 @@
                                 </form>
                             </div>
                         </div>
-                    </ng-template>                    
+                    </ng-template>
                 </div>
 
             </div>
         </div>
-
         @for (item of item; track item.id) {
         <div class="col-3 mb-5 mt-4">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -120,7 +119,7 @@
     </div>
     <ngb-pagination
         class="d-flex justify-content-center mt-4"
-        [collectionSize]="totalPages * 20"
+        [collectionSize]="totalPages * 10"
         [(page)]="currentPage"
         (pageChange)="changePage($event)"
         [boundaryLinks]="true">
@@ -142,5 +141,3 @@
         </div>
     </div>
 </ng-template>
-
-

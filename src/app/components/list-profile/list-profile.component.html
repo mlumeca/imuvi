@@ -1,11 +1,12 @@
 <div class="container-fluid mt-3 px-5">
-    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+    <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null"
+        class="custom-alert alert alert-danger alert-dismissible fade show">
         {{ alertMessage }}
     </ngb-alert>
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
             <div class="fondoDatos">
-                <div class="mt-2">
+                <div class="text-center p-3">
                     <h3 class="text-center pt-2">Lista de seguimiento</h3>
                 </div>
 
@@ -22,6 +23,9 @@
             <i class="bi" [ngClass]="showMovies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showMovies){
+        @if (movieList.length === 0) {
+        <p>No hay películas en la lista de seguimiento.</p>
+        }@else {
         @for (movie of movieList; track movie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -46,21 +50,26 @@
             </div>
         </div>
         }
-        }
         <ngb-pagination
             class="d-flex justify-content-center mt-4"
-            [collectionSize]="totalPages * 20"
-            [(page)]="moviePage"
+            [collectionSize]="totalPagesMovie * 10"
+            [(page)]="pageMovie"
             (pageChange)="onPageMovies($event)"
             [boundaryLinks]="true">
         </ngb-pagination>
+        }
+        }
+
     </div>
     <div class="row">
-        <h4 (click)="showSeries = !showSeries">
+        <h4 (click)="showSeries = !showSeries" class="mt-4">
             Series
             <i class="bi" [ngClass]="showSeries ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
         </h4>
         @if (showSeries) {
+        @if (serieList.length === 0) {
+        <p>No hay serie en la lista de seguimiento.</p>
+        }@else {
         @for (serie of serieList; track serie.id) {
         <div class="col-3 mb-5">
             <div class="card movie-card d-flex flex-row position-relative">
@@ -84,15 +93,19 @@
             </div>
         </div>
         }
+        <ngb-pagination class="d-flex justify-content-center"
+            [collectionSize]="totalPagesSerie * 10"
+            (pageChange)="onPageSeries($event)"
+            [(page)]="pageSerie"
+            [maxSize]="10"
+            [boundaryLinks]="true">
+        </ngb-pagination>
         }
+
+        }
+
     </div>
-    <ngb-pagination
-        class="d-flex justify-content-center mt-4"
-        [collectionSize]="totalPages * 20"
-        [(page)]="seriesPage"
-        (pageChange)="onPageSeries($event)"
-        [boundaryLinks]="true">
-    </ngb-pagination>
+
 </div>
 
 <ng-template #delete let-modal>

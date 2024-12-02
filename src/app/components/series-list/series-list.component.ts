@@ -5,8 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 import { AccountService } from '../../services/account.service';
 import { StatusResponse } from '../../models/status-list.interfaces';
-import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+
 
 @Component({
   selector: 'app-series-list',
@@ -38,6 +37,7 @@ export class SeriesListComponent {
 
   alertMessage: string | null = null;
   alertType: string = 'success';
+
 
   constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService) { }
 
@@ -84,7 +84,7 @@ export class SeriesListComponent {
       );
     }
   }
-
+  
   onGenreChange(genreId: number, isChecked: boolean): void {
     if (isChecked) {
       if (!this.selectedGenres.includes(genreId)) {
@@ -99,11 +99,7 @@ export class SeriesListComponent {
   applyFilters(): void {
     this.originalSerieList = this.serieList;
 
-    if (this.selectedGenres.length > 0) {
-      this.originalSerieList = this.originalSerieList.filter(serie =>
-        serie.genre_ids.some(genreId => this.selectedGenres.includes(genreId))
-      );
-    }
+    this.filterByGenre();
 
     this.originalSerieList = this.originalSerieList.filter(serie =>
       serie.vote_average >= this.minRating && serie.vote_average <= this.maxRating
@@ -124,10 +120,10 @@ export class SeriesListComponent {
   searchingSerie(name: string): void {
     if (name.trim() !== '') {
       this.serieService.getSerieByName(name).subscribe(resp => {
-        this.serieList = resp.results;
+        this.originalSerieList = resp.results;
       });
     } else {
-      this.serieList = [...this.originalSerieList];
+      this.originalSerieList = [...this.serieList];
     }
   }
 
@@ -136,6 +132,8 @@ export class SeriesListComponent {
     this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
       StatusResponse) => { console.log('sERIE added to watchlist:', response); }
     )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+
   }
 
   addSerieToFavoriteList(serieId: number) {
@@ -151,6 +149,6 @@ export class SeriesListComponent {
     this.alertType = type;
     setTimeout(() => {
       this.alertMessage = null;
-    }, 3000); 
+    }, 3000);
   }
 }

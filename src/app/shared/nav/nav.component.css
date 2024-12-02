@@ -15,10 +15,6 @@ i {
     margin-top: 15px;
 }
 
-.seleccionado:active,
-.seleccionado:focus {
-    color: red;
-}
 
 .avatar {
     border-radius: 100%;
@@ -54,4 +50,8 @@ i {
     background-color: #191919;
     border-radius: 20px;
     width: 95%;
+}
+
+.active {
+    color: red !important;
 }

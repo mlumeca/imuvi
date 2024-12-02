@@ -1,5 +1,8 @@
 <div class="container-fluid mt-3 px-5">
     <div class="row">
+        <ngb-alert *ngIf="alertMessage" [type]="alertType" (closed)="alertMessage = null" class="custom-alert alert alert-success alert-dismissible fade show">
+            {{ alertMessage }}
+        </ngb-alert>
         <div class="d-flex position-relative justify-content-between align-items-center">
             <h2 class="textoList">Listas</h2>
             <div class="d-flex justify-content-center align-items-center">
@@ -14,6 +17,7 @@
 
                 <ng-template #content let-modal>
                     <div class="modal-content">
+                       
                         <div class="modal-header">
                             <h5>Nueva lista</h5>
                         </div>
