@@ -5,8 +5,12 @@
     margin: 10px;
 }
 
-.movie-card,
-.serie-card a {
+.top-card {
+    background-color: #303030;
+    border-radius: 20px;
+}
+
+.movie-card, .serie-card {
     height: 260px;
     width: 400px;
     background-color: #303030;
@@ -29,9 +33,25 @@
 }
 
 
+.star {
+    position: relative;
+    display: inline-block;
+    color: #d3d3d3;
+    font-size: 2rem;
+  }
 
-h5,
-p {
+.full {
+    color: #ffc107;
+  }
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #ffc107;
+}
+
+h5, p {
     color: white;
 }
 
@@ -53,11 +73,10 @@ p {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    border: 2px solid #303030;
+    border: 2px solid #303030 ;
 }
 
-.bi-chevron-up,
-.bi-chevron-down {
+.bi-chevron-up, .bi-chevron-down {
     font-size: 1rem;
 }
 
@@ -76,7 +95,7 @@ p {
     width: 100%;
 }
 
-.modal-content {
+.modal-content{
     background-color: #191919;
     color: white;
     border: none;
@@ -102,20 +121,3 @@ ngb-pagination ::ng-deep a {
   ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
     box-shadow: 0 0 0 0.1rem dimgrey;
   }
-  
-.fondoDatos {
-    background-color: #383838;
-    border-radius: 20px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.custom-alert {
-    position: fixed; 
-    top: 20px;       
-    right: 20px;     
-    z-index: 1050;   
-    width: auto;     
-    max-width: 300px; 
-}
-

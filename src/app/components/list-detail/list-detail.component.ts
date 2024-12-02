@@ -4,7 +4,6 @@ import { Item, ListDetailResponse } from '../../models/list-detail.interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../services/list.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserList } from '../../models/user-lists.interface';
 import { StatusResponse } from '../../models/status-list.interfaces';
 
 @Component({
@@ -30,6 +29,9 @@ export class ListDetailComponent implements OnInit {
   closeResult = '';
   idElemento: number = 0;
 
+  alertMessage: string | null = null;
+  alertType: string = 'success';
+
 
   constructor(private listService: ListService, private route: ActivatedRoute, private accountService: AccountService, private modalService: NgbModal) { }
 
@@ -37,15 +39,17 @@ export class ListDetailComponent implements OnInit {
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('id');
     this.loadItems();
+
   }
 
   loadItems(): void {
     this.listService.getOneList(this.listId!, this.currentPage).subscribe(response => {
+      this.lists = response;
       this.item = response.items;
       this.totalItems = response.item_count;
       this.totalCount = response.item_count;
       this.totalPages = Math.ceil(this.totalItems / 20);
-      this.calculateAverageRating();
+      this.calculateAverageRating()
     });
   }
 
@@ -59,6 +63,7 @@ export class ListDetailComponent implements OnInit {
   getImagen(url: string): string {
     return 'https://image.tmdb.org/t/p/w500' + url;
   }
+
   getRatingPercentaje(number: number) {
     return number * 10;
   }
@@ -77,23 +82,24 @@ export class ListDetailComponent implements OnInit {
     this.averageRating = totalRating / this.item.length;
   }
 
-  deleteList(listId: string) {
+  deleteList(listId: string, modal: any) {
     this.accountService.deleteUserList(listId).subscribe(response => {
-      alert('Lista eliminada.');
-    });
+      this.showAlert('Lista eliminada.', 'success');
+      modal.close();
+  });
   }
 
-  updateList(listId: string, listName: string, listDesc: string) {
+  updateList(listId: string, listName: string, listDesc: string, modal:any) {
     this.accountService.updateUserList(listId, listName, listDesc).subscribe(response => {
       this.lists!.name = listName;
       this.lists!.description = listDesc;
 
-      alert('Lista actualizada.');
-      console.log(response)
+      this.showAlert('Lista actualizada.', 'success');
+      modal.close();
     });
 
-
   }
+ 
 
   open(content: TemplateRef<any>) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
@@ -121,9 +127,19 @@ export class ListDetailComponent implements OnInit {
     });
   }
 
-  ConfirmDelete(): void {
+  confirmDelete(modal:any): void {
     this.removeItem(this.idElemento);
     this.modalService.dismissAll();
+    this.showAlert('Item eliminado.', 'success');
+    modal.close();
+  }
+
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

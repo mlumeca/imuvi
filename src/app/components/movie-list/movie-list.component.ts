@@ -35,6 +35,10 @@ export class MovieListComponent implements OnInit {
   releaseDateFrom: string = '';
   releaseDateTo: string = '';
 
+  alertMessage: string | null = null;
+  alertType: string = 'success';
+  
+
   constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService) { }
   ngOnInit(): void {
     this.newPage();
@@ -132,6 +136,23 @@ export class MovieListComponent implements OnInit {
     this.accountService.addMovieToWatchList(this.account_id, movieId).subscribe((response:
       StatusResponse) => { console.log('Movie added to watchlist:', response); }
     )
+
+    this.showAlert('Elemento añadido a la lista.', 'success');
   }
 
+  addMovieToFavoriteList(movieId: number) {
+    this.account_id = localStorage.getItem('account_id') ?? '';
+    this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
+      StatusResponse) => { console.log('Movie added to favorites:', response); }
+    )
+    this.showAlert('Elemento añadido a la lista.', 'success');
+  }
+  
+  showAlert(message: string, type: string = 'success') {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
+  }
 }

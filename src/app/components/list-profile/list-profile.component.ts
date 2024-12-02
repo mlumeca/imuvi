@@ -12,9 +12,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './list-profile.component.css'
 })
 export class ListProfileComponent {
-
-  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService,   private modalService: NgbModal) { }
-
   movieList: Movie[] = [];
   serieList: Serie[] = [];
   account_id: string = '';
@@ -30,6 +27,10 @@ export class ListProfileComponent {
   idElemento: number= 0;
   tipoElemento: string = '';
   closeResult = '';
+  alertMessage: string | null = null;
+  alertType: string = '';
+
+  constructor(private accountService: AccountService, private serieService: SerieService, private movieService: MovieService,   private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
@@ -123,9 +124,20 @@ export class ListProfileComponent {
     );
   }
 
-  ConfirmDelete() {
+  ConfirmDelete(modal: any) {
       this.removeItem(this.idElemento, this.tipoElemento);
       this.modalService.dismissAll(); 
+
+      this.showAlert('Item eliminado.', 'success');
+      modal.close();
+  }
+
+  showAlert(message: string, type: string) {
+    this.alertMessage = message;
+    this.alertType = type;
+    setTimeout(() => {
+      this.alertMessage = null;
+    }, 3000); 
   }
 
 }

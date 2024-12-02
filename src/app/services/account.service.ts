@@ -63,7 +63,7 @@ export class AccountService {
     return this.http.get<ListDetailResponse>(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}&language=${language}`);
   }
 
- 
+  
   deleteUserList(listId: string): Observable<any> {
     return this.http.delete(`${environment.apiBaseUrl}/list/${listId}?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`);
   }
@@ -75,7 +75,6 @@ export class AccountService {
       description: listDesc
     });
   }
-
 
   getWatchListTv(account_id: string): Observable<SerieListResponse> {
     const language = this.getLanguage();
@@ -101,6 +100,88 @@ export class AccountService {
     );
   }
 
+  //FAVORITES
+  getFavMovies(account_id: string): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/movies?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  getFavSeries(account_id: string): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/tv?api_key=${environment.apiKey}&session_id=${sessionId}`
+    );
+  }
+
+  geFavoriteMovieByPage(account_id: string, page: number): Observable<MovieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<MovieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/movies?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
+  geFavoriteSerieByPage(account_id: string, page: number): Observable<SerieListResponse> {
+    let sessionId = localStorage.getItem('session_id');
+    return this.http.get<SerieListResponse>(
+      `${environment.apiBaseUrl}/account/${account_id}/favorite/tv?api_key=${environment.apiKey}&page=${page}&session_id=${sessionId}`
+    );
+  }
+
+  addFavoriteMovie(account_id: string, idMovie: number): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: "movie",
+      media_id: idMovie,
+      favorite: true
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
+  }
+
+  addFavoriteSerie(account_id: string, idSerie: number): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: "tv",
+      media_id: idSerie,
+      favorite: true
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
+  }
+
+  deleteMovieFavorite(account_id: string, idSerieMovie: number): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: "movie",
+      media_id: idSerieMovie,
+      favorite: false
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
+  }
+
+  deleteSerieFavorite(account_id: string, idSerieMovie: number): Observable<any> {
+    return this.http.post(`${environment.apiBaseUrl}/account/${account_id}/favorite?api_key=${environment.apiKey}&session_id=${localStorage.getItem('session_id')}`,{
+      media_type: "tv",
+      media_id: idSerieMovie,
+      favorite: false
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${environment.token}`
+        }
+      })
+  }
+
+  //Watchlist
   getWatchListhMovieByPage(account_id: string, page: number): Observable<MovieListResponse> {
     const language = this.getLanguage();
     let sessionId = localStorage.getItem('session_id');

@@ -2,14 +2,14 @@
     background-color: #303030;
     border-radius: 20px;
     width: 280px;
-    height: 500px;
+    height: 550px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
 }
 
 div .img-actor {
     width: 250px;
-    height: 320px;
+    height: 280px;
     object-fit: cover;
     border-radius: 20px;
     margin: 15px;
@@ -58,3 +58,35 @@ ngb-pagination > ul.pagination{
     background-color: white;
     border: none;
 }
+
+p, h5 {
+    color: white;
+    margin-left: 10px;
+}
+
+.card-body {
+    padding: 0.5rem;
+    padding-top: 0.2rem;
+}
+
+ngb-pagination ::ng-deep a {
+    background-color: #303030 !important;
+    border-color: rgb(14, 14, 14) !important;
+    color: white !important;
+
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+    border-color: black;
+    background-color: lightgrey;
+}
+  
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+  
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 0 0 0.1rem dimgrey;
+}
+  
+
