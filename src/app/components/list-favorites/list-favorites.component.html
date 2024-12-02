@@ -1,10 +1,16 @@
 <div class="container-fluid mt-3 px-5">
-    <div class="top-card p-3">
-        <h2 class="text-center p-3">Favoritos</h2>
-        <div class="row justify-content-center text-center">
-            <div class="d-flex justify-content-center">
-                <p class="me-4">{{totalCount}} elementos en la lista</p> |
-                <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media</p>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="fondoDatos">
+                <div class="mt-3">
+                    <h3 class="text-center pt-4 p-3">Favoritos</h3>
+                </div>
+
+                <div class="d-flex justify-content-center mb-3">
+                    <p class="me-4">{{totalCount}} elementos en la lista</p> |
+                    <p class="ms-4 me-4">{{getRatingPercentaje(averageRating) | number:'1.0-0'}}% de valoración media
+                    </p>
+                </div>
             </div>
         </div>
     </div>
@@ -40,12 +46,8 @@
             </div>
         </div>
         }
-        <ngb-pagination
-            class="d-flex justify-content-center mt-4"
-            [collectionSize]="totalPagesMovie * 10"
-            [(page)]="pageMovie"
-            (pageChange)="onPageMovies($event)"
-            [boundaryLinks]="true">
+        <ngb-pagination class="d-flex justify-content-center mt-4" [collectionSize]="totalPagesMovie * 10"
+            [(page)]="pageMovie" (pageChange)="onPageMovies($event)" [boundaryLinks]="true">
         </ngb-pagination>
         }
 
@@ -84,12 +86,8 @@
             </div>
         </div>
         }
-        <ngb-pagination class="d-flex justify-content-center"
-            [collectionSize]="totalPagesSerie * 10"
-            (pageChange)="onPageSeries($event)"
-            [(page)]="pageSerie"
-            [maxSize]="10"
-            [boundaryLinks]="true">
+        <ngb-pagination class="d-flex justify-content-center" [collectionSize]="totalPagesSerie * 10"
+            (pageChange)="onPageSeries($event)" [(page)]="pageSerie" [maxSize]="10" [boundaryLinks]="true">
         </ngb-pagination>
         }
         }

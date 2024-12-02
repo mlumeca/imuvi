@@ -54,6 +54,20 @@ i {
     width: 95%;
 }
 
+.diseyoLangu {
+    border-radius: 20px;
+    margin-top: 10px;
+    background-color: #383838;
+    border: none;
+    color: white;
+}
+
 .active {
     color: red !important;
 }
+
+.flag {
+    width: 20px; 
+    margin-right: 8px;
+}
+

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { AccountService } from '../../services/account.service';
+import { ConfigurationService } from '../../services/configuration.service';
+import { Language } from '../../models/configuration.interfaces';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-nav',
@@ -11,24 +14,30 @@ import { AccountService } from '../../services/account.service';
 export class NavComponent {
   userName = '';
   userPhoto = '';
+  language: Language[] = [];
+  selectedLanguage: String = ''
+
   constructor(private authService: AuthService,
-              private accountService: AccountService
-  ) {}
+    private accountService: AccountService, private configurationService: ConfigurationService
+  ) { }
 
   ngOnInit(): void {
     this.userName = localStorage.getItem('user_name') ?? '';
-    if (this.userPhoto) {
-      this.userPhoto = localStorage.getItem('user_photo')
+    this.userPhoto = localStorage.getItem('user_photo')
       ? `https://image.tmdb.org/t/p/w50_and_h50_face${localStorage.getItem(
-          'user_photo'
-        )}`
+        'user_photo'
+      )}`
       : '';
-    } else {
-      this.userPhoto = `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png`
-    }
     this.accountService.getAccountDetails().subscribe(response => {
-        localStorage.setItem('account_id', response.id.toString());
+      localStorage.setItem('account_id', response.id.toString());
     });
+
+    this.configurationService.getLanguages().subscribe(res => {
+      console.log('Idiomas obtenidos:', res);
+      this.language = res;
+    });
+    this.selectedLanguage = localStorage.getItem('language')!
+    console.log("selectedlanguage", this.selectedLanguage)
   }
 
   createRequestToken() {
@@ -49,5 +58,13 @@ export class NavComponent {
     window.location.href = 'http://localhost:4200';
   }
 
+  changeLanguage(event: MatSelectChange): void {
+    localStorage.setItem('language', event.value);
+    this.configurationService.setLanguage(event.value);
+    this.selectedLanguage = event.value
+    console.log("eventvalue", event.value)
+    window.location.reload();
+  }
 }
+
 
