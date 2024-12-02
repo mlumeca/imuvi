@@ -4,6 +4,7 @@ import { AccountService } from '../../services/account.service';
 import { ListService } from '../../services/list.service';
 import { UserList } from '../../models/user-lists.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-lists',
@@ -22,7 +23,7 @@ export class ListsComponent implements OnInit {
   sessionId = localStorage.getItem('session_id');
   alertMessage: string | null = null;
   alertType: string = '';
-  constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal) { }
+  constructor(private listService: ListService, private accountService: AccountService, private modalService: NgbModal, private translationService: TranslationService) { }
 
 
   ngOnInit(): void {
@@ -40,6 +41,7 @@ export class ListsComponent implements OnInit {
       this.lists = response.results;
     })
     this.fillList();
+    this.translationService.initializeLanguage();
   }
 
   open(content: TemplateRef<any>) {
@@ -71,10 +73,10 @@ export class ListsComponent implements OnInit {
           this.listDesc = '';
         });
 
-        this.showAlert('Lista creada.', 'success');
+        this.showAlert(this.getText('LIST_CREATED'), 'success');
 
       } else {
-        this.showAlert('Error al crear la lista. Introduzca un nombre', 'danger');
+        this.showAlert(this.getText('ERROR_CREATING_LIST'), 'danger');
 
       }
 
@@ -95,4 +97,7 @@ export class ListsComponent implements OnInit {
     }, 3000); 
   }
 
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
 }

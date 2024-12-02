@@ -3,13 +3,13 @@
         <div class="imgHome-container">
             <div class="imgHome">
                 <div class="tamyoConteHome">
-                    <h3>Bienvenido, ¿Qué deseas ver hoy?</h3>
+                    <h3>{{ getText('WELCOME') }}</h3>
                 </div>
             </div>
         </div>
 
         <div class="mt-4">
-            <h5 class="ms-4">Tendencias</h5>
+            <h5 class="ms-4">{{ getText('TRENDING') }}</h5>
             <div class="scrollCardPeli">
                 @for (item of trending; track item.id) {
                 @if(item.name) {
@@ -57,7 +57,7 @@
         </div>
 
         <div class="mt-4">
-            <h5 class="ms-4">Tráilers</h5>
+            <h5 class="ms-4">{{ getText('TRAILERS') }}</h5>
             <div class="scrollCardVideo">
                 @for(video of movieVideos; track video.id) {
                 <div class="card scrollVideo me-3 mb-2">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="mt-4">
-            <h5 class="mt-4 ms-4">Actores Populares</h5>
+            <h5 class="mt-4 ms-4">{{ getText('POPULAR_ACTORS') }}</h5>
             <div class="scrollCardActores">
                 @for (item of trendingActor; track item.id) {
                 <a class="text-decoration-none" [routerLink]="['/actor-detail', item.id]">

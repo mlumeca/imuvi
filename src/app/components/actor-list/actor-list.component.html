@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col">
             <div class="d-flex justify-content-between">
-                <h1 class="title mb-4">Actores</h1>
+                <h1 class="title mb-4">{{getText('ACTORS')}}</h1>
                 <div class="search">
-                    <input type="text" class="searchTerm ms-2" placeholder="Buscar..." [(ngModel)]="texto"
+                    <input type="text" class="searchTerm ms-2" [placeholder]="getText('SEARCH')" [(ngModel)]="texto"
                         (input)="searchingActor(texto)">
                     <button type="submit" class="searchButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

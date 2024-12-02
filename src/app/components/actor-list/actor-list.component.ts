@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActorService } from '../../services/actor.service';
 import { Actor } from '../../models/actor-list.interface';
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-actor-list',
@@ -16,10 +17,11 @@ export class ActorListComponent implements OnInit {
   totalPages = 1;
 
   @Input() texto = '';
-  constructor(private actorService: ActorService) { }
+  constructor(private actorService: ActorService, private translationService: TranslationService) { }
 
   ngOnInit(): void {
     this.newPage();
+    this.translationService.initializeLanguage();
   }
 
   getImage(path: string) {
@@ -30,7 +32,7 @@ export class ActorListComponent implements OnInit {
   newPage(): void {
     this.actorService.getPeoplePage(this.page).subscribe(resp => {
       this.actorList = resp.results;
-      this.originalActorList = [...this.actorList]; // Almacenar la lista original aquí
+      this.originalActorList = this.actorList;
       this.totalPages = resp.total_pages;
     });
   }
@@ -50,5 +52,7 @@ export class ActorListComponent implements OnInit {
     }
   }
 
-
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
 }

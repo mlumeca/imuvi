@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 import { AccountService } from '../../services/account.service';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { TranslationService } from '../../services/translation.service';
 
 
 @Component({
@@ -39,14 +40,16 @@ export class SeriesListComponent {
   alertType: string = 'success';
 
 
-  constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService) { }
+  constructor(private serieService: SerieService, private modalService: NgbModal, private accountService: AccountService, private translationService: TranslationService) { }
 
 
   ngOnInit(): void {
     this.newPage();
     this.serieService.getSerieGenre().subscribe(response => {
       this.serieGenre = response.genres;
-    })
+    });
+    this.translationService.initializeLanguage();
+
   }
 
   getImage(path: string) {
@@ -128,7 +131,7 @@ export class SeriesListComponent {
     this.accountService.addSerieToWatchList(this.account_id, serieId).subscribe((response:
       StatusResponse) => { console.log('Serie added to watchlist:', response); }
     )
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
 
   }
 
@@ -137,7 +140,7 @@ export class SeriesListComponent {
     this.accountService.addFavoriteSerie(this.account_id, serieId).subscribe((response:
       StatusResponse) => { console.log('Serie added to favorites:', response); }
     )
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
   }
 
   showAlert(message: string, type: string = 'success') {
@@ -146,5 +149,9 @@ export class SeriesListComponent {
     setTimeout(() => {
       this.alertMessage = null;
     }, 3000);
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 }

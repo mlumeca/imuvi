@@ -20,14 +20,14 @@
                             </div>
 
                             <div>
-                                <h3 class="text-light">Biografía</h3>
+                                <h3 class="text-light">{{getText('BIOGRAPHY')}}</h3>
                             </div>
 
                             <div>
                                 @if(actorDetail?.biography){
                                 <p class="text-light">{{actorDetail?.biography}}</p>
                                 }@else {
-                                <p class="text-light">No tenemos una biografía de {{actorDetail?.name}}</p>
+                                <p class="text-light">{{getText('NO_BIOGRAPHY')}} {{actorDetail?.name}}</p>
                                 }
 
                             </div>
@@ -42,7 +42,7 @@
                                         </svg>
                                     </div>
                                     <div class="ms-3 mt-3">
-                                        <p> Acreditación - {{getTotalCredits()}}</p>
+                                        <p>{{getText('CREDITS')}} - {{getTotalCredits()}}</p>
                                     </div>
                                 </div>
                                 <div class="d-flex text-light">
@@ -54,7 +54,7 @@
                                         </svg>
                                     </div>
                                     <div class="ms-3">
-                                        <p> Cumpleaños</p>
+                                        <p>{{getText('BIRTHDAY')}}</p>
                                         @if (actorDetail?.birthday) {
                                         <p>{{actorDetail?.birthday | date: "longDate"}}</p>
                                         }@else {
@@ -73,7 +73,7 @@
                                         </svg>
                                     </div>
                                     <div class="ms-3 text-light">
-                                        <p>Lugar de nacimiento</p>
+                                        <p>{{getText('PLACE_OF_BIRTH')}}</p>
                                         @if(actorDetail?.place_of_birth){
                                         <p>{{actorDetail?.place_of_birth}}</p>
                                         }@else {
@@ -90,7 +90,7 @@
         </div>
 
         <div class="mt-5 conocidoPor">
-            <h4 class="text-light">Conocido por</h4>
+            <h4 class="text-light">{{getText('KNOWN_FOR')}}</h4>
             <div class="scrollCardPeli">
                 @for (item of cast; track item.id) {
                 @if(item.name){
@@ -145,7 +145,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="section_heading">
-                            <h4 class="ms-3">Interpretación</h4>
+                            <h4 class="ms-3">{{getText('INTERPRETATION')}}</h4>
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
                                                 <div class="single-timeline-content d-flex fadeInLeft text-center">
                                                     <div class="timeline-text">
                                                         <p class="tamayoTimeLineText">{{item.title || item.name}}</p>
-                                                        <p class="mt-2">Como {{item.character}}</p>
+                                                        <p class="mt-2">{{getText('AS')}} {{item.character}}</p>
                                                     </div>
                                                 </div>
                                             </div>}

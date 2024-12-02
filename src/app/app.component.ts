@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ConfigurationService } from './services/configuration.service';
+import { TranslationService } from './services/translation.service';
 
 
 @Component({
@@ -10,10 +10,9 @@ import { ConfigurationService } from './services/configuration.service';
 export class AppComponent {
   title = 'imuvi';
 
-  constructor(private configurationService: ConfigurationService) {}
+  constructor(private translationService: TranslationService) {}
 
   ngOnInit(): void {
-    const savedLanguage = localStorage.getItem('language') || 'en-US';
-    this.configurationService.setLanguage(savedLanguage);
+    this.translationService.setLanguage(localStorage.getItem('language') || 'en');
   }
 }

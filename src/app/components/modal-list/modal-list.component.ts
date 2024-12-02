@@ -7,6 +7,7 @@ import { List } from '../../models/lists.interfaces';
 import { ListService } from '../../services/list.service';
 import { ActivatedRoute } from '@angular/router';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-modal-list',
@@ -31,11 +32,12 @@ export class ModalListComponent implements OnInit {
 
   
 
-  constructor(private accountService: AccountService, public activeModal: NgbActiveModal, private listService: ListService, private route: ActivatedRoute) { }
+  constructor(private accountService: AccountService, public activeModal: NgbActiveModal, private listService: ListService, private route: ActivatedRoute, private translationService: TranslationService ) { }
 
   ngOnInit(): void {
     this.account_id = localStorage.getItem('account_id') ?? '';
     this.fillList();
+    this.translationService.initializeLanguage();
 
   }
 
@@ -59,14 +61,14 @@ export class ModalListComponent implements OnInit {
         this.listName = '';
         this.listDesc = '';
 
-        this.showAlert('Lista creada.', 'success');
+        this.showAlert(this.getText('LIST_CREATED'), 'success');
         
 
         
       });
 
     } else {
-      this.showAlert('Error al crear la lista. Introduzca un nombre', 'danger');
+      this.showAlert(this.getText('ERROR_CREATING_LIST'), 'danger');
      
     }
     
@@ -76,7 +78,7 @@ export class ModalListComponent implements OnInit {
     if (this.listId && this.movieId) {
       this.listService.addMovieToList(this.listId, this.movieId).subscribe((response:
         StatusResponse) => {
-          this.showAlert('Elemento añadido a la lista.', 'success');
+          this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
           
       })
     }
@@ -94,6 +96,10 @@ export class ModalListComponent implements OnInit {
     setTimeout(() => {
       this.alertMessage = null;
     }, 3000); 
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 }
 

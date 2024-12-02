@@ -5,6 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
 import { AccountService } from '../../services/account.service';
 import { StatusResponse } from '../../models/status-list.interfaces';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -39,12 +40,14 @@ export class MovieListComponent implements OnInit {
   alertType: string = 'success';
   
 
-  constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService) { }
+  constructor(private movieService: MovieService, private modalService: NgbModal, private accountService: AccountService, private translationService: TranslationService) { }
   ngOnInit(): void {
     this.newPage();
     this.movieService.getMovieGenre().subscribe(response => {
       this.movieGenre = response.genres;
     });
+
+    this.translationService.initializeLanguage();
   }
 
   getImage(path: string) {
@@ -133,7 +136,7 @@ export class MovieListComponent implements OnInit {
       StatusResponse) => { console.log('Movie added to watchlist:', response); }
     )
 
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
   }
 
   addMovieToFavoriteList(movieId: number) {
@@ -141,7 +144,7 @@ export class MovieListComponent implements OnInit {
     this.accountService.addFavoriteMovie(this.account_id, movieId).subscribe((response:
       StatusResponse) => { console.log('Movie added to favorites:', response); }
     )
-    this.showAlert('Elemento añadido a la lista.', 'success');
+    this.showAlert(this.getText('ITEM_ADDED_TO_LIST'), 'success');
   }
   
   showAlert(message: string, type: string = 'success') {
@@ -151,4 +154,9 @@ export class MovieListComponent implements OnInit {
       this.alertMessage = null;
     }, 3000); 
   }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
+  }
+
 }

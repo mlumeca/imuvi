@@ -24,4 +24,32 @@ body {
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.mat-mdc-select-panel, .mat-mdc-text-field-wrapper {
+    background-color: #383838 !important;
+}
 
+.mat-mdc-option.mdc-list-item--selected {
+    background-color: #191919 !important;
+}
+
+.mdc-list-item__primary-text, .mat-mdc-select-value {
+    color: white !important;
+}
+
+.mdc-line-ripple {
+    display: none !important;
+}
+
+.mat-mdc-text-field-wrapper {
+    height: 45px !important;
+}
+
+
+.mat-mdc-form-field-infix {
+    padding-top: 10px !important;
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

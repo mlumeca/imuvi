@@ -5,6 +5,7 @@ import { Actor } from '../../models/homeActors.interface';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalListComponent } from '../modal-list/modal-list.component';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent {
   modalRef: NgbModalRef | undefined;
 
 
-  constructor(private imuviService: ImuviService, private sanitizer: DomSanitizer, private modalService: NgbModal) {}
+  constructor(private imuviService: ImuviService, private sanitizer: DomSanitizer, private modalService: NgbModal, private translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.imuviService.getTrending().subscribe (response => {
@@ -39,6 +40,9 @@ export class HomeComponent {
         this.loadMovieVideos(movie.id); 
       });
     });
+
+    this.translationService.initializeLanguage();
+
 
   }
 
@@ -62,6 +66,10 @@ export class HomeComponent {
 
   openModal() {
     this.modalRef = this.modalService.open(ModalListComponent);   
+  }
+
+  getText(key: string): string {
+    return this.translationService.translate(key);
   }
 
 

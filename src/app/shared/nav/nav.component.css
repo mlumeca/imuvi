@@ -65,11 +65,37 @@ i {
     color: red !important;
 }
 
-.flag {
-    width: 20px; 
-    margin-right: 8px;
+.languaje-menu {
+    width: 170px;
+    margin-right: 15px;
 }
 
+.btnLogin{
+    width: 100px;
+}
 ::ng-deep .mat-select-panel{
     background: red !important;
 } 
+
+.mat-mdc-text-field-wrapper {
+    width: 40%;
+    z-index: 0;
+}
+
+.languageFormField {
+    width: 180px;
+    height: 45px;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+
+.Flag {
+    width: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
